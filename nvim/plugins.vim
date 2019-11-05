@@ -1,0 +1,753 @@
+
+"         ███                 ██
+"        ░░██                ░░
+"  ██████ ░██ ██   ██  ██████ ██ ██████   ██████
+" ░██░░░██░██░██  ░██ ██░░░██░██░██░░░██ ██░░░░
+" ░██  ░██░██░██  ░██░██  ░██░██░██  ░██░░█████
+" ░██████ ░██░██  ░██░░██████░██░██  ░██ ░░░░░██
+" ░██░░░  ░██░░█████  ░░░░░██░██░██  ░██ ██████
+" ░██     ░░  ░░░░░    █████ ░░ ░░   ░░ ░░░░░░
+" ░░                  ░░░░░
+
+
+" Install Vim-Plug in Unix if not yet                               {{{
+" =====================================================================
+if has('unix')
+
+    let vimplug_exists=expand('~/.config/nvim/autoload/plug.vim')
+
+    if !filereadable(vimplug_exists)
+        if !executable("curl")
+            echoerr "You have to install curl or first install vim-plug yourself!"
+            execute "q!"
+        endif
+        echo "Installing Vim-Plug..."
+        echo ""
+        silent exec "!\curl -fLo " . vimplug_exists . " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+
+        autocmd VimEnter * PlugInstall
+    endif
+
+endif
+" }}}
+
+if has('unix')
+    call plug#begin(expand('~/.config/nvim/plugged'))
+elseif has('win32')
+    call plug#begin(expand('~\AppData\Local\nvim\plugged'))
+endif
+
+" -------------------- Прочее ------------------------
+
+Plug 'jiangmiao/auto-pairs'  " автоматическое завершение скобок
+Plug 'matze/vim-move'        " перемещение строк и частей строк
+Plug 'tpope/vim-surround'    " заключать фрагменты текста в кавычки или скобки
+Plug 'godlygeek/tabular'     " Выравнивание текста по различным шаблонам
+Plug 'wellle/targets.vim'    " plugin that provides additional text objects
+Plug 'majutsushi/tagbar'     " список тегов в текущем файле
+
+Plug 'kshenoy/vim-signature' " display and navigate marks
+
+Plug 'sheerun/vim-polyglot'  " подсветка синтаксисов разных языков
+let g:polyglot_disabled = ['markdown']
+
+" Переключение мемжду многострочными конструкциями и однострочными
+Plug 'AndrewRadev/splitjoin.vim'
+
+" Delete buffer without closing related window
+Plug 'qpkorr/vim-bufkill'
+
+Plug 'mbbill/undotree'         " visualize undo tree
+" Plug 'simnalamburt/vim-mundo'  " another undo tree visualizer
+
+" Show syntax highlighting attributes of character under cursor.
+Plug 'vim-scripts/SyntaxAttr.vim'
+
+" 'Rich text' highlighting in Vim
+" (colors, underline, bold, italic, etc...)
+" Plug 'bpstahlman/txtfmt'
+" so ~/.config/nvim/plugins_settings/txtfmt.vim
+
+" Airline                                                           {{{
+" =====================================================================
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+so ~/.config/nvim/plugins_settings/airline.vim
+
+" }}}
+
+" Beautiful Lightline configuration                                 {{{
+" =====================================================================
+" https://gist.github.com/sainnhe/b8240bc047313fd6185bb8052df5a8fb
+
+Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-gitbranch'
+Plug 'macthecadillac/lightline-gitdiff'
+Plug 'maximbaz/lightline-ale'
+Plug 'albertomontesg/lightline-asyncrun'
+Plug 'rmolin88/pomodoro.vim'
+so ~/.config/nvim/plugins_settings/lightline.vim
+
+" Pomodoro                                                          {{{
+" ---------------------------------------------------------------------
+let g:pomodoro_time_work = 2
+let pomodoro_use_devicons = 1
+" }}}
+
+" }}}
+
+" ------------------ Autocomplete --------------------
+
+Plug 'ervandew/supertab'
+
+" Plug 'Valloric/YouCompleteMe'
+" so ~/.config/nvim/plugins_settings/YouCompleteMe.vim
+
+" Buffexplorer  {{{
+Plug 'jlanzarotta/bufexplorer'
+let g:bufExplorerFindActive=0        " Do not go to active window.
+" }}}
+
+" -------------- Визуальные улучшалки ----------------
+
+" Plug 'Yggdroot/indentLine'     " show indent lines
+"
+" подсвечивает все такие же слова что и слово под курсором
+Plug 'RRethy/vim-illuminate'
+
+Plug 'inside/vim-search-pulse' " Найденный текст пульсирует
+
+" ----------------------------------------------------
+
+" Colorizer                                                          {{{
+" ======================================================================
+" Подсвечивает цветовые коды соответствующими цветами
+Plug 'lilydjwg/colorizer', { 'on': ['ColorHighlight'] }
+
+"   ColorHighlight  - start/update highlighting
+"   ColorClear      - clear all highlights
+"   ColorToggle     - toggle highlights
+
+" Запускать подсветку цветоввых кодов на старте
+let g:colorizer_startup = 0
+" }}}
+
+" Comments                                                           {{{
+" ======================================================================
+" Plug 'tpope/vim-commentary'  " добавляет оператор вместо набора команд
+
+" tcomment                                                          {{{2
+" ----------------------------------------------------------------------
+Plug 'tomtom/tcomment_vim'
+
+" }}}2
+
+" NERDCommenter                                                     {{{2
+" ----------------------------------------------------------------------
+
+" Plug 'scrooloose/nerdcommenter'  " комментарии всевозможных видов и форм
+"
+" " so ~/.config/nvim/plugins_settings/NERDCommenter.vim
+"
+" let g:NERDSpaceDelims = 1        " add spaces around comments
+" let g:NERDRemoveExtraSpaces = 1  " remove extra spaces around comments
+"
+" " Комменировать пустые строки при комментировании блоков текста
+" let g:NERDCommentEmptyLines = 1
+"
+" " Use compact syntax for prettified multi-line comments
+" let g:NERDCompactSexyComs = 1
+
+" }}}2
+
+" }}}
+
+"  Fzf                                              {{{
+" =====================================================
+if has('unix')
+    " If fzf was installed through apt.
+    source /usr/share/doc/fzf/examples/fzf.vim
+    Plug 'junegunn/fzf.vim'
+endif
+
+" Fuzzy finding in Windows                        {{{2
+" ====================================================
+if has('win32')
+    Plug 'Yggdroot/LeaderF', { 'do': '.\install.bat' }
+endif
+" }}}2
+" }}}
+
+"  Git                                             {{{
+" ====================================================
+
+Plug 'tpope/vim-fugitive'  " git integration
+
+" Plug 'mhinz/vim-signify'  " значки с историей изменений слева от текста
+
+Plug 'junegunn/gv.vim'  " A git commit browser in Vim.
+
+" }}}
+
+" --------------- Motions in window ------------------
+
+" Easymotion {{{
+Plug 'easymotion/vim-easymotion'
+
+" so ~/.config/nvim/plugins_settings/easymotion.vim
+
+" Use uppercase target labels and type as a lower case
+let g:EasyMotion_use_upper = 1
+
+ " type `l` and match `l` & `L`
+let g:EasyMotion_smartcase = 1
+
+" Smartsign (type `3` and match `3` & `#`)
+let g:EasyMotion_use_smartsign_us = 1
+
+" При перемещении по строкам курсор будет прыгать не в
+" начало строки, а в туже колонку, что и был.
+let g:EasyMotion_startofline = 0
+
+" }}}
+
+Plug 'tpope/vim-repeat'
+
+" Clever-f {{{
+Plug 'rhysd/clever-f.vim'
+let g:clever_f_ignore_case = 1
+let g:clever_f_smart_case = 1
+let g:clever_f_show_prompt = 1
+let g:clever_f_chars_match_any_signs = ';'
+" }}}
+
+" Plug 'chaoren/vim-wordmotion'  " More useful word motions for Vim
+
+" Different bidirectional motions: switch buffers, add balnk lines, etc.
+Plug 'tpope/vim-unimpaired'
+
+" --------------------- Fold ------------------------
+" Plug 'arecarn/vim-fold-cycle'
+" Plug 'benknoble/vim-auto-origami'
+
+" Multiple cursors                                 {{{
+" ====================================================
+Plug 'terryma/vim-multiple-cursors'
+" Plug 'mg979/vim-visual-multi', {'branch': 'test'}
+
+" }}}
+
+" Pandoc                                                        {{{
+" =================================================================
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+
+" pandoc settings                                  {{{
+" ----------------------------------------------------
+" so ~/.config/nvim/plugins_settings/pandoc.vim
+
+let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
+
+" Enable pandoc functionality for markdown files
+let g:pandoc#filetypes#pandoc_markdown = 1
+
+" let g:pandoc#modules#enabled = ["formatting", "folding", "toc"]
+
+let g:pandoc#formatting#mode = "s"  " Use soft wraps
+
+let g:pandoc#folding#mode = 'stacked'
+let g:pandoc#folding#fdc = 0
+
+let g:pandoc#keyboard#sections#header_style = 's'
+
+let g:pandoc#toc#shift = 2
+
+" Pandoc Syntax
+" ----------------------------------------------------
+
+let g:pandoc#syntax#codeblocks#embeds#langs =
+            \ ["python", "shell=sh", "bash=sh", "sh", "zsh", "json", "vim"]
+" }}}
+
+" }}}
+
+" Python                                                            {{{
+" =====================================================================
+
+" Python mode                                                       {{{
+" ---------------------------------------------------------------------
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+" so ~/.config/nvim/plugins_settings/python-mode.vim
+
+let g:pymode_run = 1  " возможность запускать код
+
+let g:pymode_python = 'python3'
+
+" GoToDefinition in vertical split
+let g:pymode_rope_goto_def_newwin = 'vnew'
+
+" Always open documentation in veertical split on the left
+autocmd BufEnter __run__,__doc__ wincmd H
+
+" отключаем автокомплит по коду
+" (у нас вместо него используется jedi-vim)
+let g:pymode_rope = 0
+let g:pymode_rope_completion = 0
+let g:pymode_rope_complete_on_dot = 0
+
+" документация
+let g:pymode_doc = 1
+let g:pymode_doc_bind = 'K'  " key to show python documentation
+
+" проверка кода
+" let g:pymode_lint = 1
+" let g:pymode_lint_checkers = ['pyflakes', 'pyling', 'pep8', 'mccabe']
+" let g:pymode_lint_ignore="" " E501,W601,C0110
+"
+" let g:pymode_lint_on_write = 1  " Проверять код при сохранении
+" let g:pymode_lint_on_fly = 1    " Проверять код на лету
+
+" Show error message if cursor placed at the error line
+let g:pymode_lint_message = 1
+
+" Pylint signs
+let g:pymode_lint_todo_symbol = 'WW'
+let g:pymode_lint_comment_symbol = 'CC'
+let g:pymode_lint_visual_symbol = 'RR'
+let g:pymode_lint_error_symbol = 'EE'
+let g:pymode_lint_info_symbol = 'II'
+let g:pymode_lint_pyflakes_symbol = 'FF'
+
+" let g:pymode_virtualenv = 1  " Enable virtualenvs
+" let g:pymode_breakpoint_bind = '<leader>b'
+" let g:pymode_virtualenv_path = $VIRTUAL_ENV  " path to the virtualenv
+
+" }}}
+
+" Plug 'vim-python/python-syntax', { 'for': 'python' }
+" let g:python_highlight_all = 1
+
+" pudb python degugger integration
+Plug 'SkyLeach/pudb.vim', { 'for': 'python' }
+
+" Semantic based code highlighting
+" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
+" so ~/.config/nvim/plugins_settings/semshi.vim
+
+" Connection to Jupyter QtConsole
+" Plug 'broesler/jupyter-vim'
+" let g:jupyter_mapkeys = 1  " enable default key mapping
+
+" Looks like it doesn't works with Neovim
+" Plug 'williamjameshandley/vimteractive'  " connection with ipython
+
+" Plug 'szymonmaszke/vimpyter'  " edit ipython or ntrect notebooks in vim
+
+" =====================================================================
+" }}}
+
+" Rainbow  {{{
+" расцвечивание скобок по уровню вложенности
+Plug 'luochen1990/rainbow'
+" so ~/.config/nvim/plugins_settings/rainbow.vim
+
+" Default: '#c475c1', '#8ab7d8', '#60dd60', '#ffff70', '#ea9d70', '#971717'
+" My changes: #7ab061
+let g:rainbow_active = 1
+let g:rainbow_conf = {
+\   'guifgs': ['#c475c1', '#8ab7d8', '#98c369', '#ffff70', '#ea9d70', '#971717'],
+\   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+\   'separately': { 'nerdtree': 0, 'pandoc': 0 }
+\}
+" }}}
+
+" ---------------------- Tags ------------------------
+
+" Автоматически генерировать тэг-файлы
+Plug 'ludovicchabant/vim-gutentags'
+
+" ------------------ Прочие языки --------------------
+
+Plug 'lervag/vimtex', { 'for': 'LaTeX' }  " latex
+Plug 'PProvost/vim-ps1', {'for': 'ps1'}   " powershell
+
+" --------------------- Wintabs ----------------------
+
+" TODO: разберёмся с этим позже
+" Plug 'zefei/vim-wintabs'
+" Plug 'zefei/vim-wintabs-powerline'"
+
+" ------------------ Wrighting -----------------------
+
+" wiki.vim                                                          {{{
+" ---------------------------------------------------------------------
+Plug 'lervag/wiki.vim'
+" so ~/.config/nvim/plugins_settings/wiki.vim
+
+let g:wiki_root = '~/wiki'
+
+" List of filetypes for which wiki.vim should be enabled.
+let g:wiki_filetypes = ['md', 'wiki']
+
+" The default type of the link: wiki or md.
+let g:wiki_link_target_type = 'md'
+
+" A list of TODO toggles that may be toggled with <plug>(wiki-list-toggle),
+" which is by default mapped to `<c-s>`.
+let g:wiki_list_todos = ['TODO', 'DONE']
+
+" The title of TOC listings.
+let g:wiki_toc_title = 'Contents'
+
+" }}}
+
+" Vimwiki                                                           {{{
+" ---------------------------------------------------------------------
+" Plug 'vimwiki/vimwiki'       " Wiki inside Vim!
+" so ~/.config/nvim/plugins_settings/vimwiki.vim
+
+" let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+" let g:vimwiki_ext2syntax = {'.md': 'markdown'}
+" let g:vimwiki_folding='expr'
+
+" }}}
+
+Plug 'junegunn/goyo.vim'  " Beautiful regime for writing
+
+" " Pencil                                                            {{{
+" " ---------------------------------------------------------------------
+" Plug 'reedes/vim-pencil'  " Writing tools: soft wrap end etc
+"
+" let g:pencil#wrapModeDefault = 'soft'  " default is 'hard'
+"
+" " Only work in HardPencil mode;
+" let g:pencil#autoformat = 1  " 0=disable, 1=enable (def)
+" let g:pencil#textwidth = 80
+"
+" let g:pencil#joinspaces = 1  " 0=one_space (def), 1=two_spaces
+"
+" augroup pencil
+"     autocmd!
+"     autocmd FileType pandoc       call pencil#init()
+"     autocmd FileType markdown,mkd call pencil#init()
+"     autocmd FileType text         call pencil#init({'wrap': 'hard'})
+" augroup END
+"
+" "}}}
+
+" ----------------------------------------------------
+
+" Smooth scroll                                    {{{
+" ====================================================
+
+" " Accelerated smooth scroll {{{
+" Plug 'yonchu/accelerated-smooth-scroll'
+" let g:ac_smooth_scroll_enable_accelerating = 0
+" " }}}
+
+Plug 'yuttie/comfortable-motion.vim'
+
+" To prevent the plugin from defining those default key mappings
+let g:comfortable_motion_no_default_key_mappings = 1
+
+let g:comfortable_motion_interval = 17
+
+" mouse wheel to scroll a window by the following mappings:
+noremap <silent> <ScrollWheelDown> :call comfortable_motion#flick(40)<CR>
+noremap <silent> <ScrollWheelUp>   :call comfortable_motion#flick(-40)<CR>
+
+" }}}
+
+" Startify                                                         " {{{
+" ======================================================================
+Plug 'mhinz/vim-startify'    " Красивый стартовый экран
+" so ~/.config/nvim/plugins_settings/startify.vim
+
+" Thw number of most recently used files
+let g:startify_files_number = 10
+
+let g:startify_bookmarks = [
+\   {'m': '/mnt/d/artyu/OneDrive/Документы/Заметки/Monospace'},
+\   {'t': '/mnt/c/Users/artyu/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/profiles.json'},
+\   {'a': '/mnt/c/Users/artyu/AppData/Roaming/alacritty/alacritty.yml'},
+\]
+" \   {'i': '~/.config/nvim/init.vim'},
+" \   {'p': '~/.config/nvim/plugins.vim'},
+" '~/.zshrc'
+
+let g:startify_lists = [
+\   { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+\   { 'type': 'files',     'header': ['   MRU']            },
+\   { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+\   { 'type': 'sessions',  'header': ['   Sessions']       },
+\   { 'type': 'commands',  'header': ['   Commands']       },
+\ ]
+
+let g:startify_fortune_use_unicode = 1
+
+" autocmd! TabNewEntered * Startify
+" autocmd! TabNewEntered * Startify
+
+
+" }}}
+
+" Русский язык (Switch language)                                   " {{{
+" ======================================================================
+
+" Plug 'lyokha/vim-xkbswitch'
+"
+" let g:XkbSwitchEnabled = 1
+" if has('wsl')
+"     let g:XkbSwitchLib = '/mnt/c/tools/libxkbswitch64.dll'
+" elseif has('win32')
+"     let g:XkbSwitchLib = 'C:\tools\libxkbswitch64.dll'
+" endif
+
+Plug 'powerman/vim-plugin-ruscmd'
+
+" }}}
+
+" NERDTree                                                           {{{
+" ======================================================================
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFind' }
+
+" Добавляет цветную подсветку к иконкам
+Plug 'vwxyutarooo/nerdtree-devicons-syntax'
+
+" so ~/.config/nvim/plugins_settings/NERDTree.vim
+
+" Показывать скрытые файлы по умолчанию
+let NERDTreeShowHidden = 0
+
+" Automatically close NerdTree when you open a file
+let NERDTreeQuitOnOpen = 0
+
+" Automatically delete the buffer of the file you just deleted with NerdTree
+let NERDTreeAutoDeleteBuffer = 1
+
+" disable “Press ? for help”
+let NERDTreeMinimalUI = 0
+
+let g:NERDTreeHijackNetrw = 1
+
+let g:NERDTreeDirArrowExpandable  = "▷"
+let g:NERDTreeDirArrowCollapsible = "◢"
+
+" Close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" }}}
+
+" Devicons                                        {{{
+" ---------------------------------------------------
+
+Plug 'ryanoasis/vim-devicons'
+
+" so ~/.config/nvim/plugins_settings/devicons.vim
+
+let g:webdevicons_conceal_nerdtree_brackets = 1
+
+" Reload Vim-Deviconda after reload .vimrc file
+if exists("g:loaded_webdevicons")
+    call webdevicons#refresh()
+endif
+
+" }}}
+
+" Color Themes                                     {{{
+" ====================================================
+
+" Plug 'ayu-theme/ayu-vim'
+Plug 'joshdick/onedark.vim'
+Plug 'morhetz/gruvbox'
+Plug 'mhartington/oceanic-next'
+Plug 'ajmwagar/vim-deus'
+Plug 'sainnhe/gruvbox-material', { 'branch': 'neosyn' }
+
+" }}}
+
+call plug#end()
+
+"                 ███                                    ██
+"                ░░██                                   ░██
+"   █████   █████ ░██  █████  ██████      ██████  █████ ░██████   █████  ██████████   █████
+"  ██░░░██ ██░░░██░██ ██░░░██░░██░░█     ██░░░░  ██░░░██░██░░░██ ██░░░██░░██░░██░░██ ██░░░██
+" ░██  ░░ ░██  ░██░██░██  ░██ ░██ ░     ░░█████ ░██  ░░ ░██  ░██░███████ ░██ ░██ ░██░███████
+" ░██   ██░██  ░██░██░██  ░██ ░██        ░░░░░██░██   ██░██  ░██░██░░░░  ░██ ░██ ░██░██░░░░
+" ░░█████ ░░█████ ░██░░█████ ░███        ██████ ░░█████ ░██  ░██░░█████  ███ ░██ ░██░░█████
+"  ░░░░░   ░░░░░  ░░  ░░░░░  ░░░        ░░░░░░   ░░░░░  ░░   ░░  ░░░░░  ░░░  ░░  ░░  ░░░░░
+
+" let s:theme = 'ayu'
+" let s:theme = 'onedark'
+" let s:theme = 'gruvbox'
+let s:theme = 'gruvbox-material'
+" let s:theme = 'deus'
+" let s:theme = 'OceanicNext'
+
+" Onedark {{{
+if s:theme == 'onedark'
+    let g:onedark_hide_endofbuffer = 1
+    let g:onedark_terminal_italics = 1  " italic for comments
+
+    let g:onedark_color_overrides = {
+    \   "comment_grey": { "gui": "#666e7d", "cterm": "59", "cterm16": "15" },
+    \}
+
+    let s:colors = onedark#GetColors()
+
+    if (has("autocmd"))
+      augroup colorextend
+        autocmd!
+        " Override Foldcolumn color
+        autocmd ColorScheme * call onedark#extend_highlight("FoldColumn", { "fg": s:colors.comment_grey })
+      augroup END
+    endif
+
+    colorscheme onedark
+    let g:airline_theme='onedark'
+" }}}
+" Gruvbox {{{
+elseif s:theme == 'gruvbox'
+    let g:gruvbox_improved_strings = 1
+    let g:gruvbox_contrast_dark = 'medium'
+    colorscheme gruvbox
+    let g:airline_theme = 'gruvbox'
+    if exists('g:lightline')
+        let g:lightline.colorscheme = 'gruvbox'
+    endif
+" }}}
+" Ayu {{{
+elseif s:theme == 'ayu'
+    " let ayucolor="light"  " for light version of theme
+    let ayucolor = "mirage" " for mirage version of theme
+    " let ayucolor="dark"   " for dark version of theme
+    colorscheme ayu
+    let g:airline_theme = 'ayu'
+
+    " ----------------- IndentLine -------------------
+    let g:indentLine_char = '┊'
+    let g:indentLine_first_char = '┊'
+    " let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+    let g:indentLine_showFirstIndentLevel = 1
+    let g:indentLine_setColors = 0
+" }}}
+" OceanicNext {{{
+elseif s:theme == 'OceanicNext'
+    colorscheme OceanicNext
+    let g:airline_theme='oceanicnext'
+" }}}
+" Deus {{{
+elseif s:theme == 'deus'
+    colorscheme deus
+" }}}
+" Gruvbox-material {{{
+elseif s:theme == 'gruvbox-material'
+    colorscheme gruvbox-material
+    let g:airline_theme = 'gruvbox_material'
+    if exists('g:lightline')
+        let g:lightline.colorscheme = 'gruvbox_material'
+    endif
+endif
+" }}}
+
+
+"  ██                           ██      ██              ██ ██
+" ░██                          ░██     ░░              ░██░░
+" ░██   ██  █████  ██   ██     ░██████  ██ ██████   ██████ ██ ██████   ██████  ██████
+" ░██  ██  ██░░░██░██  ░██     ░██░░░██░██░██░░░██ ██░░░██░██░██░░░██ ██░░░██ ██░░░░
+" ░█████  ░███████░██  ░██     ░██  ░██░██░██  ░██░██  ░██░██░██  ░██░██  ░██░░█████
+" ░██░░██ ░██░░░░ ░░██████     ░██  ░██░██░██  ░██░██  ░██░██░██  ░██░░██████ ░░░░░██
+" ░██ ░░██░░█████  ░░░░░██     ░██████ ░██░██  ░██░░██████░██░██  ░██ ░░░░░██ ██████
+" ░░   ░░  ░░░░░    █████      ░░░░░░  ░░ ░░   ░░  ░░░░░░ ░░ ░░   ░░   █████ ░░░░░░
+"                  ░░░░░                                              ░░░░░
+
+" Easymotion key bindings {{{
+map  ; <Plug>(easymotion-prefix)
+nmap s <Plug>(easymotion-bd-f)
+xmap s <Plug>(easymotion-bd-f)
+omap s <Plug>(easymotion-bd-f)
+nmap ;w <Plug>(easymotion-w)
+nmap ;b <Plug>(easymotion-b)
+nmap ;l <Plug>(easymotion-lineanywhere)
+"}}}
+
+" Windows scrolling options / Comfortable motion key bindings {{{
+" Scrolling proportional to the window height, you may use settings such as these:
+nnoremap <silent> <C-d> :call comfortable_motion#flick(winheight(0) * 2.2)<CR>
+nnoremap <silent> <C-u> :call comfortable_motion#flick(winheight(0) * -2.2)<CR>
+nnoremap <silent> <C-f> :call comfortable_motion#flick(winheight(0) * 3.5)<CR>
+nnoremap <silent> <C-b> :call comfortable_motion#flick(winheight(0) * -3.5)<CR>
+" }}}
+
+" Fzf {{{
+
+nmap <Leader>F :Files<CR>
+nmap <Leader>f :GFiles<CR>
+
+nmap <Leader>h :History<CR>
+
+nmap <Leader>l :BLines<CR>
+nmap <Leader>L :Lines<CR>
+nmap <Leader>' :Marks<CR>
+
+nmap <Leader>/ :Rg<Space>
+
+" Fuzzy search Vim help
+nmap <Leader>H :Helptags!<CR>
+
+nmap <Leader>C :Commands!<CR>
+
+" Fuzzy search through ':command' history
+" nmap <Leader>: :History:!<CR>
+nmap q: :History:!<CR>
+nmap q/ :History/!<CR>
+
+" Fuzzy search key mappings
+nmap <Leader>M :Maps<CR>
+" }}}
+
+
+" Открыть файловую панель NERDTree, и установить в ней курсор на файле
+" открытом в текущем буфере. Повторное нажатие закроет файловую панель.
+nnoremap <silent> <F2> :call ToggleNERDTree()<CR>
+function! ToggleNERDTree() " {{{
+    if IsFileTypeOpen('nerdtree')
+        NERDTreeClose
+        " AirlineRefresh
+    else
+        NERDTreeFind
+    endif
+endfunction
+" }}}
+
+noremap <silent> <F3> :SignatureToggleSigns<CR>
+noremap <silent> <F4> :SignatureListBufferMarks<CR>
+noremap <silent> <F5> :GV<CR>
+
+
+nnoremap <silent> gb :call ChooseBuffer()<CR>
+function! ChooseBuffer()  "{{{
+    " Количество открытых буферов
+    let num_of_buffers = len(getbufinfo({'buflisted':1}))
+    if num_of_buffers > 2
+        " If you are interesting what is <C-z> check ':help wildcharm'.
+        " call feedkeys(":buffer \<C-z>")
+        ToggleBufExplorer
+    else
+        bnext
+    endif
+endfunction
+"}}}
+
+
+nmap <leader>vw <Plug>(wiki-index)
+
+
+" Показать syntax group для участка кода, а также цвет этой группы.
+" Удобно при создании своей цветовой схемы
+nnoremap <C-g> :call SyntaxAttr()<CR>
+
+" nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" vim: foldenable tw=75 colorcolumn=+1

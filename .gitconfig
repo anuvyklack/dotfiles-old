@@ -1,0 +1,23 @@
+[user]
+	email = anuvyklack@gmail.com
+	name = Yuriy Artemyev
+[core]
+	editor = nvim
+	autocrlf = false
+[alias]
+	unstage = reset HEAD --
+	graph = log --decorate --all --oneline --graph
+[credential]
+	helper = /mnt/c/Users/artyu/scoop/apps/mingit/current/mingw64/libexec/git-core/git-credential-manager.exe
+[merge]
+    tool = nvimmerge
+[difftool]
+    prompt = false
+[diff]
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = nvim  -R -f -d -c 'wincmd l' $LOCAL $REMOTE
+[mergetool "nvimmerge"]
+    cmd = nvim  -f -d -c 'wincmd l' $LOCAL $MERGED $REMOTE
+    # cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
