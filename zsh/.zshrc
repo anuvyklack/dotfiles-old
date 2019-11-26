@@ -66,16 +66,18 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # }}}
 
 # Colorer man pages {{{
-man() {
-    env LESS_TERMCAP_mb=$'\E[01;31m' \
-    LESS_TERMCAP_md=$'\E[01;38;5;74m' \
-    LESS_TERMCAP_me=$'\E[0m' \
-    LESS_TERMCAP_se=$'\E[0m' \
-    LESS_TERMCAP_so=$'\E[38;5;246m' \
-    LESS_TERMCAP_ue=$'\E[0m' \
-    LESS_TERMCAP_us=$'\E[04;38;5;146m' \
-    man "$@"
-}
+
+# man() {
+#     env LESS_TERMCAP_mb=$'\E[01;31m' \
+#     LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+#     LESS_TERMCAP_me=$'\E[0m' \
+#     LESS_TERMCAP_se=$'\E[0m' \
+#     LESS_TERMCAP_so=$'\E[38;5;246m' \
+#     LESS_TERMCAP_ue=$'\E[0m' \
+#     LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+#     man "$@"
+# }
+
 # }}}
 
 
@@ -113,8 +115,28 @@ RPROMPT=' %T '  # показывает время
 
 # }}}
 
+# Broot
+# source /home/anuvyklack/.config/broot/launcher/bash/br
+source ~/.config/broot/launcher/bash/br
+
 # fzf {{{
 # Read the documentation (/usr/share/doc/fzf/README.Debian)
+
+export FZF_DEFAULT_OPTS='--height 75% --layout=reverse --border'
+# export FZF_DEFAULT_OPTS='--height 75% --layout=reverse --border --preview="head -30 {}"'
+
+# --files: List files that would be searched but do not search
+# --no-ignore: Do not respect .gitignore, etc...
+# --hidden: Search hidden files and folders
+# --follow: Follow symlinks
+# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# export FZF_ALT_C_COMMAND="bfs -type d -nohidden -L -print 2> /dev/null"
+export FZF_ALT_C_COMMAND="bfs -type d -L -print 2> /dev/null"
 
 # enable fzf keybindings for Zsh
 # CTRL-R - Paste the selected command from history into the command line
@@ -142,8 +164,6 @@ fzf-history-widget()
 }
 # }}}2
 
-export FZF_DEFAULT_OPTS='--height 75% --layout=reverse --border'
-# export FZF_DEFAULT_OPTS='--height 75% --layout=reverse --border --preview="head -30 {}"'
 # }}}
 
 # Par (paragraph formating)                                             {{{
@@ -250,6 +270,8 @@ bindkey "^J" history-substring-search-down
 # Aliaces                                                               {{{
 # =========================================================================
 
+alias vim='nvim'
+
 alias mv='nocorrect mv -i'  # переименование-перемещение c пogтвepжgeнueм
 alias cp='nocorrect cp -iR'  # рекурсивное копирование с подтверждением
 alias rm='nocorrect rm -i'  # удаление с подтверждением
@@ -257,13 +279,18 @@ alias rm='nocorrect rm -i'  # удаление с подтверждением
 # alias rmrf='nocorrect rm -fR' # принудительное рекурсивное удаление
 alias mkdir='nocorrect mkdir'  # создание каталогов без коррекции
 
-alias ls='ls -F'  # вывод символов типов файлов
-alias ll='ls -l'  # вывog в gлuннoм фopмaтe
-alias la='ls -A'  # вывog всех файлов, кромe . u ..
-alias lsd='ls -ld *(-/DN)'  # вывод только каталогов
-alias lsa='ls -ld .*'  # вывog тoльko dot-фaйлoв
+# alias ls='ls -F'  # вывод символов типов файлов
+# alias ll='ls -l'  # вывog в gлuннoм фopмaтe
+# alias la='ls -A'  # вывog всех файлов, кромe . u ..
+# alias lsd='ls -ld *(-/DN)'  # вывод только каталогов
+# alias lsa='ls -ld .*'  # вывog тoльko dot-фaйлoв
 
-alias ls='exa'
+alias ls='lsd'
+alias ll='lsd --group-dirs=first --blocks=size,date,name --date=relative -l'
+alias lt='lsd --tree'
+
+# alias ls='exa'
+# alias exa='exa --group-directories-first'
 
 # alias history="history -35"  # упрощение вывода истории команд
 
@@ -286,3 +313,4 @@ alias sr=' source ranger'
 # }}}
 
 # vim: fdm=marker nonumber
+

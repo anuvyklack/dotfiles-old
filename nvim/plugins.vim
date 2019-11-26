@@ -57,8 +57,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 " Delete buffer without closing related window
 Plug 'qpkorr/vim-bufkill'
 
-Plug 'mbbill/undotree'         " visualize undo tree
-" Plug 'simnalamburt/vim-mundo'  " another undo tree visualizer
 
 " Show syntax highlighting attributes of character under cursor.
 Plug 'vim-scripts/SyntaxAttr.vim'
@@ -169,7 +167,63 @@ if has('unix')
     " If fzf was installed through apt.
     source /usr/share/doc/fzf/examples/fzf.vim
     Plug 'junegunn/fzf.vim'
+
+    " Fzf in a floating window  {{{
+    " https://kassioborges.dev/2019/04/10/neovim-fzf-with-a-floating-window.html
+
+    " Reverse the layout to make the FZF list top-down
+    let $FZF_DEFAULT_OPTS='--layout=reverse'
+
+    " Using the custom window creation function
+    let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+
+    " Function to create the custom floating window
+    function! FloatingFZF()
+      " creates a scratch, unlisted, new, empty, unnamed buffer
+      " to be used in the floating window
+      let buf = nvim_create_buf(v:false, v:true)
+
+      " 90% of the height
+      let height = float2nr(&lines * 0.9)
+      " 60% of the height
+      let width = float2nr(&columns * 0.6)
+      " horizontal position (centralized)
+      let horizontal = float2nr((&columns - width) / 2)
+      " vertical position (one line down of the top)
+      let vertical = 1
+
+      " Set the position, size, etc. of the floating window.
+      " The size configuration here may not be so flexible, and there's
+      " room for further improvement.
+      let opts = {
+            \ 'relative': 'editor',
+            \ 'row': vertical,
+            \ 'col': horizontal,
+            \ 'width': width,
+            \ 'height': height
+            \ }
+
+      " open the new window, floating, and enter to it
+      " call nvim_open_win(buf, v:true, opts)
+      let win = nvim_open_win(buf, v:true, opts)
+
+      "Set Floating Window Highlighting
+      " call setwinvar(win, '&winhl', 'Normal:Pmenu')
+
+      setlocal
+            \ buftype=nofile
+            \ nobuflisted
+            \ bufhidden=hide
+            \ nonumber
+            \ norelativenumber
+            \ signcolumn=no
+
+    endfunction
+    "}}}
+
 endif
+
+
 
 " Fuzzy finding in Windows                        {{{2
 " ====================================================
@@ -508,9 +562,20 @@ Plug 'powerman/vim-plugin-ruscmd'
 
 " }}}
 
+" Undotree                                                          {{{
+" =====================================================================
+Plug 'mbbill/undotree'         " visualize undo tree
+" Plug 'simnalamburt/vim-mundo'  " another undo tree visualizer
+
+let g:undotree_HighlightChangedWithSign = 0
+let g:undotree_WindowLayout             = 2
+
+" }}}
+
 " NERDTree                                                           {{{
 " ======================================================================
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFind' }
+" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFind' }
+Plug 'scrooloose/nerdtree'
 
 " Добавляет цветную подсветку к иконкам
 Plug 'vwxyutarooo/nerdtree-devicons-syntax'
@@ -606,6 +671,9 @@ if s:theme == 'onedark'
 
     colorscheme onedark
     let g:airline_theme='onedark'
+    if exists('g:lightline')
+        let g:lightline.colorscheme = 'onedark'
+    endif
 " }}}
 " Gruvbox {{{
 elseif s:theme == 'gruvbox'
@@ -694,14 +762,17 @@ nmap <Leader>' :Marks<CR>
 nmap <Leader>/ :Rg<Space>
 
 " Fuzzy search Vim help
-nmap <Leader>H :Helptags!<CR>
+" nmap <Leader>H :Helptags!<CR>
+nmap <Leader>H :Helptags<CR>
 
 nmap <Leader>C :Commands!<CR>
 
 " Fuzzy search through ':command' history
 " nmap <Leader>: :History:!<CR>
-nmap q: :History:!<CR>
-nmap q/ :History/!<CR>
+" nmap q: :History:!<CR>
+" nmap q/ :History/!<CR>
+nmap q: :History:<CR>
+nmap q/ :History/<CR>
 
 " Fuzzy search key mappings
 nmap <Leader>M :Maps<CR>
@@ -740,6 +811,8 @@ function! ChooseBuffer()  "{{{
 endfunction
 "}}}
 
+
+nnoremap <Leader>u :UndotreeToggle<CR>
 
 nmap <leader>vw <Plug>(wiki-index)
 
