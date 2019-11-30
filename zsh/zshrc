@@ -1,0 +1,438 @@
+#! zsh
+
+### Added by Zplugin's installer
+source "$HOME/.zplugin/bin/zplugin.zsh"
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+### End of Zplugin installer's chunk
+
+
+# History                                                               {{{
+# =========================================================================
+
+HISTFILE=~/.zsh_history
+HISTSIZE=5000
+SAVEHIST=5000
+
+setopt BANG_HIST                 # Treat the '!' character specially during expansion.
+# setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+# setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+# setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+# setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
+# setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
+setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
+
+# Patterns that would not be stored in history
+export HISTORY_IGNORE="(history|ranger|exit)"
+
+# Not store failed commands into history
+zshaddhistory() { whence ${${(z)1}[1]} >/dev/null || return 2 }
+
+# Forget the line in the history {{{2
+# Delete from the history file all entries of the current zle buffer content.
+forget(){
+    cp $HISTFILE "$HISTFILE.old"
+    fc -W "$HISTFILE.old"
+    grep -v -xF $BUFFER "$HISTFILE.old" > $HISTFILE
+    # fc -R
+    rm "$HISTFILE.old" > /dev/null 2>&1
+    zle kill-buffer
+}
+zle -N forget
+bindkey '^[f' forget  # Alt + F
+# }}}2
+# }}}
+
+setopt autocd  # Смена текущего каталога без ввода комады `cd`
+
+setopt extendedglob nomatch notify
+
+# Seriously why does this shit even exist
+unsetopt beep
+
+# Completion                                                           {{{
+# ========================================================================
+
+
+# The following lines were added by compinstall
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# Выбирать предлагаемые zsh варианты автодополнения с помощью стрелочек.
+setopt menucomplete
+zstyle ':completion:*' menu select=1 _complete _ignored _approximate
+
+zstyle ':completion:*' verbose true
+zstyle :compinstall filename '~/.zshrc'
+
+# Следующий строки обеспечивают разворот последовательности типа `/h/d/w/s`
+# в полный путь: `$ /home/dara/works/soft`
+autoload -Uz compinit && compinit
+
+# Уравниваем в правах верхний и нижний регистр
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+zplugin ice blockf
+zplugin light zsh-users/zsh-completions
+
+# }}}
+
+# Colorer man pages {{{
+
+# man() {
+#     env LESS_TERMCAP_mb=$'\E[01;31m' \
+#     LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+#     LESS_TERMCAP_me=$'\E[0m' \
+#     LESS_TERMCAP_se=$'\E[0m' \
+#     LESS_TERMCAP_so=$'\E[38;5;246m' \
+#     LESS_TERMCAP_ue=$'\E[0m' \
+#     LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+#     man "$@"
+# }
+
+# }}}
+
+# Prompt {{{
+
+# My custom prompt {{{
+
+autoload -U colors && colors
+
+git_prompt()
+{
+  temp=`git symbolic-ref HEAD 2>/dev/null | cut -d / -f 3`
+  if [ "$temp" != "" ]; then echo " ($temp)"; fi
+}
+setopt prompt_subst
+
+# %n	Имя пользователя
+# %m	Имя компьютера (до первой точки)
+# %M	Полное имя компьютера
+# %~	Путь к текущему каталогу относительно домашнего
+# %d	Полный путь к текущей директории
+# %T	Время в формате HH:MM
+# %*	Время в формате HH:MM:SS
+# %D	Дата в формате YY-MM-DD
+# %B, %b	Начало и конец выделения жирным
+# %U, %u	Начало и конец подчеркивания
+# red green yellow blue magenta cyan black white
+
+PROMPT=$'\n %{$fg_no_bold[blue]%}%~%{$reset_color%}$fg_no_bold[magenta]%}$(git_prompt)%{$reset_color%} $ '
+# PROMPT=$'\n %{$fg_no_bold[yellow]%}%~ %{$reset_color%}$(git_prompt) $ '
+# PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg_no_bold[yellow]%}%1~ %{$reset_color%}%#"
+
+# "правостороннее" приглашение
+RPROMPT=' %T '  # показывает время
+
+# }}}
+
+# }}}
+
+# fzf {{{
+
+# fzf keybindings for Zsh
+# CTRL-R - Paste the selected command from history into the command line
+# CTRL-T - Paste the selected file path(s) into the command line
+# ALT-C  - cd into the selected directory
+
+export FZF_DEFAULT_OPTS='--height 75% --layout=reverse --border'
+# export FZF_DEFAULT_OPTS='--height 75% --layout=reverse --border --preview="head -30 {}"'
+
+# Using ripgrep with fzf
+# (I've tried fd, but ripgrep is faster.)
+# --files: List files that would be searched but do not search
+# --no-ignore: Do not respect .gitignore, etc...
+# --hidden: Search hidden files and folders
+# --follow: Follow symlinks
+# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+
+# Using bfs utility for directory searching.
+# https://github.com/tavianator/bfs
+
+# # don't show hidden folders
+# export FZF_ALT_C_COMMAND="bfs -type d -nohidden -L -print 2> /dev/null"
+
+# show hidden folders
+export FZF_ALT_C_COMMAND="bfs -type d -L -print 2> /dev/null"
+
+# If installed manualy from github
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if [[ -a "/usr/share/doc/fzf/examples/key-bindings.zsh" ]]; then
+  # If fzf installed with apt
+  # Documentation is at: /usr/share/doc/fzf/README.Debian
+  source /usr/share/doc/fzf/examples/key-bindings.zsh
+fi
+
+# Make fzf history search unique {{{2
+fzf-history-widget()
+{
+  local selected num
+  setopt localoptions noglobsubst noposixbuiltins pipefail 2> /dev/null
+  selected=( $(fc -rl 1 |
+    sort -k2 -k1rn | uniq -f 1 | sort -r -n |
+    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
+      local ret=$?
+  if [ -n "$selected" ]; then
+    num=$selected[1]
+    if [ -n "$num" ]; then
+      zle vi-fetch-history -n $num
+    fi
+  fi
+  zle reset-prompt
+  return $ret
+}
+# }}}2
+
+# }}}
+
+if [[ -a "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+fi
+
+# Keybindings                                                           {{{
+# =========================================================================
+
+# # Нормальное поведение клавиш (не как в vi и emacs).
+#
+# [[ -n "${key[Home]}"     ]]  && bindkey  "${key[Home]}"     beginning-of-line
+# [[ -n "${key[End]}"      ]]  && bindkey  "${key[End]}"      end-of-line
+# [[ -n "${key[Insert]}"   ]]  && bindkey  "${key[Insert]}"   overwrite-mode
+# [[ -n "${key[Delete]}"   ]]  && bindkey  "${key[Delete]}"   delete-char
+# [[ -n "${key[Up]}"       ]]  && bindkey  "${key[Up]}"       up-line-or-history
+# [[ -n "${key[Down]}"     ]]  && bindkey  "${key[Down]}"     down-line-or-history
+# [[ -n "${key[Left]}"     ]]  && bindkey  "${key[Left]}"     backward-char
+# [[ -n "${key[Right]}"    ]]  && bindkey  "${key[Right]}"    forward-char
+# [[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"   beginning-of-buffer-or-history
+# [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}" end-of-buffer-or-history
+
+
+bindkey -e  # Use Emacs style keybindings
+# bindkey -v  # Use Vi style keybindings
+
+# Если в пустой командной строке набрать любые символы и начать просматривать
+# историю команд клавишами Up и Down, то из буфера будут извлекаться только те,
+# имена которых начинаются с этого набора символов.
+bindkey "^[OA" .up-line-or-search
+bindkey "^[OB" .down-line-or-search
+
+# <C-Left> - backward-word
+# <C-Right> - forward-word
+bindkey "^[[1;5D" .backward-word
+bindkey "^[[1;5C" .forward-word
+
+bindkey "^[[1;3D" .beginning-of-line
+bindkey "^[[1;3C" .end-of-line
+
+# Use backtick for accept zsh-autosuggestions
+bindkey \` autosuggest-accept
+
+bindkey "^K" history-substring-search-up
+bindkey "^J" history-substring-search-down
+
+# }}}
+
+# Functions                                                            {{{
+# ========================================================================
+
+# Распаковывать архивы командой 'extract <file>'
+extract () # {{{
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2) tar xvjf $1   ;;
+      *.tar.gz)  tar xvzf $1   ;;
+      *.tar.xz)  tar xvfJ $1   ;;
+      *.bz2)     bunzip2 $1    ;;
+      *.rar)     unrar x $1    ;;
+      *.gz)      gunzip $1     ;;
+      *.tar)     tar xvf $1    ;;
+      *.tbz2)    tar xvjf $1   ;;
+      *.tgz)     tar xvzf $1   ;;
+      *.zip)     unzip $1      ;;
+      *.Z)       uncompress $1 ;;
+      *.7z)      7z x $1       ;;
+      *)         echo "'$1' cannot be extracted via >extract<" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
+# }}}
+
+# }}}
+
+# Aliaces                                                              {{{
+# ========================================================================
+
+# Expand aliaces in command line.
+# https://blog.sebastian-daschner.com/entries/zsh-aliases
+
+# Define three types of aliaces:
+# alias  - will be expanded into full command with wightspace after
+# balias - will be expanded without wightspace after
+# ialias - won't be expanded
+
+# balias {{{2
+
+# Blank aliases
+typeset -a baliases
+baliases=()
+
+balias()
+{
+  alias $@
+  args="$@"
+  args=${args%%\=*}
+  baliases+=(${args##* })
+}
+
+# ialiases {{{2
+
+# ignored aliases
+typeset -a ialiases
+ialiases=()
+
+ialias()
+{
+  alias $@
+  args="$@"
+  args=${args%%\=*}
+  ialiases+=(${args##* })
+}
+
+# }}}2
+
+# functionality
+expand-alias-space() # {{{
+{
+  [[ $LBUFFER =~ "\<(${(j:|:)baliases})\$" ]]; insertBlank=$?
+  if [[ ! $LBUFFER =~ "\<(${(j:|:)ialiases})\$" ]]; then
+    zle _expand_alias
+  fi
+  zle self-insert
+  if [[ "$insertBlank" = "0" ]]; then
+    zle backward-delete-char
+  fi
+} # }}}
+zle -N expand-alias-space
+
+# Expand aliaces on space
+bindkey " " expand-alias-space
+bindkey -M isearch " " magic-space
+
+
+# Пингуем один раз вместо бесконечности.
+ialias ping='ping -c 1'
+
+ialias vim='nvim'
+
+ialias mv='nocorrect mv -i'  # переименование-перемещение c пogтвepжgeнueм
+ialias cp='nocorrect cp -iR'  # рекурсивное копирование с подтверждением
+ialias rm='nocorrect rm -i'  # удаление с подтверждением
+# alias rmf='nocorrect rm -f'  # принудительное удаление
+# alias rmrf='nocorrect rm -fR' # принудительное рекурсивное удаление
+ialias mkdir='nocorrect mkdir'  # создание каталогов без коррекции
+
+# alias l='ls -lAh --color=auto --group-directories-first'
+# alias ls='ls --color=auto --group-directories-first'
+
+# alias ls='ls -F'  # вывод символов типов файлов
+# alias ll='ls -l'  # вывog в gлuннoм фopмaтe
+# alias la='ls -A'  # вывog всех файлов, кромe . u ..
+# alias lsd='ls -ld *(-/DN)'  # вывод только каталогов
+# alias lsa='ls -ld .*'  # вывog тoльko dot-фaйлoв
+
+# alias ls='lsd'
+ialias ll='lsd --group-dirs=first --blocks=size,date,name --date=relative -l'
+ialias lt='lsd --tree'
+
+# alias ls='exa'
+ialias exa='exa --group-directories-first'
+
+ialias tree='tree -I .git -I .github'
+
+# alias history="history -35"  # упрощение вывода истории команд
+
+# вывод свободного и использованного дискового пространства в
+# "гуманистическом" представлении
+ialias df='df -h'
+ialias du='du -h'
+
+ialias sp='df -h | grep -P "F|[A-Z]:"'
+
+# представление вывода less в more-подобном виде
+# (с именем файла и процентом вывода)
+ialias less='less -M'
+ialias wget='wget -c'  # автоматическое продолжение при разрыве соединения
+ialias vw=' nvim -c WikiIndex'  # open wiki
+ialias r=' ranger'
+ialias sr=' source ranger'
+
+# Git
+alias gs='git status'
+alias gc='git checkout'
+alias -g random='-m curl -s http://whatthecommit.com/index.txt'
+
+# }}}
+
+
+# http://zdharma.org/zplugin/wiki/INTRODUCTION/
+#
+# Autosuggestions uses precmd hook, which is being called right after
+# processing zshrc (right before the first prompt). Turbo mode will wait 1
+# second after that, so precmd will not be installed and thus not called
+# at that first prompt. This makes autosuggestions inactive at the first
+# prompt.  However the given atload Ice-mod fixes this, it calls the
+# same function that precmd would, right after loading autosuggestions,
+# resulting in exactly the same behavior of the plugin.
+#
+# The ice lucid causes the under-prompt message saying Loaded
+# zsh-users/zsh-autosuggestions that normally appears for every
+# Turbo-loaded plugin to not show.
+#
+zplugin ice wait lucid atload'_zsh_autosuggest_start'
+zplugin light zsh-users/zsh-autosuggestions
+
+
+# After cloning and renewal repository construct from 'LS_COLORS' file
+# (using 'dircolors -b') the proper $LS_COLORS environment variable and
+# wright it into 'c.zsh' file. Execute this file at plugin loading.
+#
+zplugin ice atclone"dircolors -b LS_COLORS > c.zsh" atpull'%atclone' pick"c.zsh"
+zplugin light trapd00r/LS_COLORS
+
+
+# zplugin ice
+# zplugin light junegunn/fzf
+
+
+# Install lsd with zplugin if necessary  {{{
+
+# # TODO need to resolve completion
+# zplugin ice from"gh-r" as"program"
+# zplugin load Peltoche/lsd
+
+# }}}
+# Install fzf with zplugin if necessary  {{{
+
+# # Binary release in archive, from GitHub-releases page.
+# # After automatic unpacking it provides program "fzf".
+#
+# zplugin ice from"gh-r" as"program"
+# zplugin load junegunn/fzf-bin
+
+# }}}
+
+
+# vim: tw=75 fdm=marker ts=2 sw=2 nonu
+

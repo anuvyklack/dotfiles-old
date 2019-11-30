@@ -65,7 +65,8 @@ endif
 
 " Clipboard                                                        {{{
 " ====================================================================
-if has('wsl')
+" if has('wsl')
+if has('unix')
     let g:clipboard = {
           \   'name': 'wslclipboard',
           \   'copy': {
@@ -187,7 +188,8 @@ set joinspaces   " Put two spaces after period.
 set linebreak    " Wrap lines at convenient points
 
 " Use Par Unix utility for 'gq' command
-setglobal formatprg=par\ -w80\ g
+setglobal formatprg=par\ -w75\ g
+" setglobal formatprg=par\ -w80\ g
 " setglobal formatprg=par\ -w80\ g\ q
 set nobomb
 

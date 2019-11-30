@@ -48,9 +48,6 @@ Plug 'majutsushi/tagbar'     " список тегов в текущем фай�
 
 Plug 'kshenoy/vim-signature' " display and navigate marks
 
-Plug 'sheerun/vim-polyglot'  " подсветка синтаксисов разных языков
-let g:polyglot_disabled = ['markdown']
-
 " Переключение мемжду многострочными конструкциями и однострочными
 Plug 'AndrewRadev/splitjoin.vim'
 
@@ -69,9 +66,9 @@ Plug 'vim-scripts/SyntaxAttr.vim'
 " Airline                                                           {{{
 " =====================================================================
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-so ~/.config/nvim/plugins_settings/airline.vim
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+" so ~/.config/nvim/plugins_settings/airline.vim
 
 " }}}
 
@@ -104,7 +101,7 @@ Plug 'ervandew/supertab'
 
 " Buffexplorer  {{{
 Plug 'jlanzarotta/bufexplorer'
-let g:bufExplorerFindActive=0        " Do not go to active window.
+let g:bufExplorerFindActive=0   " Do not go to active window.
 " }}}
 
 " -------------- Визуальные улучшалки ----------------
@@ -421,11 +418,6 @@ let g:rainbow_conf = {
 " Автоматически генерировать тэг-файлы
 Plug 'ludovicchabant/vim-gutentags'
 
-" ------------------ Прочие языки --------------------
-
-Plug 'lervag/vimtex', { 'for': 'LaTeX' }  " latex
-Plug 'PProvost/vim-ps1', {'for': 'ps1'}   " powershell
-
 " --------------------- Wintabs ----------------------
 
 " TODO: разберёмся с этим позже
@@ -546,7 +538,18 @@ let g:startify_fortune_use_unicode = 1
 
 " }}}
 
-" Русский язык (Switch language)                                   " {{{
+" Different syntaxes and languages                                   {{{
+" ======================================================================
+Plug 'sheerun/vim-polyglot'  " подсветка синтаксисов разных языков
+let g:polyglot_disabled = ['markdown']
+
+Plug 'lervag/vimtex', { 'for': 'LaTeX' }  " latex
+Plug 'PProvost/vim-ps1', {'for': 'ps1'}   " powershell
+Plug 'zplugin/zplugin-vim-syntax', { 'for': 'zsh' }  " Zplugin syntaxis
+
+" }}}
+
+" Русский язык (Switch language)                                     {{{
 " ======================================================================
 
 " Plug 'lyokha/vim-xkbswitch'

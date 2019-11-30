@@ -1,7 +1,4 @@
 # zsh plugins
-apt install zsh-autosuggestions
-apt install zsh-syntax-highlight
-apt install zsh-theme-powerlevel9k  # theme for zsh
 
 apt install fzf   # fuzzy finder
 apt install exa   # a modern replacment for ls
