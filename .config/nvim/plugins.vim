@@ -45,23 +45,15 @@ Plug 'tpope/vim-surround'    " заключать фрагменты текст�
 Plug 'godlygeek/tabular'     " Выравнивание текста по различным шаблонам
 Plug 'wellle/targets.vim'    " plugin that provides additional text objects
 Plug 'majutsushi/tagbar'     " список тегов в текущем файле
+" Plug 'kien/tabman.vim'       " Tab management for Vim
 
 Plug 'kshenoy/vim-signature' " display and navigate marks
 
 " Переключение мемжду многострочными конструкциями и однострочными
 Plug 'AndrewRadev/splitjoin.vim'
 
-" Delete buffer without closing related window
-Plug 'qpkorr/vim-bufkill'
-
-
 " Show syntax highlighting attributes of character under cursor.
 Plug 'vim-scripts/SyntaxAttr.vim'
-
-" 'Rich text' highlighting in Vim
-" (colors, underline, bold, italic, etc...)
-" Plug 'bpstahlman/txtfmt'
-" so ~/.config/nvim/plugins_settings/txtfmt.vim
 
 " Airline                                                           {{{
 " =====================================================================
@@ -107,7 +99,7 @@ let g:bufExplorerFindActive=0   " Do not go to active window.
 " -------------- Визуальные улучшалки ----------------
 
 " Plug 'Yggdroot/indentLine'     " show indent lines
-"
+
 " подсвечивает все такие же слова что и слово под курсором
 Plug 'RRethy/vim-illuminate'
 
@@ -158,11 +150,17 @@ Plug 'tomtom/tcomment_vim'
 
 " }}}
 
-"  Fzf                                              {{{
+"  fzf                                              {{{
 " =====================================================
 if has('unix')
-    " If fzf was installed through apt.
-    source /usr/share/doc/fzf/examples/fzf.vim
+
+    if filereadable(expand("~/.zplugin/snippets/fzf.vim/fzf.vim"))
+        " If fzf was installed by zplugin
+        source ~/.zplugin/snippets/fzf.vim/fzf.vim
+    elseif filereadable("/usr/share/doc/fzf/examples/fzf.vim")
+        " If fzf was installed through apt.
+        source /usr/share/doc/fzf/examples/fzf.vim
+    endif
     Plug 'junegunn/fzf.vim'
 
     " Fzf in a floating window  {{{
@@ -181,7 +179,7 @@ if has('unix')
       let buf = nvim_create_buf(v:false, v:true)
 
       " 90% of the height
-      let height = float2nr(&lines * 0.9)
+      let height = float2nr(&lines * 0.7)
       " 60% of the height
       let width = float2nr(&columns * 0.6)
       " horizontal position (centralized)
@@ -217,18 +215,96 @@ if has('unix')
 
     endfunction
     "}}}
-
 endif
+" }}}
 
+" LeaderF                                           {{{
+" =====================================================
+" After running any command of LeaderF, check the value of echo
+" g:Lf_fuzzyEngine_C, if the value is 1, it means the C extension is
+" loaded sucessfully.
 
-
-" Fuzzy finding in Windows                        {{{2
-" ====================================================
-if has('win32')
+if has('unix')
+    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+elseif has('win32')
     Plug 'Yggdroot/LeaderF', { 'do': '.\install.bat' }
 endif
-" }}}2
+
+" Show LeaderF window in popup or floating window
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_WindowHeight = 0.7
+let g:Lf_ShowRelativePath = 0
+let g:Lf_CursorBlink = 0
+let g:Lf_FollowLinks = 1        " Follow the symlinks
+let g:Lf_PreviewCode = 1        " Show the preview of the code the tag
+                                " locates in when navigating the tags.
+
+let g:Lf_RememberLastSearch = 1 " The search string you typed during
+                                " last search is still there when
+                                " LeaderF is launched again. (
+
+let g:Lf_RecurseSubmodules = 0  " Show files in submosules of Git repo
+let g:Lf_IgnoreCurrentBufferName = 1  " Remove the current buffer name
+                                      " from the result list.
+
+let g:Lf_PopupHeight = float2nr(&lines * 0.7)
+let g:Lf_WorkingDirectoryMode = 'Ac'
+
+
+" Specify the files and directories you want to exclude while indexing.
+let g:Lf_WildIgnore = {
+        \ 'dir': ['.git'],
+        \ 'file': ['*.exe', '*.pdf']
+        \}
+
+let g:Lf_PreviewResult = {
+        \ 'File': 0,
+        \ 'Buffer': 1,
+        \ 'Mru': 0,
+        \ 'Tag': 0,
+        \ 'BufTag': 1,
+        \ 'Function': 1,
+        \ 'Line': 1,
+        \ 'Colorscheme': 0,
+        \ 'Rg': 0,
+        \ 'Gtags': 0
+        \}
+
+" Swttig the mappings in normal mode.
+let g:Lf_NormalMap = {
+    \ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>'],
+    \            ["<F6>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']
+    \           ],
+    \ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>'],
+    \            ["<F6>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']
+    \           ],
+    \ "Mru":    [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<CR>']],
+    \ "Tag":    [],
+    \ "BufTag": [],
+    \ "Function": [],
+    \ "Line":   [],
+    \ "History":[],
+    \ "Help":   [],
+    \ "Self":   [],
+    \ "Colorscheme": []
+    \}
+
+" " Specify a list of ripgrep configurations. For example, >
+" let g:Lf_RgConfig = [
+"     \ "--max-columns=150",
+"     \ "--type-add web:*.{html,css,js}*",
+"     \ "--glob=!git/*",
+"     \ "--hidden"
+" \ ]
+
+" Configure the colorscheme of statusline for LeaderF
+" The colorscheme files can be found in the directory:
+" LeaderF/autoload/leaderf/colorscheme/
+let g:Lf_StlColorscheme = 'gruvbox_material'
+let g:Lf_PopupColorscheme = 'gruvbox_material'
+
 " }}}
+
 
 "  Git                                             {{{
 " ====================================================
@@ -623,6 +699,24 @@ endif
 
 " }}}
 
+" Unused {{{
+
+" Plug 't9md/vim-choosewin'    " Switch Windows on choose
+" let g:choosewin_overlay_enable = 1 " use overlay
+" nmap - <Plug>(choosewin)
+
+" Delete buffer without closing related window
+" Plug 'qpkorr/vim-bufkill'
+
+" 'Rich text' highlighting in Vim
+" (colors, underline, bold, italic, etc...)
+" Plug 'bpstahlman/txtfmt'
+" so ~/.config/nvim/plugins_settings/txtfmt.vim
+
+
+
+" }}}
+
 " Color Themes                                     {{{
 " ====================================================
 
@@ -744,41 +838,83 @@ nmap ;l <Plug>(easymotion-lineanywhere)
 "}}}
 
 " Windows scrolling options / Comfortable motion key bindings {{{
-" Scrolling proportional to the window height, you may use settings such as these:
-nnoremap <silent> <C-d> :call comfortable_motion#flick(winheight(0) * 2.2)<CR>
-nnoremap <silent> <C-u> :call comfortable_motion#flick(winheight(0) * -2.2)<CR>
+
+" Little less then half of the screen
+nnoremap <silent> <C-d> :call comfortable_motion#flick(winheight(0) * 2)<CR>
+nnoremap <silent> <C-u> :call comfortable_motion#flick(winheight(0) * -2)<CR>
+
+" " Half of the screen
+" nnoremap <silent> <C-d> :call comfortable_motion#flick(winheight(0) * 2.2)<CR>
+" nnoremap <silent> <C-u> :call comfortable_motion#flick(winheight(0) * -2.2)<CR>
+
+" Full screen
 nnoremap <silent> <C-f> :call comfortable_motion#flick(winheight(0) * 3.5)<CR>
 nnoremap <silent> <C-b> :call comfortable_motion#flick(winheight(0) * -3.5)<CR>
+
 " }}}
 
 " Fzf {{{
 
-nmap <Leader>F :Files<CR>
-nmap <Leader>f :GFiles<CR>
+" nmap <Leader>F :Files<CR>
+" nmap <Leader>f :GFiles<CR>
+" "
+" nmap <Leader>h :History<CR>
+" "
+" nmap <Leader>l :BLines<CR>
+" nmap <Leader>L :Lines<CR>
+" nmap <Leader>' :Marks<CR>
+" "
+" nmap <Leader>/ :Rg<Space>
+" "
+" " Fuzzy search Vim help
+" " nmap <Leader>H :Helptags!<CR>
+" nmap <Leader>H :Helptags<CR>
+" "
+" nmap <Leader>C :Commands!<CR>
+" "
+" " Fuzzy search through ':command' history
+" " nmap q: :History:!<CR>
+" " nmap q/ :History/!<CR>
+" nmap q: :History:<CR>
+" nmap q/ :History/<CR>
+" "
+" " Fuzzy search key mappings
+" nmap <Leader>M :Maps<CR>
 
-nmap <Leader>h :History<CR>
+" }}}
 
-nmap <Leader>l :BLines<CR>
-nmap <Leader>L :Lines<CR>
-nmap <Leader>' :Marks<CR>
+" LeaderF {{{
 
-nmap <Leader>/ :Rg<Space>
-
+let g:Lf_ShortcutF = "<leader>ff"
+nmap <Leader>fF :Leaderf file ~<CR>
+"
+nmap <leader>fh :Leaderf mru<CR>
+"
+nmap <leader>ft :Leaderf tag<CR>
+nmap <leader>fu :Leaderf function<CR>
+"
+" nmap <Leader>fl :LeaderfLine<CR>
+nmap <Leader>fl :Leaderf line<CR>
+nmap <Leader>fL :LeaderfLineAll<CR>
+" nmap <Leader>' :Marks<CR>
+"
+nmap <Leader>/ :LeaderfRgInteractive<CR>
+"
 " Fuzzy search Vim help
-" nmap <Leader>H :Helptags!<CR>
-nmap <Leader>H :Helptags<CR>
-
-nmap <Leader>C :Commands!<CR>
-
+nmap <Leader>fH :LeaderfHelp<CR>
+"
+" nmap <Leader>C :Commands!<CR>
+"
 " Fuzzy search through ':command' history
-" nmap <Leader>: :History:!<CR>
-" nmap q: :History:!<CR>
-" nmap q/ :History/!<CR>
-nmap q: :History:<CR>
-nmap q/ :History/<CR>
+nmap q: :LeaderfHistoryCmd<CR>
+nmap q/ :LeaderfHistorySearch<CR>
+"
+" let g:Lf_ShortcutF = "<leader>ff"
+" noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+" noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+" noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+" noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 
-" Fuzzy search key mappings
-nmap <Leader>M :Maps<CR>
 " }}}
 
 

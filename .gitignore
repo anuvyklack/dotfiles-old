@@ -1,2 +1,4 @@
 tags*
-nvim/plugins
+**/*.zwc
+**/nvim/plugged/*
+**/nvim/autoload/plug.vim

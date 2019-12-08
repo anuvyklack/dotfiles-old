@@ -4,11 +4,18 @@
 [core]
 	editor = nvim
 	autocrlf = false
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [alias]
 	unstage = reset HEAD --
 	graph = log --decorate --all --oneline --graph
+	yolo = !git commit -m \"$(curl -s whatthecommit.com/index.txt)\"
 [credential]
 	helper = /mnt/c/Users/artyu/scoop/apps/mingit/current/mingw64/libexec/git-core/git-credential-manager.exe
+[rerere]
+	enabled = 1
+	autoupdate = 1
+[color]
+	ui = auto
 [merge]
     tool = nvimmerge
 [difftool]
@@ -21,3 +28,6 @@
     cmd = nvim  -f -d -c 'wincmd l' $LOCAL $MERGED $REMOTE
     # cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
+[diff-so-fancy]
+	stripLeadingSymbols = false
+	rulerWidth = 80
