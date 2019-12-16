@@ -230,6 +230,10 @@ elseif has('win32')
     Plug 'Yggdroot/LeaderF', { 'do': '.\install.bat' }
 endif
 
+" Show hidden file and directories
+let g:Lf_ShowHidden = 1
+let g:Lf_UseCache = 0
+
 " Show LeaderF window in popup or floating window
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_WindowHeight = 0.7
@@ -886,7 +890,7 @@ nnoremap <silent> <C-b> :call comfortable_motion#flick(winheight(0) * -3.5)<CR>
 " LeaderF {{{
 
 let g:Lf_ShortcutF = "<leader>ff"
-nmap <Leader>fF :Leaderf file ~<CR>
+nmap <silent> <Leader>fF :Leaderf file ~<CR>
 "
 nmap <leader>fh :Leaderf mru<CR>
 "

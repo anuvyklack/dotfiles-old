@@ -1,0 +1,16 @@
+#!/bin/sh
+
+update()
+{
+  sudo apt upgrade
+  sudo apt update
+  sudo apt autoremove
+
+  brew update
+  brew upgrade
+
+  zplugin self-update
+  zplugin update --all
+}
+
+# vim: ft=zsh

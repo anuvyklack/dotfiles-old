@@ -1,0 +1,755 @@
+#!/usr/bin/env zsh
+
+# prompt,
+# command completion,
+# command correction,
+# command suggestion,
+# command highlighting,
+# output coloring,
+# aliases,
+# key bindings,
+# commands history management,
+# other miscellaneous interactive tools (auto_cd, manydots-magic)...
+
+# Zplugin invocation {{{
+
+# Source zplugin. Install if it's absent. These lines must be at the very
+# begining of the file. The order of plugins loading matters.
+if [[ ! -s "$HOME/.zplugin/bin/zplugin.zsh" ]]; then
+  mkdir ~/.zplugin
+  git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
+  source "$HOME/.zplugin/bin/zplugin.zsh"
+  zplugin self-update
+else
+  source "$HOME/.zplugin/bin/zplugin.zsh"
+fi
+
+# The lines attach Zplugin completion "on-the-fly" to already initialized
+# completion system. They need to be added if zplugin is sourced after
+# "autoload -Uz compinit && compinit".
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
+
+# }}}
+
+# General settings {{{
+
+# Report time stats of commands running longer than 20 sec
+REPORTTIME=20
+
+setopt extended_glob     # Because someday i will learn advanced pattern
+                         # matching.
+
+                         # In order to use #, ~ and ^ for filename
+                         # generation grep word
+                         # *~(*.gz|*.bz|*.bz2|*.zip|*.Z) -> searches for
+                         # word not in compressed files don't forget to
+                         # quote '^', '~' and '#'!
+
+setopt auto_cd           # If a command is issued that can't be executed as
+                         # a normal command, and the command is the name of
+                         # a directory, perform the cd command to that
+                         # directory.
+
+setopt auto_pushd        # Make 'cd' push the old directory onto the
+                         # directory stack
+
+setopt pushd_ignore_dups # Don't push multiple copies of the same directory
+                         # onto the directory stack.
+
+setopt pushd_silent      # Do not print the directory stack after 'pushd'
+                         # or 'popd'.
+
+setopt pushd_minus       # Exchanges the meanings of `+' and `-' when used
+                         # with a number to specify a directory in the
+                         # stack.
+
+setopt cdable_vars       # Можно вводить пути для команды 'cd' (или без
+                         # неё, если используетя опция 'auto_cd') в
+                         # домашней директории без '~/' в начале.
+
+unsetopt clobber         # With this option the `>` redirection, if file
+                         # exists, truncates it to zero length.  So unset
+                         # it we NOT aLlows `>' redirection to truncate
+                         # existing files.  This way `>!' or `>|' must be
+                         # used to truncate a file.
+
+setopt interactive_comments  # Allow comments even in interactive shells.
+
+setopt nomatch
+# unsetopt nomatch         # DON'T YOU YELL AT ME WHEN YOU CAN'T FIND A MATCH
+#                          # THAT'S YOUR PROBLEM, NOT MINE
+
+unsetopt beep            # Seriously why does this shit even exist
+
+setopt combining_chars   # Combine zero-length punctuation characters
+                         # (accents) with the base character.
+
+setopt rc_quotes         # Allow 'Henry''s Garage' instead of 'Henry'\''s
+                         # Garage'.
+
+setopt hash_list_all     # Whenever a command completion is attempted,
+                         # make sure the entire command path is hashed
+                         # first.
+
+# Jobs
+setopt long_list_jobs    # List jobs in the long format by default.
+setopt auto_resume       # Attempt to resume existing job before creating
+                         # a new process.
+setopt notify            # Report status of background jobs immediately.
+unsetopt bg_nice         # Don't run all background jobs at a lower
+                         # priority.
+unsetopt hup             # Don't kill jobs on shell exit.
+unsetopt check_jobs      # Don't report on jobs when shell exit.
+
+
+setopt correct_all       # Корректировка ввода
+# Если в слове есть ошибка, предложить исправить её:
+SPROMPT="Ошибка! ввести %r вместо %R? ([Y]es/[N]o/[E]dit/[A]bort) "
+
+
+# This logic comes from an old version of zim. Essentially, bracketed-paste was
+# added as a requirement of url-quote-magic in 5.1, but in 5.1.1 bracketed
+# paste had a regression. Additionally, 5.2 added bracketed-paste-url-magic
+# which is generally better than url-quote-magic so we load that when possible.
+autoload -Uz is-at-least
+if [[ ${ZSH_VERSION} != 5.1.1 && ${TERM} != "dumb" ]]; then
+  if is-at-least 5.2; then
+    autoload -Uz bracketed-paste-url-magic
+    zle -N bracketed-paste bracketed-paste-url-magic
+  else
+    if is-at-least 5.1; then
+      autoload -Uz bracketed-paste-magic
+      zle -N bracketed-paste bracketed-paste-magic
+    fi
+  fi
+  autoload -Uz url-quote-magic
+  zle -N self-insert url-quote-magic
+fi
+
+
+# Allow command line editing in an external editor.
+autoload -Uz edit-command-line
+zle -N edit-command-line
+
+# Window title {{{
+# adjust title of xterm compatible terminal
+# see http://www.faqs.org/docs/Linux-mini/Xterm-Title.html
+
+case $TERM in
+    (xterm*|rxvt*)
+        function _set_title() {
+            printf '%s' $'\e]0;'
+            printf '%s' "$*"
+            printf '%s' $'\a'
+        }
+
+        function _reset_title() {
+            _set_title ${(%):-"%n@%m: %~"}
+        }
+
+        function _set_command_title() {
+            _set_title "${(%):-"%n@%m:"}" "$1"
+        }
+
+        add-zsh-hook precmd _reset_title
+        add-zsh-hook preexec _set_command_title
+        ;;
+esac
+
+# }}}
+
+# }}}
+
+source $ZDOTDIR/lib/history.zsh
+source $ZDOTDIR/lib/completion.zsh
+
+# Output coloring {{{
+
+# # After cloning and renewal repository construct from 'LS_COLORS' file
+# # (using 'dircolors -b') the proper $LS_COLORS environment variable and
+# # wright it into 'c.zsh' file. Execute this file at plugin loading.
+# #
+# zplugin ice nocompile:! \
+#             atclone:'dircolors -b LS_COLORS > c.zsh' atpull:'%atclone' \
+#             pick:"c.zsh"
+# zplugin light trapd00r/LS_COLORS
+
+# Colored man pages {{{
+
+# # Support colors in less
+# export LESS_TERMCAP_mb=$'\E[01;31m'     # Begins blinking.
+# export LESS_TERMCAP_md=$'\E[01;31m'     # Begins bold.
+# export LESS_TERMCAP_me=$'\E[0m'         # Ends mode.
+# export LESS_TERMCAP_se=$'\E[0m'         # Ends standout-mode.
+# export LESS_TERMCAP_so=$'\E[00;47;30m'  # Begins standout-mode.
+# export LESS_TERMCAP_ue=$'\E[0m'         # Ends underline.
+# export LESS_TERMCAP_us=$'\E[01;32m'     # Begins underline.
+# # }}}
+
+# }}}
+
+# Prompt {{{
+
+# My custom prompt {{{
+
+autoload -U colors && colors
+
+# git_prompt()
+# {
+#   temp=`git symbolic-ref HEAD 2>/dev/null | cut -d / -f 3`
+#   if [ "$temp" != "" ]; then echo " ($temp)"; fi
+# }
+#
+# setopt prompt_subst
+
+# autoload -Uz vcs_info
+# precmd_vcs_info() { vcs_info }
+# precmd_functions+=( precmd_vcs_info )
+# zstyle ':vcs_info:git:*' formats '%b'
+
+
+# %n  Имя пользователя
+# %m  Имя компьютера (до первой точки)
+# %M  Полное имя компьютера
+# %~  Путь к текущему каталогу относительно домашнего
+# %d  Полный путь к текущей директории
+# %T  Время в формате HH:MM
+# %*  Время в формате HH:MM:SS
+# %D  Дата в формате YY-MM-DD
+# %B, %b  Начало и конец выделения жирным
+# %U, %u  Начало и конец подчеркивания
+# red green yellow blue magenta cyan black white
+
+# RPROMPT=\$vcs_info_msg_0_
+# PROMPT=\$vcs_info_msg_0_'%# '
+
+# PROMPT=$'\n %~$(git_prompt) $ '
+# # "правостороннее" приглашение
+# RPROMPT=' %T '  # показывает время
+
+# }}}
+
+# # Pure
+# # https://github.com/sindresorhus/pure
+# zplugin ice pick"async.zsh" src"pure.zsh"
+# zplugin light sindresorhus/pure
+
+# Spaceship-prompt {{{
+
+SPACESHIP_PROMPT_SEPARATE_LINE=false      # Make the prompt span across two lines
+SPACESHIP_PROMPT_FIRST_PREFIX_SHOW=true   # Shows a prefix of the first section in prompt
+SPACESHIP_PROMPT_PREFIXES_SHOW=true       # Show prefixes before prompt sections or not
+
+# SPACESHIP_CHAR_SYMBOL=":: "
+# SPACESHIP_CHAR_SYMBOL="▶ "
+# SPACESHIP_CHAR_SYMBOL="ﰲ "
+# SPACESHIP_CHAR_SYMBOL="> "
+# SPACESHIP_CHAR_SYMBOL=">> "
+SPACESHIP_CHAR_SYMBOL="$ "
+
+SPACESHIP_DIR_PREFIX=' '               # Prefix before current directory
+SPACESHIP_DIR_TRUNC=3                  # Number of folders of cwd to show in prompt, 0 to show all
+SPACESHIP_DIR_TRUNC_PREFIX='…/'        # Prefix before cwd when it's truncated. For example …/ or .../, empty to disable
+
+# SPACESHIP_GIT_PREFIX=': '              # Prefix before Git section
+SPACESHIP_GIT_PREFIX=' '               # Prefix before Git section
+
+SPACESHIP_PROMPT_ORDER=(
+    # time          # Time stamps section
+    user          # Username section
+    dir           # Current directory section
+    host          # Hostname section
+    git           # Git section (git_branch + git_status)
+    hg            # Mercurial section (hg_branch  + hg_status)
+    package       # Package version
+    node          # Node.js section
+    ruby          # Ruby section
+    elixir        # Elixir section
+    xcode         # Xcode section
+    swift         # Swift section
+    golang        # Go section
+    php           # PHP section
+    rust          # Rust section
+    haskell       # Haskell Stack section
+    julia         # Julia section
+    docker        # Docker section
+    aws           # Amazon Web Services section
+    venv          # virtualenv section
+    conda         # conda virtualenv section
+    pyenv         # Pyenv section
+    dotnet        # .NET section
+    ember         # Ember.js section
+    kubecontext   # Kubectl context section
+    terraform     # Terraform workspace section
+    # exec_time     # Execution time
+    line_sep      # Line break
+    # battery       # Battery level and status
+    vi_mode       # Vi-mode indicator
+    jobs          # Background jobs indicator
+    exit_code     # Exit code section
+    char          # Prompt character
+)
+
+SPACESHIP_RPROMPT_ORDER=(
+    # vi_mode       # Vi-mode indicator
+    exec_time     # Execution time
+)
+
+zplugin light denysdovhan/spaceship-prompt
+spaceship_vi_mode_enable  # Without this function call the indicator of Vi
+                          # mode doesn't change. I don't now why.
+
+# }}}
+
+# }}}
+
+# Plugins {{{
+
+zplugin ice wait"0" lucid blockf
+zplugin light zsh-users/zsh-completions
+
+# Zsh-Autosuggestions {{{
+
+# http://zdharma.org/zplugin/wiki/INTRODUCTION/
+#
+# Autosuggestions uses precmd hook, which is being called right after
+# processing zshrc (right before the first prompt). Turbo mode will wait 1
+# second after that, so precmd will not be installed and thus not called
+# at that first prompt. This makes autosuggestions inactive at the first
+# prompt.  However the given atload Ice-mod fixes this, it calls the
+# same function that precmd would, right after loading autosuggestions,
+# resulting in exactly the same behavior of the plugin.
+#
+# The ice lucid causes the under-prompt message saying Loaded
+# zsh-users/zsh-autosuggestions that normally appears for every
+# Turbo-loaded plugin to not show.
+#
+zplugin ice wait lucid atload'_zsh_autosuggest_start'
+zplugin light zsh-users/zsh-autosuggestions
+
+export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
+export ZSH_AUTOSUGGEST_USE_ASYNC=1  # suggestions will be fetched
+                                    # asynchronously
+# }}}
+
+# Install diff-so-fancy using zplugin
+zplugin ice id-as"diff-so-fancy" wait"2" lucid as"program" pick"bin/git-dsf"
+zplugin light zdharma/zsh-diff-so-fancy
+
+# Автодополнение путей с использованием fzf для команды cd
+zplugin ice wait"1" lucid
+zplugin light changyuheng/zsh-interactive-cd
+
+# This two should be last in this order
+zplugin light zsh-users/zsh-syntax-highlighting
+
+zplugin ice id-as"substring"
+zplugin load zsh-users/zsh-history-substring-search
+
+zplugin ice wait"1" lucid
+zplugin snippet PZT::modules/command-not-found/init.zsh
+
+# }}}
+
+# GUI settings                                                          {{{
+
+# For X-server
+# The format of this command is actually [host]:<display>.[screen] where [host]
+# refers to a network host name. Since we left it blank, we’re going to use our
+# local machine instead. Each host can have multiple display.
+# export DISPLAY=:0.0
+# export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0.0
+# export DISPLAY=$(ip r l default | cut -d\ -f3):0
+# export DISPLAY=$(awk '/nameserver/ {print $2}' /etc/resolv.conf):0.0
+
+# }}}
+
+
+# Functions                                                           {{{1
+# ========================================================================
+
+# Setting autoloaded functions
+
+my_zsh_functions=${ZDOTDIR}/functions
+
+fpath=($my_zsh_functions $fpath)
+
+if [[ -d "$my_zsh_functions" ]]; then
+    for func in $my_zsh_functions/*; do
+        autoload -Uz ${func:t}
+    done
+fi
+unset my_zsh_functions
+
+
+# Delete from the history file all entries of the current zle buffer
+# content.
+# Forget the line in the history {{{
+forget(){
+    cp $HISTFILE "$HISTFILE.old"
+    fc -W "$HISTFILE.old"
+    grep -v -xF $BUFFER "$HISTFILE.old" > $HISTFILE
+    # fc -R
+    rm "$HISTFILE.old" > /dev/null 2>&1
+    zle kill-buffer
+}
+zle -N forget
+bindkey '^[f' forget  # Alt + F
+# }}}
+
+# }}}1
+
+# Key bindings                                                       {{{1
+# =======================================================================
+
+source $ZDOTDIR/lib/vi-mode.zsh
+
+# Нормальное поведение клавиш (не как в vi и emacs). {{{2
+
+# # create a zkbd compatible hash;
+# # to add other keys to this hash, see: man 5 terminfo
+# typeset -g -A key
+#
+# key[Home]="${terminfo[khome]}"
+# key[End]="${terminfo[kend]}"
+# key[Insert]="${terminfo[kich1]}"
+# key[Backspace]="${terminfo[kbs]}"
+# key[Delete]="${terminfo[kdch1]}"
+# key[Up]="${terminfo[kcuu1]}"
+# key[Down]="${terminfo[kcud1]}"
+# key[Left]="${terminfo[kcub1]}"
+# key[Right]="${terminfo[kcuf1]}"
+# key[PageUp]="${terminfo[kpp]}"
+# key[PageDown]="${terminfo[knp]}"
+# key[ShiftTab]="${terminfo[kcbt]}"
+#
+# # Нормальное поведение клавиш (не как в vi и emacs).
+# [[ -n "${key[Home]}"     ]]  && bindkey  "${key[Home]}"     beginning-of-line
+# [[ -n "${key[End]}"      ]]  && bindkey  "${key[End]}"      end-of-line
+# [[ -n "${key[Insert]}"   ]]  && bindkey  "${key[Insert]}"   overwrite-mode
+# [[ -n "${key[Delete]}"   ]]  && bindkey  "${key[Delete]}"   delete-char
+# [[ -n "${key[Up]}"       ]]  && bindkey  "${key[Up]}"       up-line-or-history
+# [[ -n "${key[Down]}"     ]]  && bindkey  "${key[Down]}"     down-line-or-history
+# [[ -n "${key[Left]}"     ]]  && bindkey  "${key[Left]}"     backward-char
+# [[ -n "${key[Right]}"    ]]  && bindkey  "${key[Right]}"    forward-char
+# [[ -n "${key[PageUp]}"   ]]  && bindkey  "${key[PageUp]}"   beginning-of-buffer-or-history
+# [[ -n "${key[PageDown]}" ]]  && bindkey  "${key[PageDown]}" end-of-buffer-or-history
+#
+# # Finally, make sure the terminal is in application mode, when zle is
+# # active. Only then are the values from $terminfo valid.
+# if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
+#   autoload -Uz add-zle-hook-widget
+#   function zle_application_mode_start {
+#     echoti smkx
+#   }
+#   function zle_application_mode_stop {
+#     echoti rmkx
+#   }
+#   add-zle-hook-widget -Uz zle-line-init zle_application_mode_start
+#   add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
+# fi
+# }}}2
+
+# Если в пустой командной строке набрать любые символы и начать
+# просматривать историю команд клавишами Up и Down, то из буфера будут
+# извлекаться только те, имена которых начинаются с этого набора символов.
+bindkey "^[OA" .up-line-or-search
+bindkey "^[OB" .down-line-or-search
+
+# <C-Left> - backward-word
+# <C-Right> - forward-word
+bindkey "^[[1;5D" .backward-word
+bindkey "^[[1;5C" .forward-word
+
+bindkey "^[[1;3D" .beginning-of-line
+bindkey "^[[1;3C" .end-of-line
+
+bindkey '^[[H'    .beginning-of-line  # [Home] - beginning of line
+bindkey '^[[F'    .end-of-line        # [End] - end of line
+
+# Use backtick for accept zsh-autosuggestions
+bindkey \` autosuggest-accept
+
+bindkey "^K" history-substring-search-up
+bindkey "^J" history-substring-search-down
+
+# <Ctrl-o> - use lf to switch directories.
+bindkey -s '^o' 'lfcd\n'
+
+
+bindkey '\e[3~' delete-char    # del
+bindkey ';5D'   backward-word  # ctrl+left
+bindkey ';5C'   forward-word   # ctrl+right
+
+
+# allow ctrl+a and ctrl+e to move to beginning/end of line
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
+
+# show man page of current command with alt+h
+bindkey '\eh' run-help
+
+# ctrl+left, ctrl+right to go to next word
+# alt+left, alt+right to go to next word
+bindkey '^[[1;5D' backward-word
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;3D' backward-word
+bindkey '^[[1;3C' forward-word
+
+# Gets the nth argument from the last command by pressing Alt+1, Alt+2, ... Alt+5
+bindkey -s '\e1' "!:0-0 \t"
+bindkey -s '\e2' "!:1-1 \t"
+bindkey -s '\e3' "!:2-2 \t"
+bindkey -s '\e4' "!:3-3 \t"
+bindkey -s '\e5' "!:4-4 \t"
+
+# bindkey '^r' history-incremental-search-backward
+# bindkey '^s' history-incremental-search-forward
+
+# }}}1
+
+# fzf {{{
+
+# ---------------------------------------------------------------------- #
+# fzf keybindings for Zsh                                                #
+# CTRL-R - Paste the selected command from history into the command line #
+# CTRL-T - Paste the selected file path(s) into the command line         #
+# ALT-C  - cd into the selected directory                                #
+# ---------------------------------------------------------------------- #
+
+
+# Install fzf with zplugin
+# Set plugin id as 'fzf'. Now it is possible to update by:
+# "zplugin update fzf" delete by: "zplugin delete fzf" and so on.
+# Downloaded last release from "github releases", unpack it and move
+# "fzf" to "$ZPFX/bin/fzf", which is already at he $PATH.
+#
+zplugin ice id-as"fzf" as"program" from"gh-r" \
+            mv"fzf -> $ZPFX/bin/" \
+            pick"$ZPFX/bin/fzf"
+zplugin light junegunn/fzf-bin
+
+# fzf keybindings
+zplugin ice id-as"fzf-keybindings.zsh"
+zplugin snippet https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh
+
+# fzf.vim  Needed to enable fzf in vim/neovim.
+zplugin ice id-as"auto" as"null"
+zplugin snippet https://github.com/junegunn/fzf/blob/master/plugin/fzf.vim
+
+# # fzf completions
+# zplugin ice id-as"fzf-completion.zsh"
+#             mv"fzf-completion.zsh ->_fzf-completion"
+# zplugin snippet https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
+
+
+# # Enable if fzf installed with apt.
+# # Documentation is at: /usr/share/doc/fzf/README.Debian
+# if [[ -s "/usr/share/doc/fzf/examples/key-bindings.zsh" ]]; then
+#   source /usr/share/doc/fzf/examples/key-bindings.zsh
+# fi
+
+
+export FZF_DEFAULT_OPTS='--height 75% --layout=reverse --border'
+# export FZF_DEFAULT_OPTS='--height 75% --layout=reverse --border --preview="head -30 {}"'
+
+# Using ripgrep with fzf
+# (I've tried fd, but ripgrep is faster.)
+# --files: List files that would be searched but do not search
+# --no-ignore: Do not respect .gitignore, etc...
+# --hidden: Search hidden files and folders
+# --follow: Follow symlinks
+# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+
+# Using bfs utility for directory searching.
+# https://github.com/tavianator/bfs
+
+# # don't show hidden folders
+# export FZF_ALT_C_COMMAND="bfs -type d -nohidden -L -print 2> /dev/null"
+
+# show hidden folders
+export FZF_ALT_C_COMMAND="bfs -type d -L -print 2> /dev/null"
+
+# Make fzf history search unique {{{2
+fzf-history-widget()
+{
+  local selected num
+  setopt localoptions noglobsubst noposixbuiltins pipefail 2> /dev/null
+  selected=( $(fc -rl 1 |
+    sort -k2 -k1rn | uniq -f 1 | sort -r -n |
+    FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
+      local ret=$?
+  if [ -n "$selected" ]; then
+    num=$selected[1]
+    if [ -n "$num" ]; then
+      zle vi-fetch-history -n $num
+    fi
+  fi
+  zle reset-prompt
+  return $ret
+}
+# }}}2
+
+# }}}
+
+# Aliaces                                                              {{{
+# ========================================================================
+
+# Expand aliaces in command line.
+# https://blog.sebastian-daschner.com/entries/zsh-aliases
+#
+# Define three types of aliaces:
+# alias  - will be expanded into full command with wightspace after
+# balias - will be expanded without wightspace after
+# ialias - won't be expanded
+#
+# Expand aliaces {{{
+
+# balias {{{3
+
+# Blank aliases
+typeset -a baliases
+baliases=()
+
+balias()
+{
+  alias $@
+  args="$@"
+  args=${args%%\=*}
+  baliases+=(${args##* })
+}
+
+# ialiases {{{3
+
+# ignored aliases
+typeset -a ialiases
+ialiases=()
+
+ialias()
+{
+  alias $@
+  args="$@"
+  args=${args%%\=*}
+  ialiases+=(${args##* })
+}
+
+# }}}3
+
+# functionality
+expand-alias-space() # {{{
+{
+  [[ $LBUFFER =~ "\<(${(j:|:)baliases})\$" ]]; insertBlank=$?
+  if [[ ! $LBUFFER =~ "\<(${(j:|:)ialiases})\$" ]]; then
+    zle _expand_alias
+  fi
+  zle self-insert
+  if [[ "$insertBlank" = "0" ]]; then
+    zle backward-delete-char
+  fi
+} # }}}
+zle -N expand-alias-space
+
+# Expand aliaces on space
+bindkey " " expand-alias-space
+bindkey -M isearch " " magic-space
+
+# }}}
+
+
+# Filesystem aliases
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+
+# alias apt='sudo apt'
+
+# Пингуем один раз вместо бесконечности.
+ialias ping='ping -c 1'
+
+# Use neovim for vim if present.
+command -v nvim >/dev/null && ialias vim="nvim" vimdiff="nvim -d"
+
+ialias mv='nocorrect mv -i'  # переименование-перемещение c пogтвepжgeнueм
+ialias cp='nocorrect cp -iR'  # рекурсивное копирование с подтверждением
+ialias rm='nocorrect rm -i'  # удаление с подтверждением
+# alias rmf='nocorrect rm -f'  # принудительное удаление
+# alias rmrf='nocorrect rm -fR' # принудительное рекурсивное удаление
+ialias mkdir='nocorrect mkdir'  # создание каталогов без коррекции
+
+# alias l='ls -lAh --color=auto --group-directories-first'
+# alias ls='ls --color=auto --group-directories-first'
+
+# alias ls='ls -F'  # вывод символов типов файлов
+# alias ll='ls -l'  # вывog в gлuннoм фopмaтe
+# alias la='ls -A'  # вывog всех файлов, кромe . u ..
+# alias lsd='ls -ld *(-/DN)'  # вывод только каталогов
+# alias lsa='ls -ld .*'  # вывog тoльko dot-фaйлoв
+
+# alias ls='lsd'
+ialias ll='lsd --group-dirs=first --blocks=size,date,name --date=relative -l'
+ialias lt='lsd --tree'
+
+# alias ls='exa'
+ialias exa='exa --group-directories-first'
+
+ialias tree='tree -I .git -I .github'
+
+# alias history="history -35"  # упрощение вывода истории команд
+
+# вывод свободного и использованного дискового пространства в
+# "гуманистическом" представлении
+ialias df='df -h'
+ialias du='du -h'
+
+alias disk='df -h | grep -P "F|[A-Z]:"'
+
+# представление вывода less в more-подобном виде
+# (с именем файла и процентом вывода)
+ialias less='less -M'
+ialias wget='wget -c'  # автоматическое продолжение при разрыве соединения
+ialias vw=' nvim -c WikiIndex'  # open wiki
+ialias r=' ranger'
+ialias sr=' source ranger'
+
+# Git
+alias gs='git status'
+alias gc='git checkout'
+alias -g random='-m curl -s http://whatthecommit.com/index.txt'
+
+alias cdh='back_in_history'
+
+# Lists the ten most used commands.
+ialias history-stat="history 0 | awk '{print \$2}' | sort | uniq -c | sort -n -r | head"
+
+alias -s {avi,mpeg,mpg,mov,m2v}=mplayer
+alias -s {odt,doc,sxw,rtf}=openoffice.org
+autoload -U pick-web-browser
+alias -s {html,htm}=chromium
+
+# }}}
+
+# Initializing completion system {{{
+
+# This line initialized completion system and should be at the end of the
+# file after loading all plugin and all "zstyle ':completion:*'" options.
+autoload -Uz compinit; compinit
+
+# Run all the `compdef's saved before `compinit` call (`compinit' declares
+# the `compdef' function, so it cannot be used until `compinit` is ran;
+# Zplugin solves this via intercepting the `compdef'-calls and storing them
+# for later use with `zplugin cdreplay'). `-q` is for quiet.
+zplugin cdreplay -q
+
+# `compdef _gnu_generic myCommand` will parse output of `myCommand --help`
+# and use that for autocompletions.
+# Example: compdef _gnu_generic grep
+
+# }}}
+
+# vim: tw=75 fdm=marker ts=2 sw=2 number
+
