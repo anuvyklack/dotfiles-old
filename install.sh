@@ -5,7 +5,36 @@
 
 DIR=$0:a:h  # The parent folder of current script
 
+# Setup zsh files
+
 export ZDOTDIR=$HOME/.config/zsh
+
+if [[ ! -d $ZDOTDIR ]]; then
+    echo "Make new directory: $ZDOTDIR"
+    mkdir $ZDOTDIR
+fi
+
+echo "Link zsh files to $ZDOTDIR"
+ln -sv -f "$DIR/config/zsh/zshenv"    "$ZDOTDIR/.zshenv"
+ln -sv -f "$DIR/config/zsh/zprofile"  "$ZDOTDIR/.zprofile"
+ln -sv -f "$DIR/config/zsh/zshrc"     "$ZDOTDIR/.zshrc"
+ln -sv -f "$DIR/config/zsh/zlogin"    "$ZDOTDIR/.zlogin"
+
+ln -sv -f "$DIR/config/zsh/lib"       "$ZDOTDIR/lib"
+ln -sv -f "$DIR/config/zsh/functions" "$ZDOTDIR/functions"
+echo "Done!"
+
+
+# Setup ~/.bin
+if [[ ! -d ~/.bin ]]; then
+    echo "Make new directory: $HOME/.bin"
+    mkdir ~/.bin
+fi
+
+for file in $DIR/bin/*; do
+    ln -sv -f "$file" "$HOME/.bin/${file:t}"
+    # ln -sv -f "$file" "$HOME/.bin/$(basename $file)"
+done
 
 # apt install fzf   # fuzzy finder
 # apt install exa   # a modern replacment for ls
@@ -22,30 +51,5 @@ export ZDOTDIR=$HOME/.config/zsh
 # # run Xserver on WSL start
 # ln -sv -f "~/dotfiles/vcxsrv.sh" "/etc/profile.d/vcxsrv.sh"
 
-if [[ ! -d ~/.bin ]]; then
-    echo "Make new directory: $HOME/.bin"
-    mkdir ~/.bin
-fi
-
-for file in $DIR/bin/*; do
-    ln -sv -f "$file" "$HOME/.bin/${file:t}"
-    # ln -sv -f "$file" "$HOME/.bin/$(basename $file)"
-done
 
 
-# Setup zsh files
-
-if [[ ! -d $ZDOTDIR ]]; then
-    echo "Make new directory: $ZDOTDIR"
-    mkdir $ZDOTDIR
-fi
-
-echo "Link zsh files to $ZDOTDIR"
-ln -sv -f "$DIR/config/zsh/zshenv"    "$ZDOTDIR/.zshenv"
-ln -sv -f "$DIR/config/zsh/zprofile"  "$ZDOTDIR/.zprofile"
-ln -sv -f "$DIR/config/zsh/zshrc"     "$ZDOTDIR/.zshrc"
-ln -sv -f "$DIR/config/zsh/zlogin"    "$ZDOTDIR/.zlogin"
-
-ln -sv -f "$DIR/config/zsh/lib"       "$ZDOTDIR/lib"
-ln -sv -f "$DIR/config/zsh/functions" "$ZDOTDIR/functions"
-echo "Done!"

@@ -22,14 +22,12 @@ showkey -s
 sudo showkey -s
 man showkey
 man dumpkeys
-source .zshrc
 echo $ZSH_CUSTOM
 xsel
 man xsel
 man xclip
 powershell.exe
 uname
-echo $PATH
 pengwin-help
 readfile -f win32yank.exe
 man rm
@@ -41,7 +39,6 @@ win32yank.exe -o
 readlink -f win32yank.exe
 sudo ln -s "/mnt/c/tools/win32yank.exe" "/usr/local/bin/win32yank"
 win32yank
-vim .zshrc
 ls -h
 ls -a
 vim init.vim
@@ -81,7 +78,6 @@ zsh-autosuggestions
 dpkg-query -W zsh-autosuggestions
 man dpkg-query
 dpkg-query -s zsh-autosuggestions
-zsh
 atom
 sudo apt remove zsh-autosuggestions
 sudo apt install zsh-autosuggestions
@@ -91,28 +87,21 @@ vim setup_environment.sh
 vim zsh_help_file.txt
 google github
 ls -A --color
-man ls
 google vi-mode
 vi-mode
-vim zsh_help_file.txt .zshrc
 which nvim
 xt
-vim .zshrc zsh_help_file.txt
 ls -l --color=auto
 google zsh ls onedark dir not visible
 echo "LS_COLORS=$LS_COLORS:'ow=37;42:'" >> ~/.zshrc
 zsh -f
 echo $LS_COLORS
 echo $LS_COLORS >> ~/.zshrc
-google кераиму�
-google женский плу�жну�й волейбол
 man dir
-man dir_colors
 man tmux
 man ln
 ln -sv /mnt/d/artyu/OneDrive/Software Software
 ln -sv /mnt/d/artyu artyu
-exit u
 sudo rm FastCopy.exe
 sudo ln /mnt/c/scoop/apps/fastcopy/current/FastCopy.exe FastCopy.exe
 sudo
@@ -128,8 +117,8 @@ git clone https://github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf
 cp .tmux/.tmux.conf.local .
 tmux
-vim -d /mnt/c/Users/artyu/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/profiles.json /mnt/c/Users/artyu/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/old_profiles.json
-у�у�у�е
+vim -d /mnt/c/Users/artyu/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/profiles.json /mnt/c/Users/artyu/AppData/Local/Packages/Mic
+rosoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/old_profiles.json
 exie
 t
 man nvi
@@ -141,7 +130,6 @@ ln -sv ~/dotfiles/ranger/ranger-autojump/autojump.py ~/.config/ranger/plugins/au
 apt search autojump
 rm autojump.py
 google zsh man colorer
-vim ~/.zshrc ~/zsh_help_file.txt
 google man table of content
 man ranger | grep '^[A-Z]'
 man ranger
@@ -157,7 +145,6 @@ cd Downloads
 extract nvim-linux64.tar.gz
 extract neovim-nightly.zip
 cd neovim-nightly
-cd ..
 make CMAKE_BUILD_TYPE=Release
 sudo make install
 setunv
@@ -166,7 +153,6 @@ set
 history -10
 who
 which
-vim ~/Ѓ�ои_заметки/neovim\ мои\ заметки.txt
 git clone https://github.com/tpope/vim-markdown/blob/master/syntax/markdown.vim
 git clone https://github.com/tpope/vim-markdown
 vim diexit
@@ -188,14 +174,11 @@ man 6  echo
 man 7 echo
 man 8 echo
 man 9 echo
-vi
-source range
 apt
 ln -sv ~/Software/vimwiki ~/
 nviim
 tzdata
 pengwin-setup
-mv .zshrc .zshrc_old
 echo $PARINIT
 autoload -Uz compinstall
 compinstall
@@ -207,7 +190,6 @@ sudo apt install par
 par
 par help
 nvi
-OB
 ls -f
 ld -F
 ls -F
@@ -217,16 +199,13 @@ ls -ial
 less
 less --help
 ls --color=tty
-less ~/.zshrc
 nvin
 apt search neovim
 dotfiles
 setopt
 ~/.config/nvim/plugged/wiki.vim
 vim ./autoload/wiki/page.vim
-source ran
 grep -r TOC .
-bindkey
 zstyle
 zstyle -L
 vim -c <plug>(wiki-index)
@@ -235,11 +214,8 @@ vim -c I
 vm
 sudo apt install fzf
 rnger
-man fzf
 less ~/wiki/neovim.wiki
 vim **
-man zsh
-vim ~/dotfiles/zsh/{.zshrc,.zshrc_old}
 Software
 pwd -p
 pwd -P
@@ -263,7 +239,6 @@ sudo apt install locate
 sudo updatedb
 sudo apt install mlocate
 etc/cron
-source ranger
 mlocate
 ./mlocate
 /etc/cron.daily
@@ -284,11 +259,9 @@ history | fzf
 history -a
 history -h
 history --help
-bash
 /usr/share/man
 man1
 whereis fzf
-mandb
 man -k password
 man par
 man -H less
@@ -297,7 +270,6 @@ man echo
 man exec
 man nroff
 man man
-man less
 man more
 man most
 man tzdata
@@ -307,27 +279,21 @@ man who
 vim ~/dotfiles/nvim/syntax
 vim ~/dotfiles/nvim/after
 vw
-locate fzf
-fzf
 /usr/share/doc/fzf
 find . | fzf
 echo $LINES
 vim $(find * -type f -not -path '*/.git/*' | fzf --preview="head -$LINES {}")
 man zshoptions
 sudo cron
-locate zsh_history
 git remote -vv
 git remote
 git remote -v
-git branch -vv
 git fetch origin
 git log --decorate --all --oneline --graph
 git checkout -b statusline
 git commit -a
 git push -u myfork statusline
-vim ~/.zsh_history ~/dotfiles/zsh/.zsh_history
 mlocate nvimdiff
-git graph
 echo $LOCAL
 vim ~/.gitconfig
 mlocate vimdiff
@@ -336,21 +302,12 @@ cd /usr/lib/git-core/mergetools
 cd ~
 git dif
 git difftool
-git config --global -e
 locale
 sudo explorer.exe
 explorer.exe
-git ls-tree
-git ls-tree -d
 vim ~/.config/nvim/plugins.vim
 fc -w
 fc -W
-less ~/.zsh_history
-cp ~/.zsh_history ~/dotfiles/zsh/.zsh_history -fvH
-man cp
-cp ~/.zsh_history ~/dotfiles/zsh/.zsh_history -fv
-cp -fv ~/.zsh_history ~/dotfiles/zsh/.zsh_history
-less ~/dotfiles/zsh/.zsh_history
 apt search fzf
 apt search ag | ag
 apt search ag | rg ag
@@ -363,7 +320,6 @@ rg --help
 man rg
 man ag
 apt search ag | fzf
-git config --global --list
 cd ~./dotfiles
 git commit --amend
 apt search lsd | rg lsd
@@ -371,8 +327,6 @@ cd program_files/
 curl https://github.com/Peltoche/lsd/releases/download/0.16.0/lsd_0.16.0_amd64.deb
 wget https://github.com/Peltoche/lsd/releases/download/0.16.0/lsd_0.16.0_amd64.deb
 sudo dpkg -i lsd_0.16.0_amd64.deb
-ls -l
-man lsd
 lsd -h
 lsd -lh
 lsd -1
@@ -392,15 +346,12 @@ lsd --group-dirs=first --blocks=size,date,name --date=relative
 lsd --group-dirs=first --blocks=size,date,name --date=relative --total-size
 lsd --group-dirs=first --blocks=size,date,name --date=relative --total-size -l
 lsd --group-dirs=first --blocks=size,date,name --date=relative -l
-lsd -l
 lsd --color=always
 lsd --color=never
-lsd -A
 cat .lesshst
 ls --tree
 apt search bat | rg bat
 sudo apt install bat
-cd ~/dotfiles
 apt search bat*extras
 apt search 'bat*extras'
 apt search bat extras
@@ -412,11 +363,8 @@ cd ~/program_files/
 bat nvim
 mv program_files/ programs
 lst
-lsd --tree
 cd /opt
-cd ~/dotfiles/nvim/
 cd plugins
-lt
 lt --depth=3
 git clone https://github.com/eth-p/bat-extras.git
 cd bat-extras/
@@ -429,7 +377,6 @@ batman git-log
 man git-rebase | bat
 bat install.sh
 bat backup.sh
-bat zsh/.zshrc
 rg unix
 batgrep unix
 batgrep lightline
@@ -461,7 +408,6 @@ chmod +x broot
 chmod +x broot.bin
 chmod a+x broot
 ./broot
-bat ~/.zshrc
 cd ~/.config/broot/launcher/bash
 cd ~/programs
 cd /usr/local
@@ -474,20 +420,13 @@ vim conf.toml
 showkey -a
 vim ~/.config/broot/conf.toml
 br
-exa --help
-ls
 exa -x
 exa -lx
-exa --group-directories-first
-exa --group-directories-first -l
 exa -lhS
 exa -lh
 exa -lhi
 exa -lbF --git
 exa -lbF
-exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale
-vim ~/dotfiles/nvim/init.vim
-vim ~/.zsh_history
 exa *sh
 exa -l *sh
 apt search exa
@@ -500,18 +439,13 @@ apt search exa | rg 'exa.*ls'
 exa -v
 exa --icons
 exa -l --icons
-man exa
 exa --git
 exa -l --icons --git
 exa --long --git
-exa
-exa -l
 exa -l --git
 exa -l --git --head
 exa -l --git -h
 exa -lh --git
-vim ~/dotfiles/nvim/plugins.vim
-sudo apt update && sudo apt upgrade
 apt search bfs | rg bfs
 apt search bfs | batgrep bfs
 cd /usr/local/bin
@@ -520,43 +454,951 @@ apt search bfs | rg 'bfs'
 apt search bfs | batgrep 'bfs'
 apt search bfs
 sudo apt install bfs
-cd ~/dotfiles/
-dpkg-query -s
 bfs ~ -nohidden -type d -printf '~/%P\n'
 bfs --help
 ll -h
-ll -a
-ll -A
-git diff
-git add -A
 git commit
 vim .gitignore
-git status
-git log
 git push
-vim
-cd nvim
-lsd
-lsd --help
 man bfs
 bfs
-source ~/.zshrc
-git status -s
 git commit -a --amend
-git push -f
 git shoq
-git show
 apt search antigen
 sudo apt install zsh-antigen
-vim ~/dotfiles/install.sh
 mlocate aintigen
 mlocate zsh
-cd /usr/share
 bat antigen.zsh
-ll
 bat README.Debian
 vim README.Debian
 bat README.mkd.gz
-cd
-vim ~/.zshrc
-cp -fv ~/.zsh_history ~/dotfiles/zsh/.zsh_history
+sudo apt remove oh-my-zsh
+cd .antigen/
+apt search oh-my-zsh
+antigen help
+antigen update
+cd linuxbrew/
+sudo apt-get install build-essential curl file git
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+bash
+id
+who am i
+whoami
+sudo rm -rf linuxbrew
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+brew install diff-so-fancy
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+git config --bool --global diff-so-fancy.stripLeadingSymbols false
+git config --global diff-so-fancy.rulerWidth 47
+git config --global diff-so-fancy.rulerWidth 54
+git config --global diff-so-fancy.rulerWidth 80
+git config --global -e
+export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
+test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+man test
+test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
+echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
+cd ~/dotfiles/nvim/
+cd /usr/share
+cd ~/dotfile
+spaceship_vi_mode_enable
+vim -d /mnt/c/Users/artyu/AppData/Roaming/alacritty/{alacritty.yml,alacritty_new.yml}
+vim -d /mnt/c/Users/artyu/AppData/Roaming/alacritty/{alacritty.yml,alacritty_old.yml,}
+vim -d /mnt/c/Users/artyu/AppData/Roaming/alacritty/{alacritty.yml,alacritty_old.yml}
+vim /mnt/c/Users/artyu/AppData/Roaming/alacritty/alacritty.yml
+wget -O - https://www.cl.cam.ac.uk/\~mgk25/ucs/examples/UTF-8-demo.txt
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do\
+ ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"\
+done
+echo [-d /home/linuxbrew/]
+echo [[-d /home/linuxbrew/]]
+echo [[ -d "/home/linuxbrew/"]]
+echo [ -d "/home/linuxbrew/"]
+echo [-d "/home/linuxbrew/"]
+echo [ -d "/home/linuxbrew/" ]
+echo $([ -d "/home/linuxbrew/" ])
+[ -d "/home/linuxbrew/" ] && echo 'Yes'
+[[ -a "/home/linuxbrew/" ]]
+if [[ -a "/home/linuxbrew/" ]]; then; echo Yes: fi
+if [[ -d "/home/linuxbrew/" ]]; then; echo Yes; fi
+if [[ -d "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then; echo Yes; fi
+if [[ -d "/home/linuxbrew/.linuxbrew/bin" ]]; then; echo Yes; fi
+if [[ -a "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then; echo Yes; fi
+if [[ -d "/opt/miniconda3/bin" ]]; then; echo Yes; fi
+git branch -vv
+git branch
+nvim
+ll -A preto
+ll -A prezto
+ll -A *prezto*
+ll -A prezto*
+ll -A ".*prezto.*"
+man lsd
+ll -A -- .*prezto.*
+ll -A -- .zprezto*
+apt search pwgen
+apt show pwgen
+apt show pwgen\t
+apt show pwgent
+apt show pwget
+vim exit
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
+vim -d ~/.zshrc ~/dotfiles/zsh/.zshrc_my_custom
+bat .zhistory
+apt info zsh
+git clone https://github.com/zdharma/zplugin-configs.git
+cd zplugin-configs
+brew upgrade
+brew update
+bat ._zplugin
+cd ~/.zplugin/plugins/junegunn---fzf-bin/
+apt info fzf
+cd /usr/share/doc/fzf
+vim ~/dotfiles/nvim/init.vim
+man fzf
+man fzf-tmux
+rg 'fzf\
+'
+rg 'fzf'
+man git-log
+mlocate fzf
+which man
+man git-clone
+cd 00dani
+typeset
+mandb
+man -k typeset
+man --apropos typeset
+man zsh
+man zshcompsys
+typeset -p
+echo $ZPLG_HOME
+echo &xdg_cache_home
+echo $xdg_cache_home
+rg 'self-update'
+echo &xdg_cache_homesr
+ll *ro*
+lsd tree
+cd ._zplugin
+cd .zplugin
+ll --tree
+cd lainiwa
+lt
+lt -A --depth=3
+ls -R
+ls -R -A
+which lsd
+locate lsd
+lsd --help
+man ls
+lsd -A
+lsd -A git
+lsd -A *git
+ll -A *git
+ll -A *.git
+ll -A .git
+cd .git
+bat HEAD
+dir
+vdir
+man git-ls
+git ls-tree -d
+git ls-tree
+git ls-tree .
+man git-ls-tree
+exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale
+exa -lbhHigUmuSa@ --git --color-scale
+exa -lbhHigUmuSa --time-style=long-iso --git --color-scale
+exa -lbhHigmuSa --time-style=long-iso --git --color-scale
+exa --help
+exa --group-directories-first -l
+exa --group-directories-first -lA
+exa --group-directories-first -la
+exa --group-directories-first -la --git-ignore
+exa --group-directories-first -la --git-ignore --tree
+exa -a --git-ignore --tree
+tree
+which tree
+tree -I .git
+tree -a -I .git
+man tree
+tree -aC -I .git
+exa -a --git-ignore --tree -I .git
+exa --tree -I .git
+lsd --tree
+lsd --tree -I .git
+ll -a
+tree -aL2
+tree -aL 2
+tree -a -L 2 -I .git .github
+tree -a -L 2 -I .git -I .github
+tree -a
+zplugin delete --clean
+locate c.zsh
+cd ~/.zplugin/plugins/trapd00r---LS_COLORS
+exa -A
+exa -a
+tree -C -L 2
+ll -AR *.zwc
+ll --help
+ll -AR -- *.zwc
+ll -A -R -- *.zwc
+ll -A -R
+ll -R -- *.zwc
+lsd
+lsd -l
+lsd -lA
+lsd -lAR
+lsd -lAR -- &.zwc
+lsd -lAR -- *.zwc
+lsd -lAR -- *zwc
+lsd -lAR -- *.zsh
+lsd -R -- *.zsh
+lsd -AR -- *.zsh
+ll -A *.zwc
+ll -A *.zwc -R
+exa --group-directories-first
+exa
+exa -l
+exa -laR -- *.zwc
+exa -laR *.zwc
+exa -laR -p *.zwc
+exa -laR -P *.zwc
+man exa
+ls
+ls -l
+ls -lR
+ls -lRa
+ls -lRA
+ls -lRA *.zwc
+ls -lRA -- *.zwc
+ll -AR
+ll -AR | rg '*.zwc'
+ll -AR | rg *.zwc
+ll -AR | rg .*\.zwc
+ll -AR | rg '.*\.zwc'
+man locate
+apt search fd-find
+brew search ds
+brew search fd
+brew info fd
+brew info fdclone
+brew install fd
+fd
+fd *.zwc
+fd -h .*\.zwc
+fd -H .*\.zwc
+fd .*\.zwc
+fd zwc
+fd -H zwc
+fd -H .zwc
+fd -H \.zwc
+fd -H \.zwc$
+fd -H .*\.zwc$
+fd -H \.\*.zwc$
+fd -H \.\*.zwc\$
+fd -H .\*.zwc$
+fd --help
+man fd
+fd -H '.\*.zwc$'
+fd -H '.*.zwc$'
+fd -H '.*zsh.zwc$'
+fd -H '.*zshzwc$'
+fd -H '.*zsh\.zwc$'
+man dir_colors
+man dircolors
+dircolors
+dircolors -b
+dircolors -b LS_COLORS
+brew search fzf
+brew info fzf
+sudo apt remove fzf
+locate fzf
+zplugin zstatus
+zplugin compile --all
+fd -H '.*\.zwc$'
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+cd ~/.fzf
+echo $P
+echo $PATH > path.txt
+vim path.txt
+cd $ZPFX
+git branch -v
+vim ~/dotfiles/install.sh
+autoload -U colors && colors
+for color in red green yellow blue magenta cyan black white; do\
+ eval $color='%{$fg_no_bold[${color}]%}'\
+ #eval ${color}_bold='%{$fg_bold[${color}]%}'\
+done
+curl -s http://whatthecommit.com/index.txt
+du
+df | rg 'c|d'
+df | rg 'C|D'
+df | rg 'F|C|D'
+df | grep 'F|C|D'
+df | grep -p 'F|C|D'
+df | grep -P 'F|C|D'
+space
+echo -random
+git config --global alias.yolo 'commit -m "$(curl -s whatthecommit.com/index.txt)"'
+git config --global alias.yolo '!git commit -m "$(curl -s whatthecommit.com/index.txt)"'
+git push -f
+cd ~/dotfiles/
+gs
+man git-restore
+man rsync
+rsync ~/{.zshrc,dotfiles/zsh/zshrc}
+rsync -v ~/{.zshrc,dotfiles/zsh/zshrc}
+cd ~/dotfiles/zsh
+git reset --soft HEAD~
+git show
+cd ~/.zplugin
+rg 'git-completion'
+cd ../..
+ss
+apt search Subversion
+apt info subversion
+brew info subversion
+brew install subversion
+brew help bundle
+brew bundle
+brew bundle dump
+brew bundle cleanup
+brew bundle --force cleanup
+zplugin clist
+zplugin csearch
+echo $FPATH
+locate git-completion
+locate 'git-completion'
+locate git
+prompt -h pure
+zplugin creinstall fzf
+zplugin --help
+vim ~/.zplugin
+brew info diff-so-fancy
+zplugin status
+zplugin
+zplugin -h
+zplugin self-update && zplugin update
+zplugin list
+zplugin listsr
+rm -rf fzf-completion.zsh
+which fzf
+fzf
+mkdir ~/.zplugin
+git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
+zplugin completions
+zplugin delete fzf-completion.zsh
+zplugin delete fzf
+zplugin self-update
+cd ~/projects/dotfiles_examples/zplugin-configs/
+rg
+rg 'fast'
+brew list
+brew
+compdef _gnu_generic brew
+man pushd
+pushd
+popd
+cd -
+brew --prefix
+cd brew --prefix
+type bre
+type brew
+brew update && brew upgrade
+sudo apt upgrade && sudo apt update; brew update && brew upgrade; zplugin self-update && zplugin update --all
+brew search diff-so-fancy
+brew remove diff-so-fancy
+which diff-so-fancy
+cd $(brew --prefix)
+vim shell_scripts/show_terminal_colors.sh artyu/cd
+sp
+run-help gs
+disk
+dirs -v
+run-help vim
+which run-help
+whatis artyu/
+whatis run-help
+run-help man
+update
+sudo apt upgrade && sudo apt update
+vim ~/.zshr
+vim ~/dotfiles/nvim/plugins.vim
+bindkey | rg back-i-search
+bindkey | rg 'back-i-search'
+bindkey | rg 'fzf'
+bindkey
+sr
+sudo apt remove antigen
+sudo apt remove zsh-antigen
+cd $ZPREZTODIR
+git clone --recurse-submodules https://github.com/belak/prezto-contrib contrib
+nvim ~/.zpreztorc
+cd ~/
+cd nvim
+cd ..
+git diff --cached
+pwd
+echo eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+git granch -vv
+vim
+man zshmodules
+man git
+vim ~/.zprofile
+man less
+sudo apt update && sudo apt upgrade
+pwg='pwgen -cnB 8 10 | while read PASS; do echo -n -e "$PASS\t"; echo -n "$PASS" | md5sum | cut -f1 -d" "; done'
+_pwgen -cnB 8 10 | while read PASS; do echo -n -e "$PASS\t"; echo -n "$PASS" | md5sum | cut -f1 -d" "; done
+pwgen
+sudo apt install pwgen
+pwgen -cnB 8 10 | while read PASS; do echo -n -e "$PASS\t"; echo -n "$PASS" | md5sum | cut -f1 -d" "; done
+updatedb.mlocate
+sudo updatedb.mlocate
+which updatedb.mlocate
+bat /usr/bin/updatedb.mlocate
+cd /usr/bin/
+ll updatedb*
+ll /etc/alternatives/updatedb
+cd !
+cd /etc/alternatives/updatedb
+cd /etc/alternatives/
+cd /var/lib/mlocate/mlocate.db
+cd /var/lib/mlocate/
+man updatedb
+locate mlocate
+info
+whatis mlocate
+whatis git
+whatis man
+whatis updatebd
+whatis updatedb
+file /var/lib/mlocate/mlocate.db
+file dotfiles
+whatis rename
+man rename
+free
+cowsay
+apt search cowsay
+info man
+apt search info
+vi
+history
+df
+man df
+vim ~/.zpreztorc
+zsh
+cd zsh
+rg zcompile
+echo $0
+cd projects/dotfiles_examples/
+git clone https://github.com/lukesmithxyz/voidrice luke-smith-dotfiles
+cd luke-smith-dotfiles/
+bat .profile
+exa -laR
+exa -LA
+exa -La
+exa -lA
+exa -la
+cd modules/
+bat /etc/zsh/zshenv
+bat /etc/zsh/zprofile
+bat /etc/profile
+vim .profile
+ll -A
+touch .zshenv
+vim ~/.zshenv
+git config --list --show-origin
+cp ~/.gitconfig ~/.config/git/config -f
+man cp
+mkdir ~/.config/git
+cp ~/.gitconfig ~/.config/git/config
+git config --list
+git config --global --list
+git diff
+git config help
+git help config
+echo $GIT_CONFIG
+cd .config/git/
+cd .config
+vim ~/.config/git/config
+vi .zshenv
+vim .zshenv
+git unstage
+git add -A
+git yolo
+git log
+git graph
+brew search nvim
+brew info nvim
+apt info nvim
+sudo apt remove nvim
+whereis nvim
+dpkg-query -s
+locate lesspipe
+bat /usr/bin/lesspipe
+ll
+git status -s
+cd .zprezto/runcoms/
+cdh
+which vim
+which vimdiff
+apt info lfm
+brew search lf
+brew info lf
+brew install lf
+lf
+lfcd
+git clone https://github.com/htr3n/zsh-config.git
+cd ~/dotfiles
+git status
+rg 'spaceship_vi_mode_enable'
+bindkey -l
+bindkey -lL
+vim sections/vi_mode.zsh +49
+vim sections/
+echo $PATH
+vim ~/dotfiles/zsh/zshrc
+vim ~/.config/zsh/.zshrc
+cd dotfiles/
+rm -rf ~/.zplugin
+sudo updatedb.mlocate &
+locate zcompdump
+source ~/.config/zsh/.zshrc
+vim ~/.cache/zsh/zsh_history
+source ~/.config/zsh/.zshrc
+cd …./dir
+cd …./usr
+cd ..../dir
+cd ..../usr
+cd ..../zsh
+source ~/.config/zsh/.zshrc
+sudo apt update && sudo apt upgrade
+sudo apt autoremove
+source ~/.config/zsh/.zshrc
+disk
+ll -A
+git clone https://github.com/woefe/dotfiles.git woefe-dotfiles
+ll
+ll -A
+cdh
+cd +
+source ~/.config/zsh/.zshrc
+cd dotfiles/
+git clone https://github.com/woefe/wbase.zsh.git
+print $PATH
+print -l $PATH
+print -l $path
+source ~/.config/zsh/.zshrc
+echo $KEYTIMEOUT
+cd .zplugin/plugins/zsh-users---zsh-syntax-highlighting/
+ll
+echo $PIPELINE
+echo $ARRAY
+echo ${ARRAY[0]}
+echo $ARRAY
+echo $PROJECT
+echo ${ARRAY[1]}
+edit
+vim ~/.config/zsh/.zshrc
+source ~/.config/zsh/.zshrc
+echo $path
+print -l $path
+zplugin self-update
+zplugin update --all
+disk
+man cp
+source ~/.config/zsh/.zshrc
+git diff
+cd ll
+cd .config/zsh/
+source ~/.config/zsh/.zshrc
+cd dotfiles/
+vim ~/.cache/zsh/zsh_history
+man rename
+man less
+source ~/.config/zsh/.zshrc
+man less
+source ~/.config/zsh/.zshrc
+man less
+source ~/.config/zsh/.zshrc
+man less
+source ~/.config/zsh/.zshrc
+man less
+source ~/.config/zsh/.zshrc
+man less
+source ~/.config/zsh/.zshrc
+man less
+source ~/.config/zsh/.zshrc
+man less
+source ~/.config/zsh/.zshrc
+man less
+echo $COLUMNS
+source ~/.config/zsh/.zshrc
+echo $COLUMNS
+man less
+echo $(tput cols)
+echo $INDENT
+printf $INDENT_LINE
+locate less
+man lesspipe
+who
+cd /mnt/d/artyu/Downloads
+lesspipe zsh_a4.pdf
+apt search pdftotext
+brew search pdftotext
+brew search poppler
+brew info poppler
+brew install poppler
+lesspipe zsh_a4.pdf
+less zsh_a4.pdf
+pwd
+touch bin/lessindent
+touch -R bin/lessindent
+man touch
+dir bin
+mkdir bin
+touch -R bin/lessindent
+touch bin/lessindent
+ll
+ll bin
+vim bin/lessindent
+echo $INDENT
+printf $INDENT_LINE
+printf $LESSOPEN
+man touch
+man git
+source ~/.config/zsh/.zshrc
+man git
+source ~/.config/zsh/.zshrc
+man git
+source ~/.config/zsh/.zshrc
+man git
+export LESSOPEN="| sed \"s/^/${INDENT_LINE}/\""
+printf $LESSOPEN
+export LESSOPEN="|- sed \"s/^/${INDENT_LINE}/\""
+printf $LESSOPEN
+man touch
+man git
+export LESSOPEN="|- sed \"s/^/${INDENT_LINE}/\" %s"
+printf $LESSOPEN
+man git
+man apropos | fmt -w 70
+man git | sed "s/^/${INDENT_LINE}/" /
+man git | sed "s/^/${INDENT_LINE}/"
+man less
+cd bin/lessindent
+cd bin
+bat lessindent
+rename lessindent
+name lessindent
+ll
+vim lesscenter
+chmod +x lesscenter
+printf $LESSOPEN
+source ~/.config/zsh/.zshrc
+man gitt
+man git
+bat lesscenter
+printf $path
+print -l $path
+ll
+vim .zshenv
+vim ~/.zprofile
+vim ~/.config/zsh/.zprofile
+whereis lesscenter
+bat lesscenter
+man git
+vim ~/.config/zsh/.zprofile
+man git
+source ~/.config/zsh/.zprofile
+man git
+source ~/.config/zsh/.zprofile
+man git
+man less
+source ~/.config/zsh/.zprofile
+man less
+source ~/.config/zsh/.zprofile
+man less
+man less
+source ~/.config/zsh/.zshrc
+man less
+mkdir lib
+ll
+touch completion.zsh history.zsh vi-mode.zsh
+ll
+source $ZDOTDIR/lib/completion.zsh
+uname
+uname -s
+[[ -d ~/.bin ]]
+[[ -d ~/.bin ]] && echo Yes
+uname
+[[ ! -d ~/.bin ]] && echo Yes || echo No
+ll
+
+cd dotfiles/
+ll
+source install.sh
+cd ..
+source install.sh
+cd dotfiles/install.sh
+cd dotfiles/
+vim install.sh
+source install.sh
+setopt
+setopt function_argzero
+setopt
+source install.sh
+vim install.sh
+source install.sh
+vim install.sh
+printf $%
+vim install.sh
+echo ${(%):-%N}
+readlink -f $0
+man 1 readlink
+vim install.sh
+source install.sh
+vim install.sh
+source install.sh
+vim install.sh
+source install.sh
+vim install.sh
+source install.sh
+vim install.sh
+source install.sh
+vim install.sh
+source ~/dotfiles/install.sh
+source ~/dotfiles/install.sh
+cd dotfiles/
+vim install.sh
+source ~/dotfiles/install.sh
+vim install.sh
+source ~/dotfiles/install.sh
+vim install.sh
+source ~/dotfiles/install.sh
+vim install.sh
+source ~/dotfiles/install.sh
+vim install.sh
+source ~/dotfiles/install.sh
+vim install.sh
+source ~/dotfiles/install.sh
+echo $file
+basename $file
+echo $(basename -- $file)
+echo $(basename $file)
+vim install.sh
+source ~/dotfiles/install.sh
+vim install.sh
+source ~/dotfiles/install.sh
+vim install.sh
+source ~/dotfiles/install.sh
+vim install.sh
+source ~/dotfiles/install.sh
+vim install.sh
+source ~/dotfiles/install.sh
+man less
+source ~/.config/zsh/.zshrc
+man less
+vim
+autoload -U zrecompile
+zrecompile ~/.zshenv
+zrecompile -p ~/.zshenv
+git status
+git add bin/**
+..
+git add bin/**
+git status
+git add config/
+git status
+git unstage
+gs
+git status -s
+git graph
+vim .gitignore
+git add .gitignore
+git status -s
+git commit --amend
+git show
+git status -s
+git add bin/**
+git add config/
+git status -s
+git status
+git restore --staged **/autoload/plug.vim.old
+git status -s
+vim .gitignore
+cd ../..
+vim .gitignore
+git status -s
+git add .gitignore
+git status -s
+git add install.sh
+git status -s
+git commit
+git show
+git status -s
+git add -A
+git status -s
+git commit --amend
+git status -s
+git status
+git push -f
+git graph
+man zshall
+zcompile functions/
+zcompile functions
+man less
+ll
+ls functions/
+zcompile functions ${ls functions/}
+echo ${ls functions/}
+shellcheck "echo ${ls functions/}"
+shellcheck test
+vim test
+shellcheck test
+vim test
+shellcheck test
+vim test
+shellcheck test
+vim test
+shellcheck test
+zcompile functions $(ls functions/)
+cd -
+zcompile functions $(ls functions/)
+cd dotfiles/sr
+cd functions/
+zcompile ../functions $(ls functions/)
+ls .
+zcompile ../functions $(ls .)
+find functions/ -type f -maxdepth 1
+find $ZDOTDIR/functions/ -type f -maxdepth 1
+find -maxdepth 1 $ZDOTDIR/functions/ -type f
+find -maxdepth=1 $ZDOTDIR/functions/ -type f
+find $ZDOTDIR/functions/ -maxdepth=1 -type f
+find $ZDOTDIR/functions/ -maxdepth 1 -type f
+zcompile $ZDOTDIR/functions.zwc $(find $ZDOTDIR/functions/ -maxdepth 1 -type f)
+vim ~/.config/zsh/.zshrc
+man less
+echo $(find $ZDOTDIR/functions/ -maxdepth 1 -type f)
+echo "$(find $ZDOTDIR/functions/ -maxdepth 1 -type f)"
+printf $(find $ZDOTDIR/functions/ -maxdepth 1 -type f)
+echo $(find $ZDOTDIR/functions/ -maxdepth 1 -type f)
+shellcheck $ZDOTDIR/.zlogin
+source $ZDOTDIR/.zlogin
+find $ZDOTDIR/functions/ -maxdepth 1 -type f
+find $ZDOTDIR/functions/ -maxdepth 1 -type f | sed s/\n$/ /g
+find $ZDOTDIR/functions/ -maxdepth 1 -type f | sed s/\n/ /g
+find $ZDOTDIR/functions/ -maxdepth 1 -type f | sed 's/\n/ /g'
+find $ZDOTDIR/functions/ -maxdepth 1 -type f | sed 's/\n$/ /g'
+find $ZDOTDIR/functions/ -maxdepth 1 -type f | sed 's/\n//g'
+find $ZDOTDIR/functions/ -maxdepth 1 -type f"
+echo "find $ZDOTDIR/functions/ -maxdepth 1 -type f"
+echo ${find "$ZDOTDIR"/functions/ -maxdepth 1 -type f)\
+\
+\
+\
+\
+\
+\
+
+echo ${find "$ZDOTDIR"/functions/ -maxdepth 1 -type f)
+echo $(find "$ZDOTDIR"/functions/ -maxdepth 1 -type f)
+echo -n $(find "$ZDOTDIR"/functions/ -maxdepth 1 -type f)
+source $ZDOTDIR/.zlogin
+zcompile "$ZDOTDIR"/functions $(echo -n $(find "$ZDOTDIR"/functions/ -maxdepth 1 -type f))
+source $ZDOTDIR/.zlogin
+ll
+ll -A
+source $ZDOTDIR/.zlogin
+ll -A
+source $ZDOTDIR/.zlogin
+ll -A
+source $ZDOTDIR/.zlogin
+ll -A
+cd .config/zsh/
+ll -A
+cd dotfiles/install.sh
+git status -s
+git status
+git clone https://github.com/woefe/vi-mode.zsh.git
+vim ~/.config/zsh/.zshrc
+ll -A
+vim zsh-vim-mode.plugin.zsh
+zplugin
+rg 'spaceship_vi_mode_enable'
+vim sections/vi_mode.zsh +49
+git clone https://github.com/softmoth/zsh-vim-mode.git
+git clone https://github.com/Nyquase/vi-mode.git
+git clone https://github.com/oselivanov/zsh-vi-done-right.git
+git clone https://github.com/laurenkt/zsh-vimto
+update
+sudo apt upgrade && sudo apt update
+sudo apt upgrade && sudo apt update && sudo apt autoremove
+cd .config/zsh/
+ll -A
+cd .config/zsh/
+ll -A
+for file in "$ZDOTDIR/**/*.zwc.old"; do rm -f $file; done
+ll -A
+for file in "$ZDOTDIR/**/*.zwc.old"; do echo $file; done
+for file in '$ZDOTDIR/**/*.zwc.old'; do echo $file; done
+for file in $($ZDOTDIR/**/*.zwc.old); do echo $file; done
+echo $ZDOTDIR/**/*.zwc.old
+ll -A
+for file in $ZDOTDIR/**/*.zwc.old; do echo $file; done
+cd .config/zsh/
+ll -A
+cd .config/zsh/
+ll -A
+tree
+tree -C -L 2
+echo $array
+for i in $array; do echo $i; done
+for i in $array; do echo "$ZDOTDIR/.$i"; done
+rm -f **/*.zwc
+ll -A
+rm -f **/.*.zwc
+ll -A
+cd .config/zsh/
+ll -A
+for i in $ZDOTDIR/**/*.zwc.old; do
+for in $ZDOTDIR/**/*.zwc.old; do echo $i; done
+for i in $ZDOTDIR/**/*.zwc.old; do echo $i; done
+autoload -U zrecompile
+zrecompile -pq $ZDOTDIR/**/*.*sh
+source $ZDOTDIR/.zlogin
+cd dotfiles/install.sh
+cd dotfiles/
+cd ~/dotfiles
+git status -s
+git diff
+git commit -a
+gs
+git add **/cd
+git status -s
+git commit --amend
+git status -s
+git status
+git push -f
+brew list
+brew search conda
+update
+brew search anaconda
+brew search miniconda
+brew search *conda
+brew info minicond
+brew info miniconda
+brew search miniconda
+brew info miniconda
+brew install miniconda
+brew cask info miniconda
+apt search miniconda
+conda update *
+conda update --all
+vim .config/zsh/functions/cd
+vim .config/zsh/functions/update
+update

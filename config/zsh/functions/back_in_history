@@ -1,3 +1,5 @@
+#!/bin/zhs
+
 back_in_history ()
 {
   ~$(dirs -v | fzf | rg -o '\d+')

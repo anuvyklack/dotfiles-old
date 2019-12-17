@@ -2,15 +2,20 @@
 
 update()
 {
-  sudo apt upgrade
-  sudo apt update
-  sudo apt autoremove
+
+  conda update conda
+  conda update --all
+
+  # sudo apt upgrade
+  # sudo apt update
+  # sudo apt autoremove
 
   brew update
   brew upgrade
 
   zplugin self-update
   zplugin update --all
+
 }
 
 # vim: ft=zsh

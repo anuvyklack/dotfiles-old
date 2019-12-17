@@ -5,8 +5,6 @@
 bindkey -v  # Use Vi style keybindings
 # bindkey -e  # Use Emacs style keybindings
 
-# zplugin light softmoth/zsh-vim-mode
-
 bindkey '^P' up-history
 bindkey '^N' down-history
 bindkey '^?' backward-delete-char

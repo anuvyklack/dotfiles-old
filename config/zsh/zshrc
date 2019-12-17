@@ -304,8 +304,8 @@ spaceship_vi_mode_enable  # Without this function call the indicator of Vi
 
 # }}}
 
-# Plugins {{{
 
+# Plugins {{{
 zplugin ice wait"0" lucid blockf
 zplugin light zsh-users/zsh-completions
 
@@ -350,6 +350,8 @@ zplugin load zsh-users/zsh-history-substring-search
 zplugin ice wait"1" lucid
 zplugin snippet PZT::modules/command-not-found/init.zsh
 
+# zplugin light softmoth/zsh-vim-mode
+
 # }}}
 
 # GUI settings                                                          {{{
@@ -372,16 +374,9 @@ zplugin snippet PZT::modules/command-not-found/init.zsh
 # Setting autoloaded functions
 
 my_zsh_functions=${ZDOTDIR}/functions
-
 fpath=($my_zsh_functions $fpath)
-
-if [[ -d "$my_zsh_functions" ]]; then
-    for func in $my_zsh_functions/*; do
-        autoload -Uz ${func:t}
-    done
-fi
+[[ -d "$my_zsh_functions" ]] && autoload -Uz $(ls $my_zsh_functions)
 unset my_zsh_functions
-
 
 # Delete from the history file all entries of the current zle buffer
 # content.

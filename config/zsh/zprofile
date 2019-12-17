@@ -27,18 +27,19 @@ if [[ -s "~/.config/broot/launcher/bash/br" ]]; then
 fi
 # }}}
 
-# Miniconda {{{
-if [[ -d "/opt/miniconda3/bin" ]]; then
-    export PATH="/opt/miniconda3/bin:$PATH"
-fi
-# }}}
-
 # Homebrew {{{
 if [[ -a "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
     eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
     # Enable completion for brew and programs installes with brew.
     FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+# }}}
+
+# Put Miniconda after Homebrew to make miniconda python be earlier in the $PATH.
+# Miniconda {{{
+if [[ -d "/opt/miniconda3/bin" ]]; then
+    export PATH="/opt/miniconda3/bin:$PATH"
 fi
 # }}}
 

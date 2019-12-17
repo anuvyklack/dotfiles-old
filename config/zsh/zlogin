@@ -1,38 +1,33 @@
-#
-# Executes commands at login post-zshrc.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
 # Execute code in the background to not affect the current session
-
 {
-    setopt LOCAL_OPTIONS EXTENDED_GLOB
+    setopt LOCAL_OPTIONS EXTENDED_GLOB GLOB_DOTS
     autoload -U zrecompile
 
+    array=(zprofile zshrc zlogin)
+    for i in $array
+    do
+        zrecompile -pq "${ZDOTDIR:-${HOME}}/.$i"
+    done
+
+    # # zcompile .zshrc
+    # zrecompile -pq ${ZDOTDIR:-${HOME}}/.zprofile
+    # zrecompile -pq ${ZDOTDIR:-${HOME}}/.zshrc
+    # zrecompile -pq ${ZDOTDIR:-${HOME}}/.zlogin
+
+    # recompile all zsh or sh
     for FILE in $ZDOTDIR/**/*.*sh
     do
         zrecompile -pq $FILE
     done
-} &!
 
-# # Execute code that does not affect the current session in the background.
-# {
-#   # Compile the completion dump to increase startup speed.
-#   zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
-#   if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
-#     zcompile "$zcompdump"
-#   fi
-# } &!
-#
-# # Execute code only if STDERR is bound to a TTY.
-# [[ -o INTERACTIVE && -t 2 ]] && {
-#
-#   # Print a random, hopefully interesting, adage.
-#   if (( $+commands[fortune] )); then
-#     fortune -s
-#     print
-#   fi
-#
-# } >&2
+    # Compile all functions in single 'digest' file
+    zrecompile -pq "$ZDOTDIR/functions.zwc" $(echo -n $(find "$ZDOTDIR"/functions/ -maxdepth 1 -type f))
+
+    # Delete all "*.zwc.old" files
+    # (#qN) is glob qualifier which sets the NULL_GLOB option for the current
+    # pattern, so it doesn't show message if no matches found.
+    for FILE in $ZDOTDIR/**/*.zwc.old(#qN); do
+        rm -f -- "$FILE"
+    done
+
+} &!
