@@ -545,6 +545,11 @@ function! CloseWindow() "{{{
         " Close quickfix window specified by its number, returned by
         "   IsFileTypeOpen() function.
         execute IsFileTypeOpen('qf').'close'
+    elseif IsFileTypeOpen('nerdtree')
+        " NerdTree plugim
+        NERDTreeClose
+    elseif IsFileTypeOpen('man')
+        execute IsFileTypeOpen('man').'close'
     elseif IsFileTypeOpen('help')
         helpclose  " Close help window.
         doautocmd User MyCustomCloseWindow
@@ -571,12 +576,13 @@ endfunction
 " }}}
 
 function! IsFileTypeOpen(name)  "{{{
-    " string -> number
+    " Signature: string -> number
     " Accepts string with filetype (vim, py, cpp, ...) or 'quickfix'
-    " special word and retuns the number of first window in current tab
+    " special word and returns the number of first window in current tab
     " according to vim rules that contains buffer with this filetype or
-    " quickffix window if there is no such window 0.
+    " quickfix window. If there is no such window returns 0.
 
+    " If argument of the function is 'qf' or 'quickfix'
     if index(['qf', 'quickfix'], a:name) >= 0
         for window in range(1, winnr('$'))
             if getbufvar(winbufnr(window), '&buftype') == 'quickfix'

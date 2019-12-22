@@ -6,9 +6,9 @@ update()
   conda update conda
   conda update --all
 
-  # sudo apt upgrade
-  # sudo apt update
-  # sudo apt autoremove
+  sudo apt update --yes
+  sudo apt upgrade --yes
+  sudo apt autoremove --yes
 
   brew update
   brew upgrade

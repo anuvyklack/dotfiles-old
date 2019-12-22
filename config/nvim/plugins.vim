@@ -84,12 +84,18 @@ let pomodoro_use_devicons = 1
 
 " }}}
 
-" ------------------ Autocomplete --------------------
+" ------------ Completion Autocomplete ---------------
 
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 
 " Plug 'Valloric/YouCompleteMe'
 " so ~/.config/nvim/plugins_settings/YouCompleteMe.vim
+
+" Con.nvim {{{
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" }}}
 
 " Buffexplorer  {{{
 Plug 'jlanzarotta/bufexplorer'
@@ -612,7 +618,6 @@ let g:startify_lists = [
 
 let g:startify_fortune_use_unicode = 1
 
-" autocmd! TabNewEntered * Startify
 " autocmd! TabNewEntered * Startify
 
 

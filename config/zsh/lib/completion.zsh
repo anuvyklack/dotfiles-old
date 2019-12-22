@@ -33,6 +33,12 @@ setopt auto_menu        # Show completion menu on a successive tab press.
 
 # correction
 setopt correct
+
+_force_rehash() {
+  (( CURRENT == 1 )) && rehash
+  return 1	# Because we didn't really complete anything
+}
+
 zstyle -e ':completion:*' completer '
     if [[ $_last_try != "$HISTNO$BUFFER$CURSOR" ]] ; then
         _last_try="$HISTNO$BUFFER$CURSOR"

@@ -1,7 +1,12 @@
 #!/usr/bin/env zsh
 
+# For WSL
+[[ "$(umask)" = "000" ]] && umask 022
+
 export ZDOTDIR=~/.config/zsh
 
+# On Ubuntu the `compinit` function is called in '/etc/zshrc', what is not
+# really helping.
 # https://blog.patshead.com/2011/04/improve-your-oh-my-zsh-startup-time-maybe.html
 skip_global_compinit=1
 

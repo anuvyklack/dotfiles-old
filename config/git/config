@@ -4,7 +4,8 @@
 [core]
 	editor = nvim
 	autocrlf = false
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = diff-so-fancy | less  # use options from $LESS environment variable
+    # pager = diff-so-fancy | less --tabs=4 -RFX
 [alias]
 	unstage = reset HEAD --
 	graph = log --decorate --all --oneline --graph
@@ -31,3 +32,5 @@
 [diff-so-fancy]
 	stripLeadingSymbols = false
 	rulerWidth = 80
+
+# vim: ft=gitconfig
