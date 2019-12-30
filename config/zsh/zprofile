@@ -57,8 +57,15 @@ setopt LOCAL_OPTIONS EXTENDED_GLOB GLOB_DOTS
 
 local CACHE="$HOME/.cache/zsh/conda.zsh"
 
-# Существует файл, который был модифицирован в течении 7 последних дней
-if [[ -s $CACHE(#q.md-7) ]]
+# Существует файл, который был модифицирован в течении 7 последних дней:
+# -----  ---------------------------------------------
+# (#q…)  glob qualifier
+#     .  regular file
+#  md-7  was modified within last 7 days
+#     N  don't raise an error if nothing will be found
+# -----  ---------------------------------------------
+#
+if [[ -s $CACHE(#q.md-7N) ]]
 then
     source $CACHE
 else
