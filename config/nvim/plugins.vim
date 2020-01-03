@@ -600,7 +600,7 @@ Plug 'mhinz/vim-startify'    " Красивый стартовый экран
 let g:startify_files_number = 10
 
 let g:startify_bookmarks = [
-\   {'m': '/mnt/d/artyu/OneDrive/Документы/Заметки/Monospace'},
+\   {'m': '/mnt/d/artyu/Документы/Заметки/Monospace'},
 \   {'t': '/mnt/c/Users/artyu/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/profiles.json'},
 \   {'a': '/mnt/c/Users/artyu/AppData/Roaming/alacritty/alacritty.yml'},
 \]

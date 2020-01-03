@@ -23,8 +23,8 @@ setopt auto_param_slash # if completed parameter is a directory, add a trailing 
 
 setopt complete_in_word # complete from both ends of a word
 
-# EXTREMELY SLOWS DOWN COMPLETION
-# setopt path_dirs      # perform path search even on command names with slashes
+# Next options EXTREMELY SLOWS DOWN COMPLETION
+# setopt path_dirs        # perform path search even on command names with slashes
 
 # setopt glob_dots        # Dotfiles are matched without explicitly
 #                         # specifying the dot
@@ -39,6 +39,8 @@ _force_rehash() {
   return 1	# Because we didn't really complete anything
 }
 
+# Fuzzy matching of completions for when you mistype them:
+# zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle -e ':completion:*' completer '
     if [[ $_last_try != "$HISTNO$BUFFER$CURSOR" ]] ; then
         _last_try="$HISTNO$BUFFER$CURSOR"
@@ -51,16 +53,14 @@ zstyle -e ':completion:*' completer '
         fi
     fi'
 
-# Fuzzy matching of completions for when you mistype them:
-# zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
 zstyle ':completion:*:match:*' original only
-zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
 
 # Increase the number of errors based on the length of the typed word. But make
 # sure to cap (at 7) the max-errors to avoid hanging.
 zstyle -e ':completion:*:approximate:*' \
   max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3>7?7:($#PREFIX+$#SUFFIX)/3))numeric)'
+# zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
 # Выбирать предлагаемые zsh варианты автодополнения с помощью стрелочек.
 zstyle ':completion:*' menu select=1 _complete _ignored _approximate
@@ -88,9 +88,11 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 # }}}
 
+# Do not insert Tab when the are no characters to the left of the cursor
+zstyle ':completion:*' insert-tab false
 
-# provide .. as a completion
-zstyle ':completion:*' special-dirs ..
+# # provide .. as a completion
+# zstyle ':completion:*' special-dirs ..
 
 # cd will never select the parent directory (e.g.: cd ../<TAB>):
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
@@ -128,21 +130,23 @@ zstyle ':completion:*' verbose true
 zstyle :compinstall filename "$ZDOTDIR/.zshrc"
 
 # Уравниваем в правах верхний и нижний регистр
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+# zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # Some functions, like _apt and _dpkg, are very slow. You can use a cache
 # in order to proxy the list of results (like the list of available debian
 # packages) Use a cache:
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.cache/zsh
+zstyle ':completion:*' cache-path ~/.cache/zsh/.zcompcache
+
+# # Use caching so that commands like apt and dpkg complete are useable
+# zstyle ':completion::complete:*' use-cache 1
+# zstyle ':completion::complete:*' cache-path "${ZDOTDIR:-$HOME}/.zcompcache"
+
 
 # Completing process IDs with menu selection:
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*'   force-list always
-
-# Use caching so that commands like apt and dpkg complete are useable
-zstyle ':completion::complete:*' use-cache 1
-zstyle ':completion::complete:*' cache-path "${ZDOTDIR:-$HOME}/.zcompcache"
 
 
 # Group matches and describe.
@@ -155,15 +159,15 @@ zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:options' auto-description '%d'
 zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
 zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
+# zstyle ':completion:*:descriptions' format $'%{\e[0;31m%}completing %B%d%b%{\e[0m%}'
 zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+# zstyle ':completion:*:warnings' format $'%{\e[0;31m%}No matches for:%{\e[0m%} %d'
 zstyle ':completion:*:default' list-prompt '%S%M matches%s'
 zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' verbose yes
 
-# format on completion
-# zstyle ':completion:*:descriptions' format $'%{\e[0;31m%}completing %B%d%b%{\e[0m%}'
 
 zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
 
@@ -215,9 +219,6 @@ zstyle ':completion:*:history-words' list false
 # for commands (read: 1st word in the line) that it will list for the user
 # to choose from. The following disables that, because it's not exactly fast.
 zstyle ':completion:*:-command-:*:' verbose false
-
-# set format for warnings
-zstyle ':completion:*:warnings' format $'%{\e[0;31m%}No matches for:%{\e[0m%} %d'
 
 # define files to ignore for zcompile
 zstyle ':completion:*:*:zcompile:*' ignored-patterns '(*~|*.zwc)'

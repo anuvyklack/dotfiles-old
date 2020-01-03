@@ -53,7 +53,7 @@ setopt pushd_minus       # Exchanges the meanings of `+' and `-' when used
                          # with a number to specify a directory in the
                          # stack.
 
-setopt cdable_vars       # Можно вводить пути для команды 'cd' (или без
+unsetopt cdable_vars     # Нельзя вводить пути для команды 'cd' (или без
                          # неё, если используетя опция 'auto_cd') в
                          # домашней директории без '~/' в начале.
 
@@ -192,6 +192,7 @@ case $THEME in
         ;;
     spaceship)
         source $ZDOTDIR/themes/spaceship.zsh
+        zplugin ice depth:1
         zplugin light denysdovhan/spaceship-prompt
         # Without calling this function the indicator
         # of Vi mode doesn't change.
@@ -264,9 +265,9 @@ zstyle ":conda_zsh_completion:*" use-groups true
 zplugin ice id-as"diff-so-fancy" wait"2" lucid as"program" pick"bin/git-dsf"
 zplugin light zdharma/zsh-diff-so-fancy
 
-# Автодополнение путей с использованием fzf для команды cd
-zplugin ice wait"1" lucid
-zplugin light changyuheng/zsh-interactive-cd
+# # Автодополнение путей с использованием fzf для команды cd
+# zplugin ice wait"1" lucid
+# zplugin light changyuheng/zsh-interactive-cd
 
 zplugin ice wait"1" lucid
 zplugin snippet PZT::modules/command-not-found/init.zsh
@@ -308,19 +309,23 @@ fpath=($my_zsh_functions $fpath)
 [[ -d "$my_zsh_functions" ]] && autoload -Uz $(ls $my_zsh_functions)
 unset my_zsh_functions
 
-# Delete from the history file all entries of the current zle buffer
-# content.
-# Forget the line in the history {{{
-forget(){
-    cp $HISTFILE "$HISTFILE.old"
-    fc -W "$HISTFILE.old"
-    grep -v -xF $BUFFER "$HISTFILE.old" > $HISTFILE
-    # fc -R
+
+# fc -W  -  write file to history
+# fc -R  -  read history from file
+delete_line_from_history ()  # {{{
+{
+    # Delete from the history file all entries of the current zle buffer
+    # content.
+
+    # sed -i "/$BUFFER/d" $HISTFILE
+    rsync $HISTFILE "$HISTFILE.old"
+    grep -v -xF $BUFFER "$HISTFILE.old" >! $HISTFILE
     rm "$HISTFILE.old" > /dev/null 2>&1
+
     zle kill-buffer
 }
-zle -N forget
-bindkey '^[f' forget  # Alt + F
+zle -N delete_line_from_history
+bindkey '^[f' delete_line_from_history  # Alt + F
 # }}}
 
 # }}}1

@@ -37,16 +37,21 @@ fi
 # }}}
 
 # Homebrew {{{
-if [[ -a "/home/linuxbrew/.linuxbrew/bin/brew" ]]
-then
-    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-    # Enable completion for brew and programs installes with brew.
-    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+local BREWCACHE="$HOME/.cache/Homebrew/brewenv.zsh"
+
+if [[ ! -s $BREWCACHE(#q.md-7N) ]]
+then
+    /home/linuxbrew/.linuxbrew/bin/brew shellenv >! $BREWCACHE 2> /dev/null
 fi
+source $BREWCACHE
+
+# Enable completion for brew and programs installes with brew.
+FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+
 # }}}
 
-# Put Miniconda after Homebrew to make miniconda python be earlier in the $PATH.
+# Put Miniconda after Homebrew to make minicondas python be earlier in the $PATH.
 # Miniconda {{{
 
 # if is cache load cache
@@ -55,7 +60,7 @@ fi
 
 setopt LOCAL_OPTIONS EXTENDED_GLOB GLOB_DOTS
 
-local CACHE="$HOME/.cache/zsh/conda.zsh"
+local CONDACACHE="$HOME/.cache/zsh/conda.zsh"
 
 # Существует файл, который был модифицирован в течении 7 последних дней:
 # -----  ---------------------------------------------
@@ -65,13 +70,16 @@ local CACHE="$HOME/.cache/zsh/conda.zsh"
 #     N  don't raise an error if nothing will be found
 # -----  ---------------------------------------------
 #
-if [[ -s $CACHE(#q.md-7N) ]]
+if [[ -s $CONDACACHE(#q.md-7N) ]]
 then
-    source $CACHE
+    source $CONDACACHE
 else
+    # Make ~/.cache/zsh folder if it not exists
+    [[ -d ~/.cache/zsh ]] || mkdir -pv ~/.cache/zsh
+
     local PATH_TO_CONDA_INSTALL='/opt/miniconda3'
 
-    $PATH_TO_CONDA_INSTALL/bin/conda shell.zsh hook >! $CACHE 2> /dev/null
+    $PATH_TO_CONDA_INSTALL/bin/conda shell.zsh hook >! $CONDACACHE 2> /dev/null
 
     if [ ! $? -eq 0 ]
     then
@@ -83,7 +91,7 @@ else
         fi
     fi
 
-    source $CACHE
+    source $CONDACACHE
 
     # # >>> conda initialize >>>
     # __conda_setup="$($PATH_TO_CONDA_INSTALL/bin/conda 'shell.zsh' 'hook' 2> /dev/null)"
