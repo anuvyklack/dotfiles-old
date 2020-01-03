@@ -3,8 +3,8 @@
 update()
 {
 
-  conda update conda
-  conda update --all
+  conda update conda --yes
+  conda update --all --yes
 
   sudo apt update --yes
   sudo apt upgrade --yes

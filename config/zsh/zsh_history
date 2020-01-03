@@ -1402,3 +1402,1066 @@ conda update --all
 vim .config/zsh/functions/cd
 vim .config/zsh/functions/update
 update
+brew update ranger
+brew uppgrade ranger
+brew upgrade ranger
+brew uninstall ranger
+sudo apt install ranger
+sudo apt upgrade && sudo apt update && sudo apt autoremove
+brew update ranger
+brew uppgrade ranger
+brew upgrade ranger
+brew uninstall ranger
+sudo apt install ranger
+sudo apt upgrade && sudo apt update && sudo apt autoremove
+brew update ranger
+brew uppgrade ranger
+brew upgrade ranger
+brew uninstall ranger
+sudo apt install ranger
+sudo apt upgrade && sudo apt update && sudo apt autoremove
+vim ~/dotfiles/install.sh
+ln -sv ~/dotfiles/config/nvim ~/.config/nvim
+vim
+vim ~/dotfiles/install.sh
+sudo apt search ctags
+brew search ctags
+brew info ctags
+brew search universal
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+ll
+ll -l
+lsd -lA
+brew install neovim
+brew install ripgrep
+cd ~/dotfiles
+rg 'REPORTTIME'
+vim config/zsh/zshrc +38
+ctags
+vim config/zsh/zshrc +38
+vim ~/dotfiles/config/zsh/zshrc +38
+vim dotfiles/install.sh
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/downloads/miniconda.sh
+[[ -d $HOME/downloads ]] || mkdir -v $HOME/downloads
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/downloads/miniconda.sh
+sudo bash ~/downloads/miniconda.sh -b -p /opt/miniconda3
+which python
+update
+conda update conda
+sudo conda update conda
+conda update conda
+vim ~/dotfiles/nvim/plugins.vim
+vim ~/dotfiles/config/nvim/plugins.vim
+sudo chown -R anuvyklack /opt/miniconda3/
+conda update conda
+vim dotfiles/install.sh
+vim ~/dotfiles/install.sh
+echo $USER
+vim .config/zsh/.zlogin
+cd ~/dotfiles
+vim ~/.config/zsh/.zshrc
+brew search bfs
+apt search bgs
+apt search bfs
+sudo apt install bfs
+vim dotfiles/install.sh
+sudo apt install bfs
+vim dotfiles/install.sh
+cd /opt/miniconda3
+lsd
+ll
+man mkdir
+man 1 mktemp
+mktemp -d
+cd /tmp/
+mktemp -d -p $HOME/
+man 1 mktemp
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
+ll
+rm miniconda.sh
+ll
+vim dotfiles/install.sh
+cd dotfiles/
+which python3
+vim ~/.config/nvim/init.vim
+conda install pynvim
+vim ~/dotfiles/install.sh
+cd dotfiles/
+cd ~/dotfiles
+source ~/dotfiles/install.sh
+ll
+ll -l
+ll -A
+conda install pynvim
+vim ~/dotfiles/install.sh
+source ~/dotfiles/install.sh
+vim ~/dotfiles/install.sh
+git config --global --list
+cd ~/dotfiles
+git diff
+git status
+readlink -f ~/.config/nvim
+git status
+vim ~/dotfiles/install.sh
+[[ -s $ZDOTDIR/lib ]] && echo "Yes" || echo "No"
+vim ~/dotfiles/install.sh
+readlink -f ~/.config/nvim
+[[ $(readlink -f ~/.config/nvim) = "~/dotfiles/config/nvim" ]]
+[[ $(readlink -f ~/.config/nvim) = "~/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
+[[ $(readlink -f ~/.config/nvim) == "~/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
+[[ "$(readlink -f ~/.config/nvim)" == "~/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
+[[ "$(readlink -f ~/.config/nvim)" = "~/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
+echo "~/dotfiles/config/nvim"
+echo "$HOME/dotfiles/config/nvim"
+[[ "$(readlink -f ~/.config/nvim)" = "$HOME/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
+[[ "$(readlink -f $HOME/.config/nvim)" = "$HOME/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
+vim ~/dotfiles/install.sh
+[[ $(readlink -f $HOME/.config/nvim) = "$HOME/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
+[[ -s $HOME/.config/nvim ]] && [[ $(readlink -f $HOME/.config/nvim) = "$HOME/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
+[[ -s "$HOME/.config/nvim" ]] && [[ $(readlink -f $HOME/.config/nvim) = "$HOME/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
+[[ -L "$HOME/.config/nvim/" ]] && echo 'Yes' || echo 'No'
+[[ -L "$HOME/.config/nvim" ]] && echo 'Yes' || echo 'No'
+[[ -L "$HOME/.config/nvim" ]] && [[ $(readlink -f $HOME/.config/nvim) = "$HOME/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
+[[ ! -L "$HOME/.config/nvim" ]] && [[ $(readlink -f $HOME/.config/nvim) != "$HOME/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
+[[ ! -L "$HOME/.config/nvim" ]] || [[ $(readlink -f $HOME/.config/nvim) != "$HOME/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
+rm ~/.config/nvim
+[[ ! -L "$HOME/.config/nvim" ]] || [[ $(readlink -f $HOME/.config/nvim) != "$HOME/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
+ln -sv ~/dotfiles/config/nvim ~/.config/nvim
+readlink -f ~/.config/nvim1
+readlink -f ~/.config/nvim
+source ~/dotfiles/install.sh
+cd ~/dotfiles/config/zsh
+ll
+vim dotfiles/install.sh
+vim ~/dotfiles/install.sh
+source ~/dotfiles/install.sh
+cd /mnt/d/artyu
+cd ..
+man rsync
+sudo apt install rsync
+man rsync
+rsync -rvh /mnt/d/artyu/Software/dotfiles_examples ~/
+update
+sudo apt update
+git status
+git clone https://github.com/LukeSmithxyz/LARBS.git
+cd LARBS/
+printf "Optional arguments for custom use:\\n  -r: Dotfiles repository (local file or url)\\n  -p: Dependencies and programs csv (local file or url)\\n  -a: AUR helper (must have pacman-like syntax)\\n  -h: Show this message\\n"
+printf "\r  [ \033[00;34m..\033[0m ] Hello\
+
+printf "\r  [ \033[00;34m..\033[0m ] Hello\!"\
+
+printf "\r  [ \033[00;34m..\033[0m ] Hello"\
+
+printf "\r  [ \033[00;34m..\033[0m ] Hello\n"\
+
+printf "\r  [ \033[0;33m??\033[0m ] Hello\n"
+man sudo
+sudo -v
+bash _execute_
+echo -en "\e]P0000000" #black
+whatis symlink
+source ~/dotfiles/install.sh
+git status
+source ~/dotfiles/install.sh
+echo -e " \u001b[37;1m\u001b[4mSelect an option:\u001b[0m"
+for i in {30..37}; do echo -e "\033[1;$i""m colorful text\033[0m"; done
+for i in {1..7}; do echo -e "\033[$i;31""m different style\033[0m"; done
+for i in {30..37}; do echo -e "\033[1;$im colorful text\033[0m"; done
+for i in {30..37}; do echo -e "\033[1;$i""m colorful text\033[0m"; done
+echo -e "\033[1;31m This is red text"
+echo -e "\e[1;31m This is red text"
+echo -e
+echo -e "\e[1;31m This is red text"
+echo -e "\e[1;31m This is red text \e[0mNew"
+for i in {30..37}; do echo -e "\033[1;$i""m colorful text\033[0m"; done
+for i in {1..7}; do echo -e "\033[$i;31""m different style\033[0m"; done
+echo -e "\e[1;30m This is red text"
+echo -e "Normal \e[1mBold"
+echo -e "Normal \e[2mDim"
+echo -e "Normal \e[4mUnderlined"
+echo -e "Normal \e[5mBlink"
+echo -e "Normal \e[7minverted"
+echo -e "Normal \e[8mHidden"
+echo -e "Default \e[37mLight gray"
+echo -e "Default \e[36mLight gray"
+echo -e "Default \e[91mLight red"
+echo -e "Default \e[92mLight green"
+echo -e "Default \e[97mWhite"
+echo -e "\e[38;5;82mHello \e[38;5;198mWorld"
+for i in {16..21} {21..16} ; do echo -en "\e[38;5;${i}m#\e[0m" ; done ; echo
+echo -e "\u001b[32;1m Setting up Dotfiles...\u001b[0m"
+echo -e " \u001b[37;1m\u001b[4mSelect an option:\u001b[0m"
+echo -e "  \u001b[34;1m (1) Install oh-my-zsh \u001b[0m"
+echo -e "  \u001b[34;1m (2) Install zsh plugins \u001b[0m"
+echo -e "  \u001b[34;1m (3) Install vim plugins \u001b[0m"
+echo -e "  \u001b[34;1m (4) Install tmux plugins \u001b[0m"
+echo -e "  \u001b[34;1m (5) Setup symlinks \u001b[0m"
+echo -e "  \u001b[31;1m (0) Exit \u001b[0m"
+echo -en "\u001b[32;1m ==> \u001b[0m"
+echo -e "\e[1;37Link zsh files to $ZDOTDIR"
+echo -e "\e[1;37mLink zsh files to $ZDOTDIR"
+echo -e "\e[1;37mLink zsh files to\e[0m $ZDOTDIR"
+echo -e "\e[1;37mLink zsh files to\e[0m \e[1;34m$ZDOTDIR"
+source ~/dotfiles/install.sh
+conda list
+conda list | grep pynvim
+conda list | grep matplotlib
+[[ conda list | grep pynvim ]] && echo 'Yes' || echo 'No'
+conda list | grep pynvim && echo 'Yes' || echo 'No'
+conda list | grep matplotlib && echo 'Yes' || echo 'No'
+conda list | grep pynvim > /dev/null && echo 'Yes' || echo 'No'
+cd dotfiles/
+rg '/dev/null'
+vim ~/dotfiles/config/zsh/lib/history.zsh
+conda list | grep pynvim > /dev/null 2>&1 && echo 'Yes' || echo 'No'
+if conda list | grep pynvim; then echo 'Yes'; fi
+if conda list | grep pynvim > /dev/null 2>&1; then echo 'Yes'; fi
+if $(conda list | grep pynvim > /dev/null 2>&1); then echo 'Yes'; fi
+if $(conda list | grep pynvim); then echo 'Yes'; fi
+if $(conda list | grep 'pynvim'); then echo 'Yes'; fi
+if conda list | grep 'pynvim'; then echo 'Yes'; fi
+if conda list | grep pynvim > /dev/null 2>&1; then echo 'Yes'; else echo 'No'; fi
+if conda list | grep man > /dev/null 2>&1; then echo 'Yes'; else echo 'No'; fi
+whatis conda
+whereis conda
+type conda
+man type
+command -v conda
+man command
+command -v par
+command -v man
+command -v ag
+if command -v ag; then echo 'Yes'; fi
+if command -v ag; then echo 'Yes'; else echo 'No'; fi
+if ! command -v ag; then echo 'Yes'; else echo 'No'; fi
+echo -e '\e[31;1mconda not found\e[0m'
+echo -e '\e[31;1m conda not found\e[0m'
+echo -e '\e[31;1m conda \e[37;1mnot found!\e[0m'
+echo -e '\e[37;1m conda \e[31;1mnot found!\e[0m'
+echo -e '\e[37;1m conda\e[0m \e[31;1mnot found!\e[0m'
+echo -e '\e[31;1m conda not found!\e[0m'
+git status
+echo -e '\e[37;1m conda\e[0m \e[31;1mcommand not found!\e[0m'
+echo -e '\e[37;1m conda:\e[0m \e[31;1mcommand not found!\e[0m'
+echo -e '\e[32;1m pynvim already installed\e[0m'
+echo -e '\e[32;1m pynvim\e[0m \e[31;1malready installed\e[0m'
+echo -e '\e[32;1m pynvim\e[0m \e[37;1malready installed\e[0m'
+echo -e '\e[37;1m pynvim\e[0m \e[32;1malready installed\e[0m'
+echo -e '\e[37;1m conda\e[0m install \e[32;1mpynvim\e[0m'
+echo -e '\e[37;1m conda install\e[0m \e[32;1mpynvim\e[0m'
+source ~/dotfiles/install.sh
+echo -e '\e[32;1m conda install\e[0m \e[37;1mpynvim\e[0m'
+echo -e '\e[32;1m pynvim\e[0m \e[37;1malready installed\e[0m'
+echo -e '\e[37;1m conda install\e[0m \e[32;1mpynvim\e[0m'
+echo -e '\e[31;1m conda:\e[0m \e[37;1mcommand not found!\e[0m'
+source ~/dotfiles/install.sh
+echo -e 'Installing \e[32;1mminiconda3\e[0m'
+echo -e '\e[37;1mInstalling \e[32;1mminiconda3\e[0m'
+for i in {30..37}; do echo -e "\033[1;$i""m colorful text\033[0m"; done
+update
+echo -e '\e[37;1mInstalling \e[35;1mminiconda3\e[0m'
+rm -rf /opt/miniconda3
+cd /opt
+ll -A
+sudo rm -rf /opt/miniconda3
+ll -A
+source ~/dotfiles/install.sh
+echo -e '\e[37;1mconda install\e[0m \e[32;1mpynvim\e[0m'
+echo -e '\n\e[37;1mconda install\e[0m \e[32;1mpynvim\e[0m'
+conda update conda
+update
+rm ~/.config/zsh/lib
+source ~/dotfiles/install.sh
+echo -e "\e[1;37mDone
+echo -e "\e[1;37mDone\!\e[0m"
+source ~/dotfiles/install.sh
+echo -e '\e[1;37mDone!\e[0m'
+source ~/dotfiles/install.sh
+source ~/dotfiles/install.sh
+whereis exa
+exa
+command -v exa
+dpkg -s sudo
+dpkg -s exa
+dpkg --info exa
+cd wikicd
+rg 'dpkg'
+sudo apt install wajig
+man wajig
+man 1 wajig
+wajig tutorial
+apt search bat
+apt info ba
+apt info bat
+sudo apt install bat
+wajig tutorial | bat
+sudo apt install bat
+wajig listinstalled
+whatis bat
+batcat ~/dotfiles/install.sh
+whatis mlocate
+sudo apt install mlocate
+whatis mlocate
+whatis locate
+whereis mlocate
+whereis locate
+sudo updatedb.mlocate &
+sudo apt install anacron
+mlocate bat
+locate batcat
+man batcat
+cd /usr/bin
+ll
+batcat batcat
+brew search bat
+brew info bat
+sudo apt uninstall bat
+sudo apt remove bat
+brew install bat
+bat lesscenter
+bat ~/.bin/lesscenter
+bat ~/dotfiles/install.sh
+sudo updatedb.mlocate &
+locate bat
+locate linuxbrew**bat
+locate linuxbrew*bat
+locate linuxbrew/*bat
+locate linuxbrew/**/bat
+bat --help
+cd ~/wiki/
+rg 'generic'
+rg '_gnu_generic'
+compdef _gnu_generic bat
+cd ~/.config/zsh/functions
+touch bat
+vim bat
+bat
+bat ~/dotfiles/install.sh
+whereis bat
+whereis mlocate
+whereis -b mlocate
+whereis -s mlocate
+which mlocaet
+which mlocate
+which locate
+whatis /usr/bin/locate
+echo "which bat
+echo "which bat"
+echo "$(which bat)"
+vim .config/zsh/functions/bat
+which bat
+bat ~/dotfiles/install.sh
+vim .config/zsh/functions/bat
+bat ~/dotfiles/install.sh
+which bat
+brew uninstall bat
+brew install bat
+which bat
+vim .config/zsh/functions/bat1
+ln -sv $(which bat) $HOME/.bin/bat
+which bat
+vim .config/zsh/functions/bat
+bat ~/dotfiles/install.sh
+which bat
+bat ~/dotfiles/install.sh
+bat /etc/zshrc
+bat /etc/zsh/zshrc
+which bat
+which bat1
+echo $A
+which $A
+[[ which $A = "$A not found" ]] && echo 'Yes' || echo 'No'
+[[ $(which $A) = "$A not found" ]] && echo 'Yes' || echo 'No'
+[[ $(which $A) = "$A not found" ]] && echo 'Yes' || echo 'No'
+which fd
+vim .config/zsh/.zshrc
+zplugin self-update
+zplugin cdlist
+compdef _gnu_generic bat &
+man bat
+man bat \[
+zplugin create _local
+zplugin create
+git status
+vim .config/zsh/.zlogin
+conda update conda
+conda init zsh
+ll -A
+bat .zshrc
+vim .zshrc
+rm .zshrc
+cd ~/dotfiles/
+echo $$?
+conda config --set changeps1 False
+bat .condarc
+conda activate base
+echo $?
+cd /opt/miniconda3/bin/conda
+find 'shell.zsh'
+find -R 'shell.zsh'
+locate shell.zsh
+eval "$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+conda info
+conda info -e
+conda create --name newenvironment
+conda info
+conda info -e
+conda activate newenvironment
+python
+conda info -e
+conda info
+conda activate newenvironment
+conda info
+vim .condarc
+conda info
+conda activate newenvironment
+conda info
+cd /opt/miniconda3/bin/conda
+man less
+cd dotfiles/
+cd ~/dotfiles
+cd ~/dotfiles
+git status
+git diff
+vim new
+echo "\uE0A0"
+cd ~/dotfiles
+source ~/.config/zsh/.zshrc
+source ~/.config/zsh/.zshrc
+gs
+echo "less $LESS"
+echo "less ${LESS}"
+bat ~/dotfiles/install.sh
+git show
+git show | bat -l rs
+vim config/git/config
+git show
+git show | bat -l rs
+vim config/git/config
+git show
+vim config/git/config
+git show
+vim config/git/config
+git show
+git status
+git add condarc
+git status
+gs
+git diff
+man less
+man man
+man less
+cd dotfiles/
+umask
+[[ $(umask) = '000' ]] && echo 'Yes' || echo 'No'
+umask
+source ~/dotfiles/install.sh
+vim .config/zsh/.zshrc
+cd dotfiles/
+source ~/.config/zsh/.zshrc
+cd dotfiles/
+source ~/.config/zsh/.zshrc
+cd dotfiles/
+cd ~/dotfiles
+git status -s
+git status
+dpkg-query --list bfs
+dpkg-query --list vim
+dpkg-query --list lf
+dpkg-query --list exa
+dpkg --status ex
+dpkg --status exa
+dpkg --status bfs
+vim ~/dotfiles/install.sh
+source ~/dotfiles/install.sh
+cd ~/dotfiles
+git status
+git diff
+dpkg-query -W -f='${Status}' nano 2>/dev/null | grep -c "ok installed"
+installed-by-apt nano
+installed-by-apt exa
+source ~/dotfiles/install.sh
+installed-by-apt exa
+source ~/dotfiles/install.sh
+installed-by-apt exa
+source ~/dotfiles/install.sh
+installed-by-apt exa
+which exa
+exa
+which fd
+installed-by-apt fd
+source ~/dotfiles/install.sh
+installed-by-apt fd
+installed-by-apt nano
+[[ installed-by-apt nano ]] && echo 'Yes' || echo 'No'
+[[ $(installed-by-apt nano) ]] && echo 'Yes' || echo 'No'
+[[ $(installed-by-apt exa) ]] && echo 'Yes' || echo 'No'
+installed-by-apt exa
+source ~/dotfiles/install.sh
+[[ $(installed-by-apt exa) ]] && echo 'Yes' || echo 'No'
+[[ $(installed-by-apt nano) ]] && echo 'Yes' || echo 'No'
+[[ $(installed-by-apt exa) ]] && echo 'Yes' || echo 'No'
+[[ $(installed-by-apt fd) ]] && echo 'Yes' || echo 'No'
+which fd
+which vim
+which nvim
+installed-by-apt vim
+installed-by-apt nvim
+[[ 0 ]] && echo 'Yes' || echo 'No'
+[[ 1 ]] && echo 'Yes' || echo 'No'
+[[ -1 ]] && echo 'Yes' || echo 'No'
+if installed-by-apt nano; then echo 'Yes'; else echo 'No'
+if installed-by-apt nano; then echo 'Yes'; else echo 'No'; fi
+if installed-by-apt vim; then echo 'Yes'; else echo 'No'; fi
+if installed-by-apt exa; then echo 'Yes'; else echo 'No'; fi
+[ 1 ] && echo 'Yes' || echo 'No'
+[ 0 ] && echo 'Yes' || echo 'No'
+echo -e '\e[37;1mconda install\e[0m \e[32;1mpynvim\e[0m'
+echo -e '\e[37;1mapt install \e[32;1mapp\e[0m'
+echo -e '\e[33;1mapt install \e[32;1mapp\e[0m'
+echo -e '\e[34;1mapt install \e[32;1mapp\e[0m'
+echo -e '\e[35;1mapt install \e[32;1mapp\e[0m'
+echo -e '\e[35;1mapt \e[37;1install \e[32;1mapp\e[0m'
+echo -e '\e[35;1mapt \e[37;1minstall \e[32;1mapp\e[0m'
+for i in {30..37}; do echo -e "\033[1;$i""m colorful text\033[0m"; done
+source ~/dotfiles/install.sh
+vim ~/dotfiles/install.sh
+source ~/dotfiles/install.sh
+echo ''
+source ~/dotfiles/install.sh
+brew list
+brew list nvim
+brew list m4
+brew list bat
+brew list rg
+brew list exa
+brew list ag
+brew list exa
+brew list exa || echo 'No'
+brew list exa > /dev/null 2>&1 || echo 'No'
+brew list
+source ~/dotfiles/install.sh
+cd ~/dotfiles
+vim config/zsh/themes/spaceship.zsh
+vim .config/zsh/themes/spaceship.zsh
+echo $PROMPT
+echo $PROMPT2
+echo $PROMPT3
+echo $PROMPT4
+vim .zshenv
+vim .config/zsh/.zprofile
+which confa
+which conda
+/opt/miniconda3/bin/conda
+/opt/miniconda3/bin/conda shell.zsh
+rg 'shell.zsh'
+apt search fd
+apt search fd | less
+apt search fd | bat
+apt info fd
+apt info fd-find
+brew info fd
+brew info bat
+brew list fd
+source ~/dotfiles/install.sh
+fd shell.zsh
+fd conda
+fd conda | less
+fd conda | less -R
+man less
+fd conda | less -r
+fd conda | bat
+fd conda | less -RX
+fd --help
+zplugin cdlist
+zplugin clean
+zplugin delete --clean
+zplugin creinstall OMZ::plugins/fd/_fd
+zplugin creinstall OMZ::plugins/fd
+rm cd
+rm -r .zplugin/completions/_fd
+rm -r .zplugin/snippets/_fd
+apt search command-not
+apt info command-not-found
+apt info packagekit-command-not-found
+sudo apt install command-not-found
+cd /etc/
+sudo update-command-not-found
+update-command-not-found
+sudo update-command-not-found
+zplugin times
+command -v bfs
+[[ $(command -v bfs) ]] && echo 'Yes'
+[[ $(command -v exa) ]] && echo 'Yes' || echo 'No'
+command -v exa
+command -v batgrep
+which bat
+brew uninstall bat
+which bat
+command -v bat
+source ~/dotfiles/install.sh
+vim dotfiles/install.sh
+source ~/.config/zsh/.zshrc
+vim .config/zsh/.zshrc
+bat ~/dotfiles/install.sh
+which bat
+source ~/.config/zsh/.zshrc
+which fd
+fd _rg
+sudo apt uninstall command-not-found
+sudo apt remove command-not-found
+sudo apt remove
+bat cache
+[[ $(command -v exa) ]] && echo 'Yes' || echo 'No'
+vim
+vim .config/zsh/.zshrc
+update
+vim .config/zsh/.zprofile
+brew --prefix
+brew shellenv
+echo $__conda_setup
+ll
+echo $__conda_setup > temp
+echo "$__conda_setup" > temp
+ll
+bat temp
+echo "$__conda_setup" temp
+echo "$__conda_setup" >! temp
+bat temp
+cd .cache/zsh
+ll -A
+ll -A ~/.cache/zsh
+ll
+bat conda.zsh
+source ./conda.zsh
+/opt/miniconda3/bin/conda shell.zsh hook > temp.zsh
+ll
+source temp.zsh
+rm -f ~/.cache/zsh/conda.zsh
+echo "$__conda_setup"
+echo "$__conda_setup"
+rm -f ~/.cache/zsh/conda.zsh
+echo ${PATH_TO_CONDA_INSTALL}/bin/conda}
+echo ${PATH_TO_CONDA_INSTALL/bin/conda}
+echo ${PATH_TO_CONDA_INSTALL}/bin/conda
+[ $? -eq 0 ] && echo 'Yes' || echo 'No'
+[ $? -eq 0 ] && echo 'Yes' || echo 'No'
+[ $? -eq 0 ] && echo 'Yes' || echo 'No'
+[ $? -neq 0 ] && echo 'Yes' || echo 'No'
+[ ! $? -eq 0 ] && echo 'Yes' || echo 'No'
+[ ! $? -eq 0 ] && echo 'Yes' || echo 'No'
+rm -f ~/.cache/zsh/conda.zsh
+cd ~/.cache/zsh/
+ll
+git status
+git remote
+git remote -v
+git remote -vv
+git add -A
+gs
+git commit -m 'Continue develop'
+gs
+git push origin
+apt search node
+apt search nodejs
+brew search node
+brew info node
+which curl
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+sudo apt-get instll nodejs
+sudo apt-get install nodejs
+node -v
+sudo apt remove nodejs
+update
+vim dotfiles/install.sh
+vim .config/zsh/functions/update
+gs
+brew install node
+vim dotfiles/install.sh
+node -v
+vim .config/nvim/plugins.vim
+gs
+git diff
+git commit -a --amend
+git push -f origin
+git graph
+git log
+pengwin-setup
+winhome/AppData/Roaming/alacritty/alacritty.yml
+vim winhome/AppData/Roaming/alacritty/alacritty.yml
+zsh --login -c "vim --version"
+zsh --login -c "nvim --version"
+zsh --login -c "nvim $ZDOTDIR/.zshrc"
+zsh -c "nvim $ZDOTDIR/.zshrc"
+wslpath
+which wslpath
+whatis wslpath
+wslpath C:\Users\artyu\scoop\apps\alacritty\current\alacritty.exe
+wslpath "C:\Users\artyu\scoop\apps\alacritty\current\alacritty.exe"
+zsh --login -c "echo Hello"
+zsh --hel
+zsh --help
+zsh --login "echo Hello"
+zsh -i eval "echo Hello"
+zsh -is eval "echo Hello"
+zsh -is "echo Hello"
+zsh -i "echo Hello"
+zsh -ic "echo Hello"
+zsh -ic 'echo "Hello World"'
+wslpath 'D:\test.txt'
+nvim $(wslpath 'D:\test.txt')
+bash --login -c "nvim $(wslpath 'D:\test.txt')"
+bash --login -c nvim $(wslpath 'D:\test.txt')
+bash --login -c "nvim $(wslpath 'D:\test.txt')"
+bash --login -c 'nvim $(wslpath "D:\test.txt")'
+nvim '/mnt/d/test.txt'
+bash -c "nvim '/mnt/d/test.txt'"
+ln -sv /mnt/c c
+ln -sv /mnt/d d
+ll
+vim d/artyu/Ѓ�оку�менту�/Ѓ�иу�ну�е\ доку�менту�/Ѓ�езу�ме/CV\ Yuriy\ Artemyev/text.txt
+vim
+touch vienna_rose_twitter.txt
+vim vienna_rose_twitter.txt
+update
+vim
+cd ~/d/artyu/Ѓ�оку�менту�/Ѓ�иу�ну�е\ доку�менту�/Ѓ�езу�ме/CV\ Yuriy\ Artemyev/
+ll
+touch список_нау�у�ну�у�_ру�ководителей.txt
+vim список_нау�у�ну�у�_ру�ководителей.txt
+update
+vim
+brew search fr
+brew search far
+apt search far
+apt search far | rg far
+apt search far | less
+cd /etc/wsl.conf
+ll
+ll | less
+bat wsl.conf
+man rsync
+rsync /etc/wsl.conf ~/dotfiles/
+cd ~/dotfiles
+ll
+git status
+vim wsl.conf
+git add -A
+git status
+git commit -m 'wsl.conf - new file'
+gs
+git push
+vim
+bat ~/dotfiles/install.sh
+bat ~/.cache/zsh/conda.zsh
+vim .config/zsh/.zprofile
+[[ -s ~/.cache/zsh/conda.zsh(#q.md-7) ]] && echo 'Yes' || echo 'No'
+[[ -s ~/.cache/zsh/conda.zsh(#q.md-7N) ]] && echo 'Yes' || echo 'No'
+ll
+ll -A
+ll
+vim cd
+vim ~/.config/zsh/.zprofile
+ll
+vim отзу�в.txt
+cd ~/dotfiles
+git status
+git commit -a -m 'Fix bug with recompiling conda cache file'
+gs
+git graph
+git push
+vim
+vim ~/.config/nvim/plugins.vim
+vim
+vim
+cd ~/dotfiles
+git status
+git diff
+ll
+ll -A
+bat .gitignore
+bat install.sh
+vim ~/.config/zsh/.zprofile
+/home/linuxbrew/.linuxbrew/bin/brew shellenv
+rm -f ~/.cache/zsh/conda.zsh
+ll
+brew --prefix
+/home/linuxbrew/.linuxbrew/bin/brew shellenv >! test.zsh
+bat test.zsh
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv) >! test.zsh
+bat test.zsh
+ll
+bat brewenv.zsh
+cd ~/dotfiles
+gs
+ll
+mkdir windows_terminal
+ll
+cd windows_terminal/
+touch profile.json
+vim profile.json
+ll
+bat profile.json
+cd dotfiles/
+git status
+git diff
+cd windows_terminal/
+ll
+vim
+gs
+..
+git status
+git diff
+git log
+git show
+cd ~/dotfiles
+gs
+vim
+update
+brew --cache
+brew --cache a2ps
+brew cleanup
+brew cleanup -s
+cd ~/.cache/Homebrew/
+ll
+conda clean --yes
+conda clean --yes --dry-run
+conda clean --yes --dry-run --alll
+conda clean --yes --dry-run --all
+conda clean --yes --all
+ll
+bat отзу�в.txt
+rm отзу�в.txt
+vim
+vim --version
+vim
+cd ~/dotfiles
+gs
+git add -A
+gs
+git reset --staged windows_terminal/profiles_default.json
+git restore --staged windows_terminal/profiles_default.json
+gs
+echo 'windows_terminal/profiles_default.json' >> .gitignore
+bat .gitignore
+gs
+git add .gitignore
+git status
+git commit -m 'add windows terminal settings'
+gs
+git log
+git commit --amend
+gs
+git graph
+git push
+git log --decorate
+git show
+vim
+cd ~/dotfiles
+ll
+cd windows_terminal/
+ll
+vim profiles_default.json
+vim
+/mnt/c/Users/artyu/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/profiles.json
+rsync /mnt/c/Users/artyu/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/profiles.json ~/dotfiles/windows_terminal/profiles.json
+bat ~/dotfiles/windows_terminal/profiles.json
+bat exit
+vim
+rsync /mnt/c/Users/artyu/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/profiles.json ~/dotfiles/windows_terminal/profiles.json
+cd dotfiles/
+gs
+git commit --amend
+git push --force
+git graph
+git status
+git commit -a --amend
+gs
+git push --force
+gs
+locate wsl.conf
+cd ~/dotfiles
+vim wsl.conf
+gs
+git commit -a --amend
+git push -f
+pengwin-setup
+brew search kitty
+apt search kitty
+sudo apt install kitty
+apt autoclean
+sudo apt autoclean
+kitty
+cd ~/dotfiles
+gs
+kitty
+vim
+which python3
+vim .config/zsh/.zshrc
+cd '/mnt/d/artyu/Ѓ�оку�менту�/_Ѓ�абота/2 и 3 у�ровневау� су�ема/'
+ll
+vim '2 level atom old.py'
+cd dotfiles/config/nvim/plugged/python-mode
+gs
+git submodule update --init --recursive
+cd '/mnt/d/artyu/Ѓ�оку�менту�/_Ѓ�абота/2 и 3 у�ровневау� су�ема/'
+python3 '2 level atom.py'
+conda install numpy
+conda install numpy -y
+python3 '2 level atom.py'
+conda install scipy -y
+python3 '2 level atom.py'
+conda install matplotlib -y
+vim dotfiles/install.sh
+vim ll
+git status
+ll
+vim update
+cd ..
+ll
+ll -A
+vim .zshrc
+gs
+cd ~/dotfiles
+git digg
+git diff
+git commit -a --amend
+git push -f
+python3 '2 level atom.py'
+conda install sympy -y
+python3 '2 level atom.py'
+cd '/mnt/d/artyu/Ѓ�оку�менту�/_Ѓ�абота/2 и 3 у�ровневау� су�ема/'
+python3 '2 level atom.py'
+vim dotfiles/install.sh
+cd dotfiles/
+gs
+git commit -a --amend
+git push -f
+git status
+vim dotfiles/install.sh
+cd dotfiles/
+gs
+git commit -a --amend
+git push -f
+git graph
+vim dotfiles/install.sh
+vim ~/dotfiles/install.sh
+gs
+git commit -a --amend
+git status
+git push -f
+vim ~/dotfiles/install.sh
+gs
+git commit -a --amend
+git push -f
+vim .config/zsh/.zlogin
+vim .config/zsh/.zprofile
+vim dotfiles/install.sh
+cd dotfiles/
+gs
+git diff
+git commit -a --amend
+gs
+git push --force
+gs
+git graph
+cd '/mnt/d/artyu/Ѓ�оку�менту�/_Ѓ�абота/2 и 3 у�ровневау� су�ема/'
+python3 '2 level atom.py'
+cd '/mnt/d/artyu/Ѓ�оку�менту�/_Ѓ�абота/2 и 3 у�ровневау� су�ема/'
+python3 '2 level atom.py'
+cd '/mnt/d/artyu/Ѓ�оку�менту�/_Ѓ�абота/2 и 3 у�ровневау� су�ема/'
+python3 '2 level atom.py'
+sudo updatedb.mlocate &
+mlocate vcxsrv
+cd '/mnt/d/artyu/Ѓ�оку�менту�/_Ѓ�абота/2 и 3 у�ровневау� су�ема/'
+python3 '2 level atom.py'
+kitty
+mlocate vcxsrv
+bat /usr/local/pengwin-setup.d/vcxsrv.sh
+bat /home/anuvyklack/dotfiles/vcxsrv.sh
+cd /usr/local/pengwin-setup.d
+ll
+bat shortcut.sh
+bat gui.sh
+ll
+bat common.sh
+bat gui.sh
+bat guilib.sh
+echo $WSL2
+bat hidpi.sh
+cd /etc/profile.d
+ll
+bat brew
+bat brew.sh
+bat dbus.sh
+bat hidpi.sh
+ll
+bat 00-pengwin.sh
+bat 01-vcxsrv.sh
+bat ~/dotfiles/vcxsrv.sh
+sudo vim 01-vcxsrv.sh
+bat ~/dotfiles/vcxsrv.sh
+bat 01-vcxsrv.sh
+sudo vim 01-vcxsrv.sh
+man zshall
+bat /etc/profile
+cd ~/dotfiles
+cd /etc/
+ll
+vim
+sudo update
+update
+cd ~/dotfiles
+git status
+rsync /mnt/c/Users/artyu/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/profiles.json ~/dotfiles/windows_terminal/profiles.json
+git status
+git diff
+git show
+git log
+git commit -a --amend
+git push -f
+git status
+man zshall
+vim dotfiles/install.sh
+gs
+git diff
+vim dotfiles/install.sh
+vim ~/dotfiles/install.sh
+vim zshrc
+gs
+git diff
+cd *
+cd +
+cdh
+cd /
+cd ~
+cd -
+cd +
+cd /home/linuxbrew
+cd -
+cd ~
+cd /etc
+cd ~
+cd ~/dotfiles
+cd -
+which dsc
+which dsc
+whatis dsc
+cd !
+cd -
+vim ~/dotfiles/config/zsh/zshrc +38
+vim ~/dotfiles/config/zsh/zshrc
+git status
+git diff
+git status
+w
+whatis w
+vim ~/dotfiles/config/zsh/zshrc
+vim ~/dotfiles/config/zsh/zshrc +3
+fc -r
+vim ~/dotfiles/config/zsh/zshrc +3
+fc -W ~/.cache/zsh/zsh_history
+bat ~/.cache/zsh/zsh_history
+rsync ~/.cache/zsh/zsh_history ~/dotfiles/config/zsh/zsh_history
+rsync -v ~/.cache/zsh/zsh_history ~/dotfiles/config/zsh/zsh_history

@@ -32,6 +32,7 @@ symlink()  # {{{
 export ZDOTDIR=$HOME/.config/zsh
 
 [[ -d $ZDOTDIR ]] || mkdir -pv $ZDOTDIR
+[[ -d $HOME/.cache/zsh ]] || mkdir -pv $HOME/.cache/zsh
 
 echo -e "\e[1;37mLink zsh files to\e[0m \e[1;34m$ZDOTDIR\e[0m"
 
@@ -80,7 +81,7 @@ then
     rm -f ~/miniconda.sh
 
     export PATH="/opt/miniconda3/bin:$PATH"
-    conda update conda
+    conda update conda --yes
 fi
 
 
@@ -98,7 +99,7 @@ then
     echo -e '\e[32;1mpynvim\e[0m \e[37;1malready installed\e[0m'
 else
     echo -e '\e[37;1mconda install\e[0m \e[32;1mpynvim\e[0m'
-    conda install pynvim
+    conda install pynvim --yes
 fi
 echo ''
 
@@ -152,6 +153,7 @@ aptinstall ()  # {{{
 # }}}
 
 local aptapps=(
+    patchelf
     bfs      # find(1) c поиском в ширину в первую очередь
     anacron  # make sure that regular cron task are completed
     par      # Paragraph formating utility for vim
@@ -165,6 +167,14 @@ local aptapps=(
 )
 for APP in $aptapps; do aptinstall $APP; done
 
+
+# Install Homebrew
+if [[ ! -d "/home/linuxbrew/.linuxbrew" ]]
+then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+fi
+
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
 brewinstall ()  # {{{
 {
@@ -182,10 +192,11 @@ brewinstall ()  # {{{
 # }}}
 
 local brewapps=(
-    neovim
+    # neovim
     lsd
     bat
     fd
+    ripgrep
     node
 )
 for APP in $brewapps; do brewinstall $APP; done

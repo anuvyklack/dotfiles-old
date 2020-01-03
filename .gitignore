@@ -2,3 +2,4 @@ tags*
 **/*.zwc
 **/nvim/plugged/*
 **/nvim/autoload/plug.vim*
+windows_terminal/profiles_default.json
