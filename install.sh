@@ -201,3 +201,4 @@ local brewapps=(
 )
 for APP in $brewapps; do brewinstall $APP; done
 
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags

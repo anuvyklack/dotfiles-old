@@ -9,11 +9,11 @@
 
 export EDITOR VISUAL
 if command -v nvim > /dev/null 2>&1; then
-  EDITOR='nvim'
+  export EDITOR='nvim'
 else
-  EDITOR='vim'
+  export EDITOR='vim'
 fi
-VISUAL="$EDITOR"
+export VISUAL="$EDITOR"
 
 export PAGER='less'
 

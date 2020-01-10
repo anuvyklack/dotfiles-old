@@ -1,22 +1,23 @@
 [user]
-	email = anuvyklack@gmail.com
-	name = Yuriy Artemyev
+    email = anuvyklack@gmail.com
+    name = Yuriy Artemyev
 [core]
-	editor = nvim
-	autocrlf = false
-	pager = diff-so-fancy | less  # use options from $LESS environment variable
+    editor = nvim
+    autocrlf = false
+    # pager = diff-so-fancy | less  # use options from $LESS environment variable
     # pager = diff-so-fancy | less --tabs=4 -RFX
+    pager = diff-so-fancy | less --tabs=4 -F -i -M -R -S
 [alias]
-	unstage = reset HEAD --
-	graph = log --decorate --all --oneline --graph
-	yolo = !git commit -m \"$(curl -s whatthecommit.com/index.txt)\"
+    unstage = reset HEAD --
+    graph = log --decorate --all --oneline --graph
+    yolo = !git commit -m \"$(curl -s whatthecommit.com/index.txt)\"
 [credential]
-	helper = /mnt/c/Users/artyu/scoop/apps/mingit/current/mingw64/libexec/git-core/git-credential-manager.exe
+    helper = /mnt/c/Users/artyu/scoop/apps/mingit/current/mingw64/libexec/git-core/git-credential-manager.exe
 [rerere]
-	enabled = 1
-	autoupdate = 1
+    enabled = 1
+    autoupdate = 1
 [color]
-	ui = auto
+    ui = auto
 [merge]
     tool = nvimmerge
 [difftool]
@@ -30,7 +31,7 @@
     # cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 
 [diff-so-fancy]
-	stripLeadingSymbols = false
-	rulerWidth = 80
+    stripLeadingSymbols = false
+    rulerWidth = 80
 
 # vim: ft=gitconfig
