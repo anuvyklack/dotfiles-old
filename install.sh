@@ -159,6 +159,7 @@ local aptapps=(
     par      # Paragraph formating utility for vim
     rsync
     mlocate
+    curl
     # htop
     # exa      # a modern replacment for ls
     # ripgrep
