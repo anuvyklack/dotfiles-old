@@ -4,29 +4,6 @@
 [[ "$(umask)" = "000" ]] && umask 022
 
 
-# Editors
-# ========================================================================
-
-export EDITOR VISUAL
-if command -v nvim > /dev/null 2>&1; then
-  export EDITOR='nvim'
-else
-  export EDITOR='vim'
-fi
-export VISUAL="$EDITOR"
-
-export PAGER='less'
-
-
-# Language
-# ========================================================================
-
-if [[ -z "$LANG" ]]; then
-    export LANG='en_US.UTF-8'
-    export LANGUAGE=en_US.UTF-8
-fi
-
-
 # Paths
 # ========================================================================
 
@@ -125,6 +102,29 @@ path=(
   $HOME/bin
   $path
 )
+
+
+# Editors
+# ========================================================================
+
+export EDITOR VISUAL
+if command -v nvim > /dev/null 2>&1; then
+  export EDITOR='nvim'
+else
+  export EDITOR='vim'
+fi
+export VISUAL="$EDITOR"
+
+export PAGER='less'
+
+
+# Language
+# ========================================================================
+
+if [[ -z "$LANG" ]]; then
+    export LANG='en_US.UTF-8'
+    export LANGUAGE=en_US.UTF-8
+fi
 
 
 # Man
