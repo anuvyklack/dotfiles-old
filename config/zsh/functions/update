@@ -3,12 +3,12 @@
 update()
 {
 
-  conda update conda --yes
-  conda update --all --yes
-
   sudo apt update --yes
   sudo apt upgrade --yes
   sudo apt autoremove --yes
+
+  conda update conda --yes
+  conda update --all --yes
 
   brew update
   brew upgrade

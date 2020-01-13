@@ -5,8 +5,8 @@
     editor = nvim
     autocrlf = false
     # pager = diff-so-fancy | less  # use options from $LESS environment variable
-    # pager = diff-so-fancy | less --tabs=4 -RFX
-    pager = diff-so-fancy | less --tabs=4 -F -i -M -R -S
+    # pager = diff-so-fancy | less --tabs=4 -F -i -M -R -S
+    pager = diff-so-fancy | less --tabs=4 -RFMX
 [alias]
     unstage = reset HEAD --
     graph = log --decorate --all --oneline --graph

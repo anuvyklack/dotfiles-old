@@ -1,19 +1,15 @@
-# zsh plugins
-
 # For WSL
 [[ "$(umask)" = "000" ]] && umask 022
 
-# echo $0:a:h
-# echo ${0:a:h}
-
-DIR=$0:a:h  # The parent folder of current script
+# The parent folder of current script
+DIR=$0:a:h
+# strip "/setup" part from the path to obtain the path of the "dotfiles" repo.
+DIR=$(dirname $DIR)
 
 symlink()  # {{{
 {
     TARGET=$1
     LINK=$2
-
-    # [[ -s "$TARGET" ]] && echo "$TARGET exists" || echo "$TARGET NOT exists"
 
     # $LINK doesn't exists, or not a symlink OR
     # is a symlink but and points to $TARGET.
@@ -21,9 +17,6 @@ symlink()  # {{{
     then
         ln -sv -f "$TARGET" "$LINK"
     fi
-
-    # # $LINK exists, is a symlink and points to $TARGET
-    # [[ -L "$LINK" ]] && [[ $(readline -f "$LINK") = "$TARGET" ]]
 
 }  # }}}
 
@@ -89,6 +82,9 @@ fi
 echo -e '\e[37;1mSetup Neovim\e[0m'
 symlink $DIR/config/nvim $HOME/.config/nvim
 
+# Make an symlink to win32yank for Neovim WSL clipboard
+symlink "/mnt/c/tools/win32yank.exe" "/usr/local/bin/win32yank"
+
 if ! command -v conda > /dev/null 2>&1
 then
     echo -e '\e[31;1m conda:\e[0m \e[37;1mcommand not found!\e[0m'
@@ -106,14 +102,6 @@ echo ''
 
 # Setup Git
 symlink $DIR/config/git $HOME/.config/git
-
-# Make an symlink to win32yank for Neovim WSL clipboard
-local TARGET="/mnt/c/tools/win32yank.exe"
-local LINK="/usr/local/bin/win32yank"
-if [[ ! -L "$LINK" ]] || [[ $(readlink -f "$LINK") != "$TARGET" ]]
-then
-    ln -sv -f "$TARGET" "$LINK"
-fi
 
 # # run Xserver on WSL start
 # ln -sv -f "~/dotfiles/vcxsrv.sh" "/etc/profile.d/vcxsrv.sh"
