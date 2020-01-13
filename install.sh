@@ -4,7 +4,7 @@
 # The parent folder of current script
 DIR=$0:a:h
 # strip "/setup" part from the path to obtain the path of the "dotfiles" repo.
-DIR=$(dirname $DIR)
+# DIR=$(dirname $DIR)
 
 symlink()  # {{{
 {
@@ -60,7 +60,43 @@ do
 done
 
 
-# Install Miniconda3 to /opt/miniconda3
+# Install Homebrew and it's packages {{{
+if [[ ! -d "/home/linuxbrew/.linuxbrew" ]]; then
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+fi
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+    brewinstall ()  # {{{
+    {
+        # Check if installed and install using `brew` otherwise.
+        if $(brew list $1 > /dev/null 2>&1)
+        then
+            echo -e "\e[32;1m$1\e[0m already installed"
+        else
+            echo ''
+            echo -e "\e[33;1mbrew \e[37;1minstall \e[32;1m$1\e[0m"
+            brew install $1
+            echo ''
+        fi
+    }
+# }}}
+
+local brewapps=(
+neovim
+lsd
+bat
+fd
+ripgrep
+# node
+)
+for APP in $brewapps; do brewinstall $APP; done
+
+# Installing universal-ctags
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+
+# }}}
+
+# Install Miniconda3 to /opt/miniconda3 {{{
 symlink $DIR/condarc $HOME/.condarc
 if [[ ! -d /opt/miniconda3 ]]
 then
@@ -76,9 +112,9 @@ then
     export PATH="/opt/miniconda3/bin:$PATH"
     conda update conda --yes
 fi
+# }}}
 
-
-# Setup Neovim
+# Setup Neovim {{{
 echo -e '\e[37;1mSetup Neovim\e[0m'
 symlink $DIR/config/nvim $HOME/.config/nvim
 
@@ -98,6 +134,7 @@ else
     conda install pynvim --yes
 fi
 echo ''
+# }}}
 
 
 # Setup Git
@@ -106,6 +143,7 @@ symlink $DIR/config/git $HOME/.config/git
 # # run Xserver on WSL start
 # ln -sv -f "~/dotfiles/vcxsrv.sh" "/etc/profile.d/vcxsrv.sh"
 
+# Apt packages {{{
 
 installed-by-apt ()  # {{{
 {
@@ -141,7 +179,6 @@ aptinstall ()  # {{{
 # }}}
 
 local aptapps=(
-    patchelf
     bfs      # find(1) c поиском в ширину в первую очередь
     anacron  # make sure that regular cron task are completed
     par      # Paragraph formating utility for vim
@@ -155,39 +192,5 @@ local aptapps=(
     # fzf      # fuzzy finder
 )
 for APP in $aptapps; do aptinstall $APP; done
-
-
-# Install Homebrew
-if [[ ! -d "/home/linuxbrew/.linuxbrew" ]]
-then
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-fi
-
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-
-brewinstall ()  # {{{
-{
-    # Check if installed and install using `brew` otherwise.
-    if $(brew list $1 > /dev/null 2>&1)
-    then
-        echo -e "\e[32;1m$1\e[0m already installed"
-    else
-        echo ''
-        echo -e "\e[33;1mbrew \e[37;1minstall \e[32;1m$1\e[0m"
-        brew install $1
-        echo ''
-    fi
-}
 # }}}
 
-local brewapps=(
-    # neovim
-    lsd
-    bat
-    fd
-    ripgrep
-    node
-)
-for APP in $brewapps; do brewinstall $APP; done
-
-brew install --HEAD universal-ctags/universal-ctags/universal-ctags

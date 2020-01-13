@@ -71,3 +71,5 @@ symlink "/mnt/c/tools/win32yank.exe" "/usr/local/bin/win32yank"
 # Setup Git
 symlink $DIR/config/git $HOME/.config/git
 
+# Install Miniconda3 to /opt/miniconda3
+symlink $DIR/condarc $HOME/.condarc
