@@ -82,12 +82,12 @@ eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 # }}}
 
 local brewapps=(
-neovim
-lsd
-bat
-fd
-ripgrep
-# node
+    neovim
+    lsd
+    bat
+    fd
+    ripgrep
+    # node
 )
 for APP in $brewapps; do brewinstall $APP; done
 
