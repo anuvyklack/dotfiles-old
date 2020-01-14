@@ -59,8 +59,73 @@ do
     # ln -sv -f "$file" "$HOME/.bin/$(basename $file)"
 done
 
+# Setup Git
+symlink $DIR/config/git $HOME/.config/git
+
+# # run Xserver on WSL start
+# ln -sv -f "~/dotfiles/vcxsrv.sh" "/etc/profile.d/vcxsrv.sh"
+
+
+# Apt packages {{{
+
+installed-by-apt ()  # {{{
+{
+    # In Unix shells (contrary to many other programming languages) 0 stands for
+    # true and any other (integer) value stands for false. This goes in hand with
+    # Unix programs returning 0 on successful completion and any other value
+    # (usually between 1 and 255) indicates some negative result or error.
+
+    CONDITION=$(dpkg-query -W -f='${Status}' "$1" 2>/dev/null | grep -c "ok installed")
+    if [[ $CONDITION -eq 0 ]]
+    then
+        # echo 'No'
+        return 1
+    else
+        # echo 'Yes'
+        return 0
+    fi
+}
+# }}}
+
+aptinstall ()  # {{{
+{
+    # Check if installed and install through `apt` otherwise.
+    if installed-by-apt $1
+    then
+        # echo -e "\e[32;1m$1 \e[37;1malready installed\e[0m"
+        echo -e "\e[32;1m$1 \e[0malready installed"
+    else
+        echo -e "\e[33;1mapt \e[37;1minstall \e[32;1m$1\e[0m"
+        sudo apt-get install "$1"
+    fi
+}
+# }}}
+
+local aptapps=(
+    git man wget curl wajig
+    bfs      # find(1) c поиском в ширину в первую очередь
+    anacron  # make sure that regular cron task are completed
+    par      # Paragraph formating utility for vim
+    rsync
+    mlocate
+    fd-find
+    ripgrep
+    neovim
+    ranger
+    # htop
+    # exa      # a modern replacment for ls
+    # silversearcher-ag
+    # fzf      # fuzzy finder
+)
+for APP in $aptapps; do aptinstall $APP; done
+# }}}
 
 # Install Homebrew and it's packages {{{
+
+# Check we have correct dependencies installed for brew
+echo -e "\e[1;37mInstalling \e[1;33mHomebrew \e[1;37mdependencies\e[0m"
+sudo apt-get install -y -q build-essential curl file git
+
 if [[ ! -d "/home/linuxbrew/.linuxbrew" ]]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 fi
@@ -82,11 +147,11 @@ eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 # }}}
 
 local brewapps=(
-    neovim
+    # neovim
     lsd
     bat
-    fd
-    ripgrep
+    # ripgrep
+    # fd
     # node
 )
 for APP in $brewapps; do brewinstall $APP; done
@@ -136,61 +201,10 @@ fi
 echo ''
 # }}}
 
+# Node.js  {{{
 
-# Setup Git
-symlink $DIR/config/git $HOME/.config/git
+# Using Debian, as root
+curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
+sudo apt-get install -y nodejs
 
-# # run Xserver on WSL start
-# ln -sv -f "~/dotfiles/vcxsrv.sh" "/etc/profile.d/vcxsrv.sh"
-
-# Apt packages {{{
-
-installed-by-apt ()  # {{{
-{
-    # In Unix shells (contrary to many other programming languages) 0 stands for
-    # true and any other (integer) value stands for false. This goes in hand with
-    # Unix programs returning 0 on successful completion and any other value
-    # (usually between 1 and 255) indicates some negative result or error.
-
-    CONDITION=$(dpkg-query -W -f='${Status}' "$1" 2>/dev/null | grep -c "ok installed")
-    if [[ $CONDITION -eq 0 ]]
-    then
-        # echo 'No'
-        return 1
-    else
-        # echo 'Yes'
-        return 0
-    fi
-}
 # }}}
-
-aptinstall ()  # {{{
-{
-    # Check if installed and install through `apt` otherwise.
-    if installed-by-apt $1
-    then
-        # echo -e "\e[32;1m$1 \e[37;1malready installed\e[0m"
-        echo -e "\e[32;1m$1 \e[0malready installed"
-    else
-        echo -e "\e[33;1mapt \e[37;1minstall \e[32;1m$1\e[0m"
-        sudo apt install "$1"
-    fi
-}
-# }}}
-
-local aptapps=(
-    bfs      # find(1) c поиском в ширину в первую очередь
-    anacron  # make sure that regular cron task are completed
-    par      # Paragraph formating utility for vim
-    rsync
-    mlocate
-    curl
-    # htop
-    # exa      # a modern replacment for ls
-    # ripgrep
-    # silversearcher-ag
-    # fzf      # fuzzy finder
-)
-for APP in $aptapps; do aptinstall $APP; done
-# }}}
-

@@ -639,15 +639,14 @@ ialias tree='tree -I .git -I .github'
 ialias df='df -h'
 ialias du='du -h'
 
+# Показать свободное место на диске
 alias disk='df -h | grep -P "F|[A-Z]:"'
 
-# представление вывода less в more-подобном виде
-# (с именем файла и процентом вывода)
-# ialias less='less -M'
 ialias wget='wget -c'  # автоматическое продолжение при разрыве соединения
 ialias vw=' nvim -c WikiIndex'  # open wiki
 ialias r=' ranger'
 ialias sr=' source ranger'
+ialias fd=fdfind
 
 # Git
 alias gs='git status'

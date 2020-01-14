@@ -7,7 +7,6 @@ make -C build check-po-ru
 11;rgb:2828/2c2c/3434
 ninja -C build update-po-ru
 ranger-cd
-echo $EDITOR
 vim ginit.vim
 vim plugins.vim
 select-editor
@@ -27,8 +26,6 @@ xsel
 man xsel
 man xclip
 powershell.exe
-uname
-pengwin-help
 readfile -f win32yank.exe
 man rm
 sudo rm win32yank.exe
@@ -41,13 +38,9 @@ sudo ln -s "/mnt/c/tools/win32yank.exe" "/usr/local/bin/win32yank"
 win32yank
 ls -h
 ls -a
-vim init.vim
 conda
-sudo apt update
 apt list --upgradable
 sudo apt upgrade
-sudo apt autoremove
-sudo apt full-upgrade
 apt -c
 apt -s
 apt search rager
@@ -81,7 +74,6 @@ dpkg-query -s zsh-autosuggestions
 atom
 sudo apt remove zsh-autosuggestions
 sudo apt install zsh-autosuggestions
-man apt
 sudo apt install zsh-syntax-highlighting
 vim setup_environment.sh
 vim zsh_help_file.txt
@@ -89,7 +81,6 @@ google github
 ls -A --color
 google vi-mode
 vi-mode
-which nvim
 xt
 ls -l --color=auto
 google zsh ls onedark dir not visible
@@ -151,7 +142,6 @@ setunv
 man set
 set
 history -10
-who
 which
 git clone https://github.com/tpope/vim-markdown/blob/master/syntax/markdown.vim
 git clone https://github.com/tpope/vim-markdown
@@ -161,7 +151,6 @@ vim -diff markdown_in_neovim.vim vim-markdown/syntax/markdown.vim
 Projects/Neovim
 vim -d markdown_in_neovim.vim vim-markdown/syntax/markdown.vim
 exi
-echo $PAGER
 echo -e "\e[3mItalic"
 echo $TERM
 echo -e "\e[3m is this italics? \e[23m"
@@ -178,7 +167,6 @@ apt
 ln -sv ~/Software/vimwiki ~/
 nviim
 tzdata
-pengwin-setup
 echo $PARINIT
 autoload -Uz compinstall
 compinstall
@@ -194,15 +182,12 @@ ls -f
 ld -F
 ls -F
 ls -Ff
-ls -A
 ls -ial
 less
 less --help
 ls --color=tty
 nvin
-apt search neovim
 dotfiles
-setopt
 ~/.config/nvim/plugged/wiki.vim
 vim ./autoload/wiki/page.vim
 grep -r TOC .
@@ -237,7 +222,6 @@ which cron
 sudo apt remove mlocate
 sudo apt install locate
 sudo updatedb
-sudo apt install mlocate
 etc/cron
 mlocate
 ./mlocate
@@ -269,7 +253,6 @@ man history
 man echo
 man exec
 man nroff
-man man
 man more
 man most
 man tzdata
@@ -285,13 +268,9 @@ echo $LINES
 vim $(find * -type f -not -path '*/.git/*' | fzf --preview="head -$LINES {}")
 man zshoptions
 sudo cron
-git remote -vv
-git remote
-git remote -v
 git fetch origin
 git log --decorate --all --oneline --graph
 git checkout -b statusline
-git commit -a
 git push -u myfork statusline
 mlocate nvimdiff
 echo $LOCAL
@@ -299,13 +278,11 @@ vim ~/.gitconfig
 mlocate vimdiff
 man vimdiff
 cd /usr/lib/git-core/mergetools
-cd ~
 git dif
 git difftool
 locale
 sudo explorer.exe
 explorer.exe
-vim ~/.config/nvim/plugins.vim
 fc -w
 fc -W
 apt search fzf
@@ -321,7 +298,6 @@ man rg
 man ag
 apt search ag | fzf
 cd ~./dotfiles
-git commit --amend
 apt search lsd | rg lsd
 cd program_files/
 curl https://github.com/Peltoche/lsd/releases/download/0.16.0/lsd_0.16.0_amd64.deb
@@ -351,7 +327,6 @@ lsd --color=never
 cat .lesshst
 ls --tree
 apt search bat | rg bat
-sudo apt install bat
 apt search bat*extras
 apt search 'bat*extras'
 apt search bat extras
@@ -363,7 +338,6 @@ cd ~/program_files/
 bat nvim
 mv program_files/ programs
 lst
-cd /opt
 cd plugins
 lt --depth=3
 git clone https://github.com/eth-p/bat-extras.git
@@ -375,14 +349,12 @@ sudo ./build.sh --install
 batman exa
 batman git-log
 man git-rebase | bat
-bat install.sh
 bat backup.sh
 rg unix
 batgrep unix
 batgrep lightline
 batgrep augroup
 git show | bat
-git show | bat -l rs
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 bat --list-themes | fzf --preview="bat --theme={} --color=always /path/to/file"
 bat --list-themes | fzf --preview="bat --theme={} --color=always ginit.vim"
@@ -401,7 +373,6 @@ rm broot
 sudo rm broot
 ll | fzf
 sudo -i
-man sudo
 man chmode
 man chmod
 chmod +x broot
@@ -410,7 +381,6 @@ chmod a+x broot
 ./broot
 cd ~/.config/broot/launcher/bash
 cd ~/programs
-cd /usr/local
 sudo ln -sv ~/programs/broot /usr/local/bin/
 nm ~/programs//broot /usr/local/bin/broot
 mv ~/programs//broot /usr/local/bin/broot
@@ -448,21 +418,14 @@ exa -l --git -h
 exa -lh --git
 apt search bfs | rg bfs
 apt search bfs | batgrep bfs
-cd /usr/local/bin
 apt search bfs | bat 'bfs'
 apt search bfs | rg 'bfs'
 apt search bfs | batgrep 'bfs'
-apt search bfs
-sudo apt install bfs
 bfs ~ -nohidden -type d -printf '~/%P\n'
 bfs --help
 ll -h
-git commit
-vim .gitignore
-git push
 man bfs
 bfs
-git commit -a --amend
 git shoq
 apt search antigen
 sudo apt install zsh-antigen
@@ -480,7 +443,6 @@ antigen update
 cd linuxbrew/
 sudo apt-get install build-essential curl file git
 sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-bash
 id
 who am i
 whoami
@@ -530,7 +492,6 @@ if [[ -a "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then; echo Yes; fi
 if [[ -d "/opt/miniconda3/bin" ]]; then; echo Yes; fi
 git branch -vv
 git branch
-nvim
 ll -A preto
 ll -A prezto
 ll -A *prezto*
@@ -544,15 +505,12 @@ apt show pwgen
 apt show pwgen\t
 apt show pwgent
 apt show pwget
-vim exit
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zplugin/master/doc/install.sh)"
 vim -d ~/.zshrc ~/dotfiles/zsh/.zshrc_my_custom
 bat .zhistory
 apt info zsh
 git clone https://github.com/zdharma/zplugin-configs.git
 cd zplugin-configs
-brew upgrade
-brew update
 bat ._zplugin
 cd ~/.zplugin/plugins/junegunn---fzf-bin/
 apt info fzf
@@ -620,7 +578,6 @@ exa --group-directories-first -la
 exa --group-directories-first -la --git-ignore
 exa --group-directories-first -la --git-ignore --tree
 exa -a --git-ignore --tree
-tree
 which tree
 tree -I .git
 tree -a -I .git
@@ -636,21 +593,17 @@ tree -aL 2
 tree -a -L 2 -I .git .github
 tree -a -L 2 -I .git -I .github
 tree -a
-zplugin delete --clean
 locate c.zsh
 cd ~/.zplugin/plugins/trapd00r---LS_COLORS
 exa -A
 exa -a
-tree -C -L 2
 ll -AR *.zwc
 ll --help
 ll -AR -- *.zwc
 ll -A -R -- *.zwc
 ll -A -R
 ll -R -- *.zwc
-lsd
 lsd -l
-lsd -lA
 lsd -lAR
 lsd -lAR -- &.zwc
 lsd -lAR -- *.zwc
@@ -661,15 +614,12 @@ lsd -AR -- *.zsh
 ll -A *.zwc
 ll -A *.zwc -R
 exa --group-directories-first
-exa
 exa -l
 exa -laR -- *.zwc
 exa -laR *.zwc
 exa -laR -p *.zwc
 exa -laR -P *.zwc
 man exa
-ls
-ls -l
 ls -lR
 ls -lRa
 ls -lRA
@@ -684,10 +634,7 @@ man locate
 apt search fd-find
 brew search ds
 brew search fd
-brew info fd
 brew info fdclone
-brew install fd
-fd
 fd *.zwc
 fd -h .*\.zwc
 fd -H .*\.zwc
@@ -701,7 +648,6 @@ fd -H .*\.zwc$
 fd -H \.\*.zwc$
 fd -H \.\*.zwc\$
 fd -H .\*.zwc$
-fd --help
 man fd
 fd -H '.\*.zwc$'
 fd -H '.*.zwc$'
@@ -727,7 +673,6 @@ echo $PATH > path.txt
 vim path.txt
 cd $ZPFX
 git branch -v
-vim ~/dotfiles/install.sh
 autoload -U colors && colors
 for color in red green yellow blue magenta cyan black white; do\
  eval $color='%{$fg_no_bold[${color}]%}'\
@@ -745,19 +690,13 @@ space
 echo -random
 git config --global alias.yolo 'commit -m "$(curl -s whatthecommit.com/index.txt)"'
 git config --global alias.yolo '!git commit -m "$(curl -s whatthecommit.com/index.txt)"'
-git push -f
-cd ~/dotfiles/
-gs
 man git-restore
-man rsync
 rsync ~/{.zshrc,dotfiles/zsh/zshrc}
 rsync -v ~/{.zshrc,dotfiles/zsh/zshrc}
 cd ~/dotfiles/zsh
 git reset --soft HEAD~
-git show
 cd ~/.zplugin
 rg 'git-completion'
-cd ../..
 ss
 apt search Subversion
 apt info subversion
@@ -780,35 +719,27 @@ zplugin --help
 vim ~/.zplugin
 brew info diff-so-fancy
 zplugin status
-zplugin
 zplugin -h
 zplugin self-update && zplugin update
 zplugin list
 zplugin listsr
 rm -rf fzf-completion.zsh
 which fzf
-fzf
 mkdir ~/.zplugin
 git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
 zplugin completions
 zplugin delete fzf-completion.zsh
 zplugin delete fzf
-zplugin self-update
 cd ~/projects/dotfiles_examples/zplugin-configs/
 rg
 rg 'fast'
-brew list
-brew
 compdef _gnu_generic brew
 man pushd
 pushd
 popd
-cd -
-brew --prefix
 cd brew --prefix
 type bre
 type brew
-brew update && brew upgrade
 sudo apt upgrade && sudo apt update; brew update && brew upgrade; zplugin self-update && zplugin update --all
 brew search diff-so-fancy
 brew remove diff-so-fancy
@@ -817,17 +748,13 @@ cd $(brew --prefix)
 vim shell_scripts/show_terminal_colors.sh artyu/cd
 sp
 run-help gs
-disk
 dirs -v
 run-help vim
 which run-help
 whatis artyu/
 whatis run-help
 run-help man
-update
-sudo apt upgrade && sudo apt update
 vim ~/.zshr
-vim ~/dotfiles/nvim/plugins.vim
 bindkey | rg back-i-search
 bindkey | rg 'back-i-search'
 bindkey | rg 'fzf'
@@ -840,30 +767,20 @@ git clone --recurse-submodules https://github.com/belak/prezto-contrib contrib
 nvim ~/.zpreztorc
 cd ~/
 cd nvim
-cd ..
-git diff --cached
-pwd
 echo eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 git granch -vv
-vim
 man zshmodules
-man git
-vim ~/.zprofile
-man less
-sudo apt update && sudo apt upgrade
 pwg='pwgen -cnB 8 10 | while read PASS; do echo -n -e "$PASS\t"; echo -n "$PASS" | md5sum | cut -f1 -d" "; done'
 _pwgen -cnB 8 10 | while read PASS; do echo -n -e "$PASS\t"; echo -n "$PASS" | md5sum | cut -f1 -d" "; done
 pwgen
 sudo apt install pwgen
 pwgen -cnB 8 10 | while read PASS; do echo -n -e "$PASS\t"; echo -n "$PASS" | md5sum | cut -f1 -d" "; done
 updatedb.mlocate
-sudo updatedb.mlocate
 which updatedb.mlocate
 bat /usr/bin/updatedb.mlocate
 cd /usr/bin/
 ll updatedb*
 ll /etc/alternatives/updatedb
-cd !
 cd /etc/alternatives/updatedb
 cd /etc/alternatives/
 cd /var/lib/mlocate/mlocate.db
@@ -871,7 +788,6 @@ cd /var/lib/mlocate/
 man updatedb
 locate mlocate
 info
-whatis mlocate
 whatis git
 whatis man
 whatis updatebd
@@ -879,13 +795,11 @@ whatis updatedb
 file /var/lib/mlocate/mlocate.db
 file dotfiles
 whatis rename
-man rename
 free
 cowsay
 apt search cowsay
 info man
 apt search info
-vi
 history
 df
 man df
@@ -906,19 +820,14 @@ exa -la
 cd modules/
 bat /etc/zsh/zshenv
 bat /etc/zsh/zprofile
-bat /etc/profile
 vim .profile
-ll -A
 touch .zshenv
 vim ~/.zshenv
 git config --list --show-origin
 cp ~/.gitconfig ~/.config/git/config -f
-man cp
 mkdir ~/.config/git
 cp ~/.gitconfig ~/.config/git/config
 git config --list
-git config --global --list
-git diff
 git config help
 git help config
 echo $GIT_CONFIG
@@ -926,12 +835,6 @@ cd .config/git/
 cd .config
 vim ~/.config/git/config
 vi .zshenv
-vim .zshenv
-git unstage
-git add -A
-git yolo
-git log
-git graph
 brew search nvim
 brew info nvim
 apt info nvim
@@ -940,11 +843,7 @@ whereis nvim
 dpkg-query -s
 locate lesspipe
 bat /usr/bin/lesspipe
-ll
-git status -s
 cd .zprezto/runcoms/
-cdh
-which vim
 which vimdiff
 apt info lfm
 brew search lf
@@ -953,101 +852,44 @@ brew install lf
 lf
 lfcd
 git clone https://github.com/htr3n/zsh-config.git
-cd ~/dotfiles
-git status
-rg 'spaceship_vi_mode_enable'
 bindkey -l
 bindkey -lL
-vim sections/vi_mode.zsh +49
 vim sections/
 echo $PATH
 vim ~/dotfiles/zsh/zshrc
-vim ~/.config/zsh/.zshrc
-cd dotfiles/
 rm -rf ~/.zplugin
-sudo updatedb.mlocate &
 locate zcompdump
-source ~/.config/zsh/.zshrc
-vim ~/.cache/zsh/zsh_history
-source ~/.config/zsh/.zshrc
 cd …./dir
 cd …./usr
 cd ..../dir
 cd ..../usr
 cd ..../zsh
-source ~/.config/zsh/.zshrc
 sudo apt update && sudo apt upgrade
 sudo apt autoremove
-source ~/.config/zsh/.zshrc
-disk
-ll -A
 git clone https://github.com/woefe/dotfiles.git woefe-dotfiles
-ll
-ll -A
-cdh
-cd +
-source ~/.config/zsh/.zshrc
-cd dotfiles/
 git clone https://github.com/woefe/wbase.zsh.git
 print $PATH
 print -l $PATH
-print -l $path
-source ~/.config/zsh/.zshrc
 echo $KEYTIMEOUT
 cd .zplugin/plugins/zsh-users---zsh-syntax-highlighting/
-ll
 echo $PIPELINE
-echo $ARRAY
 echo ${ARRAY[0]}
 echo $ARRAY
 echo $PROJECT
 echo ${ARRAY[1]}
 edit
-vim ~/.config/zsh/.zshrc
-source ~/.config/zsh/.zshrc
 echo $path
-print -l $path
-zplugin self-update
 zplugin update --all
 disk
 man cp
-source ~/.config/zsh/.zshrc
-git diff
 cd ll
-cd .config/zsh/
-source ~/.config/zsh/.zshrc
-cd dotfiles/
-vim ~/.cache/zsh/zsh_history
 man rename
-man less
-source ~/.config/zsh/.zshrc
-man less
-source ~/.config/zsh/.zshrc
-man less
-source ~/.config/zsh/.zshrc
-man less
-source ~/.config/zsh/.zshrc
-man less
-source ~/.config/zsh/.zshrc
-man less
-source ~/.config/zsh/.zshrc
-man less
-source ~/.config/zsh/.zshrc
-man less
-source ~/.config/zsh/.zshrc
-man less
 echo $COLUMNS
-source ~/.config/zsh/.zshrc
-echo $COLUMNS
-man less
 echo $(tput cols)
-echo $INDENT
-printf $INDENT_LINE
 locate less
 man lesspipe
 who
 cd /mnt/d/artyu/Downloads
-lesspipe zsh_a4.pdf
 apt search pdftotext
 brew search pdftotext
 brew search poppler
@@ -1055,219 +897,72 @@ brew info poppler
 brew install poppler
 lesspipe zsh_a4.pdf
 less zsh_a4.pdf
-pwd
-touch bin/lessindent
-touch -R bin/lessindent
-man touch
 dir bin
 mkdir bin
 touch -R bin/lessindent
 touch bin/lessindent
-ll
 ll bin
 vim bin/lessindent
 echo $INDENT
 printf $INDENT_LINE
-printf $LESSOPEN
-man touch
-man git
-source ~/.config/zsh/.zshrc
-man git
-source ~/.config/zsh/.zshrc
-man git
-source ~/.config/zsh/.zshrc
-man git
 export LESSOPEN="| sed \"s/^/${INDENT_LINE}/\""
-printf $LESSOPEN
 export LESSOPEN="|- sed \"s/^/${INDENT_LINE}/\""
-printf $LESSOPEN
 man touch
-man git
 export LESSOPEN="|- sed \"s/^/${INDENT_LINE}/\" %s"
-printf $LESSOPEN
-man git
 man apropos | fmt -w 70
 man git | sed "s/^/${INDENT_LINE}/" /
 man git | sed "s/^/${INDENT_LINE}/"
-man less
 cd bin/lessindent
 cd bin
 bat lessindent
 rename lessindent
 name lessindent
-ll
 vim lesscenter
 chmod +x lesscenter
 printf $LESSOPEN
-source ~/.config/zsh/.zshrc
 man gitt
-man git
-bat lesscenter
 printf $path
 print -l $path
-ll
-vim .zshenv
 vim ~/.zprofile
-vim ~/.config/zsh/.zprofile
 whereis lesscenter
-bat lesscenter
-man git
-vim ~/.config/zsh/.zprofile
 man git
 source ~/.config/zsh/.zprofile
-man git
-source ~/.config/zsh/.zprofile
-man git
-man less
-source ~/.config/zsh/.zprofile
-man less
-source ~/.config/zsh/.zprofile
-man less
-man less
-source ~/.config/zsh/.zshrc
-man less
 mkdir lib
-ll
 touch completion.zsh history.zsh vi-mode.zsh
-ll
 source $ZDOTDIR/lib/completion.zsh
-uname
 uname -s
 [[ -d ~/.bin ]]
 [[ -d ~/.bin ]] && echo Yes
 uname
 [[ ! -d ~/.bin ]] && echo Yes || echo No
-ll
-
-cd dotfiles/
-ll
-source install.sh
-cd ..
-source install.sh
-cd dotfiles/install.sh
-cd dotfiles/
-vim install.sh
-source install.sh
-setopt
 setopt function_argzero
 setopt
-source install.sh
-vim install.sh
-source install.sh
-vim install.sh
 printf $%
-vim install.sh
 echo ${(%):-%N}
 readlink -f $0
 man 1 readlink
-vim install.sh
 source install.sh
-vim install.sh
-source install.sh
-vim install.sh
-source install.sh
-vim install.sh
-source install.sh
-vim install.sh
-source install.sh
-vim install.sh
-source ~/dotfiles/install.sh
-source ~/dotfiles/install.sh
-cd dotfiles/
-vim install.sh
-source ~/dotfiles/install.sh
-vim install.sh
-source ~/dotfiles/install.sh
-vim install.sh
-source ~/dotfiles/install.sh
-vim install.sh
-source ~/dotfiles/install.sh
-vim install.sh
-source ~/dotfiles/install.sh
-vim install.sh
-source ~/dotfiles/install.sh
 echo $file
 basename $file
 echo $(basename -- $file)
 echo $(basename $file)
 vim install.sh
-source ~/dotfiles/install.sh
-vim install.sh
-source ~/dotfiles/install.sh
-vim install.sh
-source ~/dotfiles/install.sh
-vim install.sh
-source ~/dotfiles/install.sh
-vim install.sh
-source ~/dotfiles/install.sh
-man less
-source ~/.config/zsh/.zshrc
-man less
-vim
-autoload -U zrecompile
 zrecompile ~/.zshenv
 zrecompile -p ~/.zshenv
-git status
-git add bin/**
-..
-git add bin/**
-git status
-git add config/
-git status
 git unstage
-gs
-git status -s
-git graph
-vim .gitignore
-git add .gitignore
-git status -s
-git commit --amend
-git show
-git status -s
 git add bin/**
 git add config/
-git status -s
-git status
 git restore --staged **/autoload/plug.vim.old
-git status -s
-vim .gitignore
 cd ../..
 vim .gitignore
-git status -s
-git add .gitignore
-git status -s
-git add install.sh
-git status -s
-git commit
-git show
-git status -s
-git add -A
-git status -s
-git commit --amend
-git status -s
-git status
-git push -f
-git graph
-man zshall
 zcompile functions/
 zcompile functions
-man less
-ll
 ls functions/
 zcompile functions ${ls functions/}
 echo ${ls functions/}
 shellcheck "echo ${ls functions/}"
-shellcheck test
 vim test
 shellcheck test
-vim test
-shellcheck test
-vim test
-shellcheck test
-vim test
-shellcheck test
-zcompile functions $(ls functions/)
-cd -
 zcompile functions $(ls functions/)
 cd dotfiles/sr
 cd functions/
@@ -1279,16 +974,11 @@ find $ZDOTDIR/functions/ -type f -maxdepth 1
 find -maxdepth 1 $ZDOTDIR/functions/ -type f
 find -maxdepth=1 $ZDOTDIR/functions/ -type f
 find $ZDOTDIR/functions/ -maxdepth=1 -type f
-find $ZDOTDIR/functions/ -maxdepth 1 -type f
 zcompile $ZDOTDIR/functions.zwc $(find $ZDOTDIR/functions/ -maxdepth 1 -type f)
-vim ~/.config/zsh/.zshrc
-man less
-echo $(find $ZDOTDIR/functions/ -maxdepth 1 -type f)
 echo "$(find $ZDOTDIR/functions/ -maxdepth 1 -type f)"
 printf $(find $ZDOTDIR/functions/ -maxdepth 1 -type f)
 echo $(find $ZDOTDIR/functions/ -maxdepth 1 -type f)
 shellcheck $ZDOTDIR/.zlogin
-source $ZDOTDIR/.zlogin
 find $ZDOTDIR/functions/ -maxdepth 1 -type f
 find $ZDOTDIR/functions/ -maxdepth 1 -type f | sed s/\n$/ /g
 find $ZDOTDIR/functions/ -maxdepth 1 -type f | sed s/\n/ /g
@@ -1308,25 +998,8 @@ echo ${find "$ZDOTDIR"/functions/ -maxdepth 1 -type f)\
 echo ${find "$ZDOTDIR"/functions/ -maxdepth 1 -type f)
 echo $(find "$ZDOTDIR"/functions/ -maxdepth 1 -type f)
 echo -n $(find "$ZDOTDIR"/functions/ -maxdepth 1 -type f)
-source $ZDOTDIR/.zlogin
 zcompile "$ZDOTDIR"/functions $(echo -n $(find "$ZDOTDIR"/functions/ -maxdepth 1 -type f))
-source $ZDOTDIR/.zlogin
-ll
-ll -A
-source $ZDOTDIR/.zlogin
-ll -A
-source $ZDOTDIR/.zlogin
-ll -A
-source $ZDOTDIR/.zlogin
-ll -A
-cd .config/zsh/
-ll -A
-cd dotfiles/install.sh
-git status -s
-git status
 git clone https://github.com/woefe/vi-mode.zsh.git
-vim ~/.config/zsh/.zshrc
-ll -A
 vim zsh-vim-mode.plugin.zsh
 zplugin
 rg 'spaceship_vi_mode_enable'
@@ -1335,36 +1008,20 @@ git clone https://github.com/softmoth/zsh-vim-mode.git
 git clone https://github.com/Nyquase/vi-mode.git
 git clone https://github.com/oselivanov/zsh-vi-done-right.git
 git clone https://github.com/laurenkt/zsh-vimto
-update
-sudo apt upgrade && sudo apt update
-sudo apt upgrade && sudo apt update && sudo apt autoremove
-cd .config/zsh/
-ll -A
-cd .config/zsh/
-ll -A
 for file in "$ZDOTDIR/**/*.zwc.old"; do rm -f $file; done
-ll -A
 for file in "$ZDOTDIR/**/*.zwc.old"; do echo $file; done
 for file in '$ZDOTDIR/**/*.zwc.old'; do echo $file; done
 for file in $($ZDOTDIR/**/*.zwc.old); do echo $file; done
 echo $ZDOTDIR/**/*.zwc.old
-ll -A
 for file in $ZDOTDIR/**/*.zwc.old; do echo $file; done
-cd .config/zsh/
-ll -A
-cd .config/zsh/
-ll -A
 tree
 tree -C -L 2
 echo $array
 for i in $array; do echo $i; done
 for i in $array; do echo "$ZDOTDIR/.$i"; done
 rm -f **/*.zwc
-ll -A
 rm -f **/.*.zwc
-ll -A
 cd .config/zsh/
-ll -A
 for i in $ZDOTDIR/**/*.zwc.old; do
 for in $ZDOTDIR/**/*.zwc.old; do echo $i; done
 for i in $ZDOTDIR/**/*.zwc.old; do echo $i; done
@@ -1372,140 +1029,55 @@ autoload -U zrecompile
 zrecompile -pq $ZDOTDIR/**/*.*sh
 source $ZDOTDIR/.zlogin
 cd dotfiles/install.sh
-cd dotfiles/
-cd ~/dotfiles
-git status -s
-git diff
-git commit -a
-gs
 git add **/cd
-git status -s
-git commit --amend
-git status -s
-git status
-git push -f
-brew list
 brew search conda
-update
 brew search anaconda
-brew search miniconda
 brew search *conda
 brew info minicond
-brew info miniconda
 brew search miniconda
 brew info miniconda
 brew install miniconda
 brew cask info miniconda
 apt search miniconda
 conda update *
-conda update --all
 vim .config/zsh/functions/cd
-vim .config/zsh/functions/update
-update
 brew update ranger
 brew uppgrade ranger
 brew upgrade ranger
 brew uninstall ranger
-sudo apt install ranger
 sudo apt upgrade && sudo apt update && sudo apt autoremove
-brew update ranger
-brew uppgrade ranger
-brew upgrade ranger
-brew uninstall ranger
-sudo apt install ranger
-sudo apt upgrade && sudo apt update && sudo apt autoremove
-brew update ranger
-brew uppgrade ranger
-brew upgrade ranger
-brew uninstall ranger
-sudo apt install ranger
-sudo apt upgrade && sudo apt update && sudo apt autoremove
-vim ~/dotfiles/install.sh
-ln -sv ~/dotfiles/config/nvim ~/.config/nvim
-vim
-vim ~/dotfiles/install.sh
 sudo apt search ctags
 brew search ctags
 brew info ctags
 brew search universal
-brew install --HEAD universal-ctags/universal-ctags/universal-ctags
-ll
-ll -l
 lsd -lA
-brew install neovim
-brew install ripgrep
-cd ~/dotfiles
 rg 'REPORTTIME'
-vim config/zsh/zshrc +38
 ctags
 vim config/zsh/zshrc +38
-vim ~/dotfiles/config/zsh/zshrc +38
-vim dotfiles/install.sh
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/downloads/miniconda.sh
 [[ -d $HOME/downloads ]] || mkdir -v $HOME/downloads
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/downloads/miniconda.sh
 sudo bash ~/downloads/miniconda.sh -b -p /opt/miniconda3
-which python
-update
-conda update conda
 sudo conda update conda
-conda update conda
 vim ~/dotfiles/nvim/plugins.vim
 vim ~/dotfiles/config/nvim/plugins.vim
 sudo chown -R anuvyklack /opt/miniconda3/
-conda update conda
-vim dotfiles/install.sh
-vim ~/dotfiles/install.sh
 echo $USER
-vim .config/zsh/.zlogin
-cd ~/dotfiles
 vim ~/.config/zsh/.zshrc
 brew search bfs
 apt search bgs
 apt search bfs
-sudo apt install bfs
-vim dotfiles/install.sh
-sudo apt install bfs
-vim dotfiles/install.sh
 cd /opt/miniconda3
 lsd
-ll
 man mkdir
-man 1 mktemp
 mktemp -d
 cd /tmp/
 mktemp -d -p $HOME/
 man 1 mktemp
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
-ll
 rm miniconda.sh
-ll
-vim dotfiles/install.sh
-cd dotfiles/
-which python3
 vim ~/.config/nvim/init.vim
-conda install pynvim
-vim ~/dotfiles/install.sh
-cd dotfiles/
-cd ~/dotfiles
-source ~/dotfiles/install.sh
-ll
 ll -l
-ll -A
-conda install pynvim
-vim ~/dotfiles/install.sh
-source ~/dotfiles/install.sh
-vim ~/dotfiles/install.sh
-git config --global --list
-cd ~/dotfiles
-git diff
-git status
-readlink -f ~/.config/nvim
-git status
-vim ~/dotfiles/install.sh
 [[ -s $ZDOTDIR/lib ]] && echo "Yes" || echo "No"
-vim ~/dotfiles/install.sh
-readlink -f ~/.config/nvim
 [[ $(readlink -f ~/.config/nvim) = "~/dotfiles/config/nvim" ]]
 [[ $(readlink -f ~/.config/nvim) = "~/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
 [[ $(readlink -f ~/.config/nvim) == "~/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
@@ -1515,7 +1087,6 @@ echo "~/dotfiles/config/nvim"
 echo "$HOME/dotfiles/config/nvim"
 [[ "$(readlink -f ~/.config/nvim)" = "$HOME/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
 [[ "$(readlink -f $HOME/.config/nvim)" = "$HOME/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
-vim ~/dotfiles/install.sh
 [[ $(readlink -f $HOME/.config/nvim) = "$HOME/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
 [[ -s $HOME/.config/nvim ]] && [[ $(readlink -f $HOME/.config/nvim) = "$HOME/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
 [[ -s "$HOME/.config/nvim" ]] && [[ $(readlink -f $HOME/.config/nvim) = "$HOME/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
@@ -1523,27 +1094,14 @@ vim ~/dotfiles/install.sh
 [[ -L "$HOME/.config/nvim" ]] && echo 'Yes' || echo 'No'
 [[ -L "$HOME/.config/nvim" ]] && [[ $(readlink -f $HOME/.config/nvim) = "$HOME/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
 [[ ! -L "$HOME/.config/nvim" ]] && [[ $(readlink -f $HOME/.config/nvim) != "$HOME/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
-[[ ! -L "$HOME/.config/nvim" ]] || [[ $(readlink -f $HOME/.config/nvim) != "$HOME/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
 rm ~/.config/nvim
 [[ ! -L "$HOME/.config/nvim" ]] || [[ $(readlink -f $HOME/.config/nvim) != "$HOME/dotfiles/config/nvim" ]] && echo "Yes" || echo "No"
 ln -sv ~/dotfiles/config/nvim ~/.config/nvim
 readlink -f ~/.config/nvim1
 readlink -f ~/.config/nvim
-source ~/dotfiles/install.sh
 cd ~/dotfiles/config/zsh
-ll
-vim dotfiles/install.sh
-vim ~/dotfiles/install.sh
-source ~/dotfiles/install.sh
 cd /mnt/d/artyu
-cd ..
-man rsync
-sudo apt install rsync
-man rsync
 rsync -rvh /mnt/d/artyu/Software/dotfiles_examples ~/
-update
-sudo apt update
-git status
 git clone https://github.com/LukeSmithxyz/LARBS.git
 cd LARBS/
 printf "Optional arguments for custom use:\\n  -r: Dotfiles repository (local file or url)\\n  -p: Dependencies and programs csv (local file or url)\\n  -a: AUR helper (must have pacman-like syntax)\\n  -h: Show this message\\n"
@@ -1561,20 +1119,11 @@ sudo -v
 bash _execute_
 echo -en "\e]P0000000" #black
 whatis symlink
-source ~/dotfiles/install.sh
-git status
-source ~/dotfiles/install.sh
-echo -e " \u001b[37;1m\u001b[4mSelect an option:\u001b[0m"
-for i in {30..37}; do echo -e "\033[1;$i""m colorful text\033[0m"; done
-for i in {1..7}; do echo -e "\033[$i;31""m different style\033[0m"; done
 for i in {30..37}; do echo -e "\033[1;$im colorful text\033[0m"; done
-for i in {30..37}; do echo -e "\033[1;$i""m colorful text\033[0m"; done
 echo -e "\033[1;31m This is red text"
-echo -e "\e[1;31m This is red text"
 echo -e
 echo -e "\e[1;31m This is red text"
 echo -e "\e[1;31m This is red text \e[0mNew"
-for i in {30..37}; do echo -e "\033[1;$i""m colorful text\033[0m"; done
 for i in {1..7}; do echo -e "\033[$i;31""m different style\033[0m"; done
 echo -e "\e[1;30m This is red text"
 echo -e "Normal \e[1mBold"
@@ -1603,7 +1152,6 @@ echo -e "\e[1;37Link zsh files to $ZDOTDIR"
 echo -e "\e[1;37mLink zsh files to $ZDOTDIR"
 echo -e "\e[1;37mLink zsh files to\e[0m $ZDOTDIR"
 echo -e "\e[1;37mLink zsh files to\e[0m \e[1;34m$ZDOTDIR"
-source ~/dotfiles/install.sh
 conda list
 conda list | grep pynvim
 conda list | grep matplotlib
@@ -1611,7 +1159,6 @@ conda list | grep matplotlib
 conda list | grep pynvim && echo 'Yes' || echo 'No'
 conda list | grep matplotlib && echo 'Yes' || echo 'No'
 conda list | grep pynvim > /dev/null && echo 'Yes' || echo 'No'
-cd dotfiles/
 rg '/dev/null'
 vim ~/dotfiles/config/zsh/lib/history.zsh
 conda list | grep pynvim > /dev/null 2>&1 && echo 'Yes' || echo 'No'
@@ -1641,88 +1188,50 @@ echo -e '\e[31;1m conda \e[37;1mnot found!\e[0m'
 echo -e '\e[37;1m conda \e[31;1mnot found!\e[0m'
 echo -e '\e[37;1m conda\e[0m \e[31;1mnot found!\e[0m'
 echo -e '\e[31;1m conda not found!\e[0m'
-git status
 echo -e '\e[37;1m conda\e[0m \e[31;1mcommand not found!\e[0m'
 echo -e '\e[37;1m conda:\e[0m \e[31;1mcommand not found!\e[0m'
 echo -e '\e[32;1m pynvim already installed\e[0m'
 echo -e '\e[32;1m pynvim\e[0m \e[31;1malready installed\e[0m'
-echo -e '\e[32;1m pynvim\e[0m \e[37;1malready installed\e[0m'
 echo -e '\e[37;1m pynvim\e[0m \e[32;1malready installed\e[0m'
 echo -e '\e[37;1m conda\e[0m install \e[32;1mpynvim\e[0m'
-echo -e '\e[37;1m conda install\e[0m \e[32;1mpynvim\e[0m'
-source ~/dotfiles/install.sh
 echo -e '\e[32;1m conda install\e[0m \e[37;1mpynvim\e[0m'
 echo -e '\e[32;1m pynvim\e[0m \e[37;1malready installed\e[0m'
 echo -e '\e[37;1m conda install\e[0m \e[32;1mpynvim\e[0m'
 echo -e '\e[31;1m conda:\e[0m \e[37;1mcommand not found!\e[0m'
-source ~/dotfiles/install.sh
 echo -e 'Installing \e[32;1mminiconda3\e[0m'
 echo -e '\e[37;1mInstalling \e[32;1mminiconda3\e[0m'
-for i in {30..37}; do echo -e "\033[1;$i""m colorful text\033[0m"; done
-update
 echo -e '\e[37;1mInstalling \e[35;1mminiconda3\e[0m'
 rm -rf /opt/miniconda3
 cd /opt
-ll -A
-sudo rm -rf /opt/miniconda3
-ll -A
-source ~/dotfiles/install.sh
-echo -e '\e[37;1mconda install\e[0m \e[32;1mpynvim\e[0m'
 echo -e '\n\e[37;1mconda install\e[0m \e[32;1mpynvim\e[0m'
-conda update conda
-update
 rm ~/.config/zsh/lib
-source ~/dotfiles/install.sh
 echo -e "\e[1;37mDone
 echo -e "\e[1;37mDone\!\e[0m"
-source ~/dotfiles/install.sh
 echo -e '\e[1;37mDone!\e[0m'
-source ~/dotfiles/install.sh
-source ~/dotfiles/install.sh
 whereis exa
-exa
-command -v exa
 dpkg -s sudo
 dpkg -s exa
 dpkg --info exa
 cd wikicd
 rg 'dpkg'
-sudo apt install wajig
-man wajig
 man 1 wajig
-wajig tutorial
-apt search bat
 apt info ba
-apt info bat
-sudo apt install bat
 wajig tutorial | bat
 sudo apt install bat
 wajig listinstalled
 whatis bat
 batcat ~/dotfiles/install.sh
-whatis mlocate
-sudo apt install mlocate
-whatis mlocate
 whatis locate
-whereis mlocate
 whereis locate
-sudo updatedb.mlocate &
-sudo apt install anacron
 mlocate bat
 locate batcat
 man batcat
-cd /usr/bin
-ll
 batcat batcat
 brew search bat
-brew info bat
 sudo apt uninstall bat
 sudo apt remove bat
-brew install bat
 bat lesscenter
 bat ~/.bin/lesscenter
-bat ~/dotfiles/install.sh
-sudo updatedb.mlocate &
 locate bat
 locate linuxbrew**bat
 locate linuxbrew*bat
@@ -1737,7 +1246,6 @@ cd ~/.config/zsh/functions
 touch bat
 vim bat
 bat
-bat ~/dotfiles/install.sh
 whereis bat
 whereis mlocate
 whereis -b mlocate
@@ -1749,123 +1257,50 @@ whatis /usr/bin/locate
 echo "which bat
 echo "which bat"
 echo "$(which bat)"
-vim .config/zsh/functions/bat
-which bat
-bat ~/dotfiles/install.sh
-vim .config/zsh/functions/bat
-bat ~/dotfiles/install.sh
-which bat
-brew uninstall bat
-brew install bat
-which bat
 vim .config/zsh/functions/bat1
 ln -sv $(which bat) $HOME/.bin/bat
-which bat
 vim .config/zsh/functions/bat
-bat ~/dotfiles/install.sh
-which bat
-bat ~/dotfiles/install.sh
 bat /etc/zshrc
 bat /etc/zsh/zshrc
-which bat
 which bat1
 echo $A
 which $A
 [[ which $A = "$A not found" ]] && echo 'Yes' || echo 'No'
 [[ $(which $A) = "$A not found" ]] && echo 'Yes' || echo 'No'
-[[ $(which $A) = "$A not found" ]] && echo 'Yes' || echo 'No'
-which fd
-vim .config/zsh/.zshrc
 zplugin self-update
-zplugin cdlist
 compdef _gnu_generic bat &
 man bat
 man bat \[
 zplugin create _local
 zplugin create
-git status
-vim .config/zsh/.zlogin
-conda update conda
 conda init zsh
-ll -A
 bat .zshrc
-vim .zshrc
 rm .zshrc
-cd ~/dotfiles/
 echo $$?
 conda config --set changeps1 False
 bat .condarc
 conda activate base
 echo $?
-cd /opt/miniconda3/bin/conda
 find 'shell.zsh'
 find -R 'shell.zsh'
 locate shell.zsh
 eval "$('/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-conda info
-conda info -e
 conda create --name newenvironment
-conda info
-conda info -e
-conda activate newenvironment
 python
 conda info -e
-conda info
-conda activate newenvironment
-conda info
 vim .condarc
-conda info
 conda activate newenvironment
 conda info
 cd /opt/miniconda3/bin/conda
-man less
-cd dotfiles/
-cd ~/dotfiles
-cd ~/dotfiles
-git status
-git diff
 vim new
 echo "\uE0A0"
-cd ~/dotfiles
-source ~/.config/zsh/.zshrc
-source ~/.config/zsh/.zshrc
-gs
 echo "less $LESS"
 echo "less ${LESS}"
-bat ~/dotfiles/install.sh
-git show
 git show | bat -l rs
-vim config/git/config
-git show
-git show | bat -l rs
-vim config/git/config
-git show
-vim config/git/config
-git show
-vim config/git/config
-git show
-git status
 git add condarc
-git status
-gs
-git diff
-man less
 man man
-man less
-cd dotfiles/
-umask
 [[ $(umask) = '000' ]] && echo 'Yes' || echo 'No'
 umask
-source ~/dotfiles/install.sh
-vim .config/zsh/.zshrc
-cd dotfiles/
-source ~/.config/zsh/.zshrc
-cd dotfiles/
-source ~/.config/zsh/.zshrc
-cd dotfiles/
-cd ~/dotfiles
-git status -s
-git status
 dpkg-query --list bfs
 dpkg-query --list vim
 dpkg-query --list lf
@@ -1873,39 +1308,16 @@ dpkg-query --list exa
 dpkg --status ex
 dpkg --status exa
 dpkg --status bfs
-vim ~/dotfiles/install.sh
-source ~/dotfiles/install.sh
-cd ~/dotfiles
-git status
-git diff
 dpkg-query -W -f='${Status}' nano 2>/dev/null | grep -c "ok installed"
-installed-by-apt nano
-installed-by-apt exa
-source ~/dotfiles/install.sh
-installed-by-apt exa
-source ~/dotfiles/install.sh
-installed-by-apt exa
-source ~/dotfiles/install.sh
-installed-by-apt exa
 which exa
 exa
-which fd
-installed-by-apt fd
-source ~/dotfiles/install.sh
 installed-by-apt fd
 installed-by-apt nano
 [[ installed-by-apt nano ]] && echo 'Yes' || echo 'No'
-[[ $(installed-by-apt nano) ]] && echo 'Yes' || echo 'No'
-[[ $(installed-by-apt exa) ]] && echo 'Yes' || echo 'No'
 installed-by-apt exa
-source ~/dotfiles/install.sh
-[[ $(installed-by-apt exa) ]] && echo 'Yes' || echo 'No'
 [[ $(installed-by-apt nano) ]] && echo 'Yes' || echo 'No'
 [[ $(installed-by-apt exa) ]] && echo 'Yes' || echo 'No'
 [[ $(installed-by-apt fd) ]] && echo 'Yes' || echo 'No'
-which fd
-which vim
-which nvim
 installed-by-apt vim
 installed-by-apt nvim
 [[ 0 ]] && echo 'Yes' || echo 'No'
@@ -1925,24 +1337,15 @@ echo -e '\e[35;1mapt install \e[32;1mapp\e[0m'
 echo -e '\e[35;1mapt \e[37;1install \e[32;1mapp\e[0m'
 echo -e '\e[35;1mapt \e[37;1minstall \e[32;1mapp\e[0m'
 for i in {30..37}; do echo -e "\033[1;$i""m colorful text\033[0m"; done
-source ~/dotfiles/install.sh
-vim ~/dotfiles/install.sh
-source ~/dotfiles/install.sh
 echo ''
-source ~/dotfiles/install.sh
-brew list
 brew list nvim
 brew list m4
 brew list bat
 brew list rg
-brew list exa
 brew list ag
 brew list exa
 brew list exa || echo 'No'
 brew list exa > /dev/null 2>&1 || echo 'No'
-brew list
-source ~/dotfiles/install.sh
-cd ~/dotfiles
 vim config/zsh/themes/spaceship.zsh
 vim .config/zsh/themes/spaceship.zsh
 echo $PROMPT
@@ -1950,7 +1353,6 @@ echo $PROMPT2
 echo $PROMPT3
 echo $PROMPT4
 vim .zshenv
-vim .config/zsh/.zprofile
 which confa
 which conda
 /opt/miniconda3/bin/conda
@@ -1961,15 +1363,12 @@ apt search fd | less
 apt search fd | bat
 apt info fd
 apt info fd-find
-brew info fd
 brew info bat
 brew list fd
-source ~/dotfiles/install.sh
 fd shell.zsh
 fd conda
 fd conda | less
 fd conda | less -R
-man less
 fd conda | less -r
 fd conda | bat
 fd conda | less -RX
@@ -1986,108 +1385,58 @@ apt search command-not
 apt info command-not-found
 apt info packagekit-command-not-found
 sudo apt install command-not-found
-cd /etc/
-sudo update-command-not-found
 update-command-not-found
 sudo update-command-not-found
 zplugin times
 command -v bfs
 [[ $(command -v bfs) ]] && echo 'Yes'
-[[ $(command -v exa) ]] && echo 'Yes' || echo 'No'
 command -v exa
 command -v batgrep
-which bat
 brew uninstall bat
-which bat
 command -v bat
 source ~/dotfiles/install.sh
-vim dotfiles/install.sh
-source ~/.config/zsh/.zshrc
-vim .config/zsh/.zshrc
-bat ~/dotfiles/install.sh
 which bat
 source ~/.config/zsh/.zshrc
-which fd
 fd _rg
 sudo apt uninstall command-not-found
 sudo apt remove command-not-found
 sudo apt remove
 bat cache
 [[ $(command -v exa) ]] && echo 'Yes' || echo 'No'
-vim
-vim .config/zsh/.zshrc
-update
-vim .config/zsh/.zprofile
-brew --prefix
 brew shellenv
 echo $__conda_setup
-ll
 echo $__conda_setup > temp
 echo "$__conda_setup" > temp
-ll
-bat temp
 echo "$__conda_setup" temp
 echo "$__conda_setup" >! temp
 bat temp
 cd .cache/zsh
-ll -A
 ll -A ~/.cache/zsh
-ll
 bat conda.zsh
 source ./conda.zsh
 /opt/miniconda3/bin/conda shell.zsh hook > temp.zsh
-ll
 source temp.zsh
-rm -f ~/.cache/zsh/conda.zsh
 echo "$__conda_setup"
-echo "$__conda_setup"
-rm -f ~/.cache/zsh/conda.zsh
 echo ${PATH_TO_CONDA_INSTALL}/bin/conda}
 echo ${PATH_TO_CONDA_INSTALL/bin/conda}
 echo ${PATH_TO_CONDA_INSTALL}/bin/conda
 [ $? -eq 0 ] && echo 'Yes' || echo 'No'
-[ $? -eq 0 ] && echo 'Yes' || echo 'No'
-[ $? -eq 0 ] && echo 'Yes' || echo 'No'
 [ $? -neq 0 ] && echo 'Yes' || echo 'No'
 [ ! $? -eq 0 ] && echo 'Yes' || echo 'No'
-[ ! $? -eq 0 ] && echo 'Yes' || echo 'No'
-rm -f ~/.cache/zsh/conda.zsh
 cd ~/.cache/zsh/
-ll
-git status
 git remote
 git remote -v
-git remote -vv
-git add -A
-gs
 git commit -m 'Continue develop'
-gs
 git push origin
-apt search node
 apt search nodejs
 brew search node
-brew info node
-which curl
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt-get instll nodejs
 sudo apt-get install nodejs
-node -v
 sudo apt remove nodejs
-update
-vim dotfiles/install.sh
-vim .config/zsh/functions/update
-gs
-brew install node
-vim dotfiles/install.sh
 node -v
 vim .config/nvim/plugins.vim
-gs
-git diff
-git commit -a --amend
 git push -f origin
-git graph
-git log
-pengwin-setup
 winhome/AppData/Roaming/alacritty/alacritty.yml
 vim winhome/AppData/Roaming/alacritty/alacritty.yml
 zsh --login -c "vim --version"
@@ -2111,7 +1460,6 @@ zsh -ic "echo Hello"
 zsh -ic 'echo "Hello World"'
 wslpath 'D:\test.txt'
 nvim $(wslpath 'D:\test.txt')
-bash --login -c "nvim $(wslpath 'D:\test.txt')"
 bash --login -c nvim $(wslpath 'D:\test.txt')
 bash --login -c "nvim $(wslpath 'D:\test.txt')"
 bash --login -c 'nvim $(wslpath "D:\test.txt")'
@@ -2119,349 +1467,455 @@ nvim '/mnt/d/test.txt'
 bash -c "nvim '/mnt/d/test.txt'"
 ln -sv /mnt/c c
 ln -sv /mnt/d d
-ll
-vim d/artyu/Ѓ�оку�менту�/Ѓ�иу�ну�е\ доку�менту�/Ѓ�езу�ме/CV\ Yuriy\ Artemyev/text.txt
-vim
 touch vienna_rose_twitter.txt
 vim vienna_rose_twitter.txt
-update
-vim
-cd ~/d/artyu/Ѓ�оку�менту�/Ѓ�иу�ну�е\ доку�менту�/Ѓ�езу�ме/CV\ Yuriy\ Artemyev/
-ll
-touch список_нау�у�ну�у�_ру�ководителей.txt
-vim список_нау�у�ну�у�_ру�ководителей.txt
-update
-vim
 brew search fr
 brew search far
 apt search far
 apt search far | rg far
 apt search far | less
 cd /etc/wsl.conf
-ll
-ll | less
 bat wsl.conf
 man rsync
 rsync /etc/wsl.conf ~/dotfiles/
-cd ~/dotfiles
-ll
-git status
-vim wsl.conf
-git add -A
-git status
 git commit -m 'wsl.conf - new file'
-gs
-git push
-vim
-bat ~/dotfiles/install.sh
 bat ~/.cache/zsh/conda.zsh
-vim .config/zsh/.zprofile
 [[ -s ~/.cache/zsh/conda.zsh(#q.md-7) ]] && echo 'Yes' || echo 'No'
 [[ -s ~/.cache/zsh/conda.zsh(#q.md-7N) ]] && echo 'Yes' || echo 'No'
-ll
-ll -A
-ll
 vim cd
-vim ~/.config/zsh/.zprofile
-ll
-vim отзу�в.txt
-cd ~/dotfiles
-git status
 git commit -a -m 'Fix bug with recompiling conda cache file'
-gs
-git graph
-git push
-vim
 vim ~/.config/nvim/plugins.vim
-vim
-vim
-cd ~/dotfiles
-git status
-git diff
-ll
-ll -A
-bat .gitignore
 bat install.sh
-vim ~/.config/zsh/.zprofile
 /home/linuxbrew/.linuxbrew/bin/brew shellenv
 rm -f ~/.cache/zsh/conda.zsh
-ll
 brew --prefix
 /home/linuxbrew/.linuxbrew/bin/brew shellenv >! test.zsh
-bat test.zsh
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv) >! test.zsh
 bat test.zsh
-ll
 bat brewenv.zsh
-cd ~/dotfiles
-gs
-ll
 mkdir windows_terminal
-ll
-cd windows_terminal/
 touch profile.json
 vim profile.json
-ll
 bat profile.json
-cd dotfiles/
-git status
-git diff
-cd windows_terminal/
-ll
-vim
-gs
 ..
-git status
-git diff
-git log
-git show
-cd ~/dotfiles
-gs
-vim
-update
 brew --cache
 brew --cache a2ps
 brew cleanup
 brew cleanup -s
 cd ~/.cache/Homebrew/
-ll
 conda clean --yes
 conda clean --yes --dry-run
 conda clean --yes --dry-run --alll
 conda clean --yes --dry-run --all
 conda clean --yes --all
-ll
-bat отзу�в.txt
-rm отзу�в.txt
-vim
 vim --version
-vim
-cd ~/dotfiles
-gs
-git add -A
-gs
 git reset --staged windows_terminal/profiles_default.json
 git restore --staged windows_terminal/profiles_default.json
-gs
 echo 'windows_terminal/profiles_default.json' >> .gitignore
 bat .gitignore
-gs
 git add .gitignore
-git status
 git commit -m 'add windows terminal settings'
-gs
-git log
-git commit --amend
-gs
-git graph
-git push
 git log --decorate
-git show
-vim
-cd ~/dotfiles
-ll
 cd windows_terminal/
-ll
 vim profiles_default.json
-vim
 /mnt/c/Users/artyu/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/profiles.json
-rsync /mnt/c/Users/artyu/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/profiles.json ~/dotfiles/windows_terminal/profiles.json
 bat ~/dotfiles/windows_terminal/profiles.json
 bat exit
-vim
-rsync /mnt/c/Users/artyu/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/profiles.json ~/dotfiles/windows_terminal/profiles.json
-cd dotfiles/
-gs
 git commit --amend
-git push --force
-git graph
-git status
-git commit -a --amend
-gs
-git push --force
-gs
 locate wsl.conf
-cd ~/dotfiles
 vim wsl.conf
-gs
-git commit -a --amend
-git push -f
-pengwin-setup
 brew search kitty
 apt search kitty
 sudo apt install kitty
 apt autoclean
-sudo apt autoclean
-kitty
-cd ~/dotfiles
-gs
-kitty
-vim
-which python3
 vim .config/zsh/.zshrc
-cd '/mnt/d/artyu/Ѓ�оку�менту�/_Ѓ�абота/2 и 3 у�ровневау� су�ема/'
-ll
 vim '2 level atom old.py'
 cd dotfiles/config/nvim/plugged/python-mode
-gs
 git submodule update --init --recursive
-cd '/mnt/d/artyu/Ѓ�оку�менту�/_Ѓ�абота/2 и 3 у�ровневау� су�ема/'
-python3 '2 level atom.py'
 conda install numpy
 conda install numpy -y
-python3 '2 level atom.py'
 conda install scipy -y
-python3 '2 level atom.py'
 conda install matplotlib -y
-vim dotfiles/install.sh
 vim ll
-git status
-ll
 vim update
-cd ..
-ll
 ll -A
 vim .zshrc
-gs
-cd ~/dotfiles
 git digg
-git diff
-git commit -a --amend
-git push -f
-python3 '2 level atom.py'
 conda install sympy -y
-python3 '2 level atom.py'
-cd '/mnt/d/artyu/Ѓ�оку�менту�/_Ѓ�абота/2 и 3 у�ровневау� су�ема/'
-python3 '2 level atom.py'
-vim dotfiles/install.sh
-cd dotfiles/
-gs
-git commit -a --amend
-git push -f
-git status
-vim dotfiles/install.sh
-cd dotfiles/
-gs
-git commit -a --amend
-git push -f
-git graph
-vim dotfiles/install.sh
-vim ~/dotfiles/install.sh
-gs
-git commit -a --amend
-git status
-git push -f
-vim ~/dotfiles/install.sh
-gs
-git commit -a --amend
-git push -f
 vim .config/zsh/.zlogin
 vim .config/zsh/.zprofile
-vim dotfiles/install.sh
-cd dotfiles/
-gs
-git diff
-git commit -a --amend
-gs
 git push --force
-gs
-git graph
-cd '/mnt/d/artyu/Ѓ�оку�менту�/_Ѓ�абота/2 и 3 у�ровневау� су�ема/'
-python3 '2 level atom.py'
-cd '/mnt/d/artyu/Ѓ�оку�менту�/_Ѓ�абота/2 и 3 у�ровневау� су�ема/'
-python3 '2 level atom.py'
-cd '/mnt/d/artyu/Ѓ�оку�менту�/_Ѓ�абота/2 и 3 у�ровневау� су�ема/'
-python3 '2 level atom.py'
-sudo updatedb.mlocate &
-mlocate vcxsrv
-cd '/mnt/d/artyu/Ѓ�оку�менту�/_Ѓ�абота/2 и 3 у�ровневау� су�ема/'
 python3 '2 level atom.py'
 kitty
-mlocate vcxsrv
 bat /usr/local/pengwin-setup.d/vcxsrv.sh
 bat /home/anuvyklack/dotfiles/vcxsrv.sh
-cd /usr/local/pengwin-setup.d
-ll
 bat shortcut.sh
-bat gui.sh
-ll
 bat common.sh
 bat gui.sh
 bat guilib.sh
 echo $WSL2
-bat hidpi.sh
-cd /etc/profile.d
-ll
 bat brew
 bat brew.sh
 bat dbus.sh
 bat hidpi.sh
-ll
 bat 00-pengwin.sh
-bat 01-vcxsrv.sh
-bat ~/dotfiles/vcxsrv.sh
-sudo vim 01-vcxsrv.sh
 bat ~/dotfiles/vcxsrv.sh
 bat 01-vcxsrv.sh
 sudo vim 01-vcxsrv.sh
-man zshall
 bat /etc/profile
-cd ~/dotfiles
 cd /etc/
-ll
-vim
 sudo update
-update
-cd ~/dotfiles
-git status
-rsync /mnt/c/Users/artyu/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/profiles.json ~/dotfiles/windows_terminal/profiles.json
-git status
-git diff
-git show
-git log
-git commit -a --amend
-git push -f
-git status
 man zshall
-vim dotfiles/install.sh
-gs
-git diff
-vim dotfiles/install.sh
-vim ~/dotfiles/install.sh
 vim zshrc
-gs
-git diff
-cd *
-cd +
 cdh
 cd /
-cd ~
-cd -
 cd +
 cd /home/linuxbrew
-cd -
-cd ~
-cd /etc
-cd ~
-cd ~/dotfiles
-cd -
-which dsc
 which dsc
 whatis dsc
-cd !
 cd -
-vim ~/dotfiles/config/zsh/zshrc +38
-vim ~/dotfiles/config/zsh/zshrc
-git status
-git diff
-git status
 w
 whatis w
-vim ~/dotfiles/config/zsh/zshrc
-vim ~/dotfiles/config/zsh/zshrc +3
 fc -r
-vim ~/dotfiles/config/zsh/zshrc +3
 fc -W ~/.cache/zsh/zsh_history
+rsync -v ~/.cache/zsh/zsh_history ~/dotfiles/config/zsh/zsh_history
+Binary file /home/anuvyklack/.cache/zsh/zsh_history.old matches
+bat ~/dotfiles/config/zsh/zsh_history
+cd ~/.cache/zsh
 bat ~/.cache/zsh/zsh_history
+dpkg-query patchelf
+cd dotfiles/
+cd ~/etc
+vim newuser.zshrc.recommended
+git
+git --version
+brew update *
+brew update all
+bat ~/.config/zsh/functions/update
+cd /usr/bin
+git stach -A
+git stash drop stash@\{0\}
+sudo apt upgrade && sudo apt update
+vim .config/zsh/functions/update
+vim config/zsh/functions/update
+whatis dialog
+bash
+sh -c dialog
+sh -c "dialog --title 'Welcom' --msgbox 'welcom home'"
+cd /etc/zsh/
+mlocate vcxsrv
+pengwin-setup
+whatis pengwin-setup
+whereis pengwin.exe
+whereis pengwin-setup
+whatis /usr/local/bin/pengwin-setup
+pengwin-help
+cd /usr/local/bin
+whatis whiptail
+whiptail
+whiptail --title "Upgrade Available" --yesno "A distribution upgrade is available. In addition to regular package upgrades, this may also install / remove packages. Would you like to continue?\n\nTo run a non-automated distribution upgrade and see package changes, or to perform this in your own time, run 'sudo apt-get dist-upgrade'" 12 90
+whatis confirm
+man confirm
+git idff
+git remote -vv
+source test
+
+vim test.sh
+cd ~/dotfiles/setup/
+source test.sh
+cd /usr/local/pengwin-setup.d
+cd /etc/profile.d
+echo -e "\e[1;37mLink zsh files to\e[0m \e[1;34m$ZDOTDIR\e[0m"
+echo -e "\e[1;37mInstalling \e[1;34mHomebrew \e[1;37mdependencies\e[0m"
+echo -e "\e[1;37mInstalling \e[1;33mHomebrew \e[1;37mdependencies\e[0m"
+echo -e "\e[1;37mInstalling \e[1;32mHomebrew \e[1;37mdependencies\e[0m"
+ll service/
+which ranger
+brew doctor
+mlocate pengwin
+vim exit
+git difff
+git mergetool
+git megre
+git checkout ed33976
+git checkout master ed33976
+git merge --abort
+git checkout master
+git stash list
+git stash apply
+bat config/zsh/zprofile.orig
+nvim -d zprofile zprofile.orig
+rm zprofile.orig
+git stash pop
+git stash clear
+git add install.sh
+rg wordchars
+rg "wordchars"
+vim config/git/config
+vim ~/.config/zsh/.zprofile
+git diff --cached
+git commit
+brew info node
+wajig show nodejs
+which fd
+sudo apt install fd-find
+fd
+whatis fd
+wajig show ripgrep
+wajig show ripgrep | less
+cd /etc/apt/
+rsync /mnt/c/Users/artyu/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/profiles.json ~/dotfiles/windows_terminal/profiles.json
+vim ~/dotfiles/install.sh
+git yolo
 rsync ~/.cache/zsh/zsh_history ~/dotfiles/config/zsh/zsh_history
+zplugin update
+cd ~/.config/nvim
+cd ~/.zplugin/
+cd snippets
+cd fzf.vim
+which curl
+which wget
+sudo apt install curl wget
+sudo apt install file
+wget
+curl
+fzf
+rm -rf ~/.zplugin/
+which perl
+perl
+git --no-pager config --global --list
+vi ~/.config/zsh/.zshrc
+vi ~/.config/zsh/.zprofile
+sudo apt install man
+man less
+git --no-pager show
+vi ~/.config/git/config
+git pull -f
+git pull --force
+rm -rf ~/dotfiles/
+ls -l
+git clone https://github.com/anuvyklack/dotfiles.git
+cd setup/
+source miniconda-setup.sh
+cd ~/dotfiles/
+ln -sv ~/dotfiles/condarc ~/.condarc
+ls -A
+source homebrew-setup.sh
+sudo apt install bfs
+sudo apt install anacron
+sudo apt install rsync
+sudo apt install mlocate
+apt search lsd
+apt search bat
+apt info bat
+apt info node
+apt search node
+conda update --all
+conda update conda
+brew install ranger
+sudo rm -rf /opt/miniconda3
+which brew
+rm -rf /home/linuxbrew
+sudo rm -rf /home/linuxbrew
+which python
+which python3
+source ~/dotfiles/setup/homebrew-setup.sh
+update
+brew install neovim
+brew install lsd
+brew install fd
+brew install ripgrep
+brew install bat
+brew install node
+brew
+brew update
+brew upgrade
+sudo apt install ranger
+source ~/dotfiles/setup/miniconda-setup.sh
+conda install pynvim
+nvim
+brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+vim init.vim
+brew list
+whatis vim
+whatis mlocate
+sudo updatedb.mlocate
+brew uninstall pdate && brew upgrade
+brew uninstall update && brew upgrade
+echo $PAGER
+export $EDITOR='nvim'
+export EDITOR='nvim'
+echo $EDITOR
+brew update && brew upgrade
+command -v nvim
+sudo updatedb.mlocate &
+git commit -a
+git push
+vim ~/dotfiles/config/zsh/zprofile
+git commit -a --amend
+git push -f
+cd ~/dotfiles/setup
+cd ..
+cd /etc
+bat issue
+cat issue
+echo $LESS
+bat /etc/issue
+apt update less
+dpkg-query less
+dpkg-query info less
+dpkg-query --show less
+dpkg-query -s less
+brew search less
+brew info less
+sudo apt install less/testing
+sudo apt install less/backport
+echo $WORDCHARS
+whatis rsync
+whereis rsync
+rsync /etc/apt/{sources.list,sources.list.orig}
+sudo rsync /etc/apt/{sources.list,sources.list.orig}
+cd /etc/apt
+sudo vim sources.list
+sudo nvim sources.list
+which rsync
+which vim
+apt full-upgrade
+sudo !
+which wajig
+apt search wajig | rg wajig
+apt-get search wajig | rg wajig
+sudo apt install wajig
+wajig distupgrade
+man wajig
+wajig tutorial
+pwd
+wajig tutorial > wajig-tutorial.md
+wajig describe rsync
+wajig describe apt
+wajig doc
+wajig doc | less
+apt search nvim
+apt search neovim
+apt search neovim | fzf
+wajig search neovim
+wajig search neovim --teaching
+wajig --teaching search neovim
+apt show neovim
+wajig show neovim
+wajig show apttitude
+wajig show aptitude
+wajig install aptitude
+aptitude
+sudo aptitude
+sudo apt clean
+sudo apt autoclean
+sudo apt full-upgrade
+aptitude search neovim
+aptitude show neovim
+man apt
+cd /usr/share/doc/
+wajig editsources
+cd /usr/local
+ll | less
+brew link neovim
+sudo nvim
+man sources.list
+wajig lastupdate
+wajig search neovim -v
+wajig status neovim
+cat sources.list
+apt-cache policy neovim
+cat /etc/wsl
+cat /etc/wsl.conf
+ls
+bat wajig-tutorial.md
+vim wajig-tutorial.md
+wajig policy nwocim
+cat etc/apt/sources.list
+rsync /etc/apt/sources.list ~/
+cat /etc/apt/sources.list
+sudo apt update
+wajig policy less
+wajig install les
+wajig install less
+wajig status less
+wajig contents less
+wajig fixinstall
+wajig fixmissing
+wajig info less
+wajig info neovim
+wajig --teaching fixinstall
+wajig --teaching fixinstall neovim
+wajig searchapt
+wajig
+wajig install -t less
+wajig install --version less
+wajig install --version
+sudo apt -t buster-backports less
+sudo apt -t buster-backports install less
+less --version
+wajig policy neovi
+git config --global --list
+git diff
+git reset HEAD
+git reset --hard HEAD
+git show
+ll
+rsync sources.list ~/dotfiles/service/sources.list.buster.yandex
+sudo rsync ~/sources.list /etc/apt/sources.list
+wajig search bfs
+bat ~/dotfiles/install.sh
+git stash
+git pull --rebase
+git merge
+git graph
+wajig search lsd
+wajig search bat
+wajig search fd
+wajig search fd-find
+git status backup.sh
+git status -s
+vim
+vim .config/git/config
+vim sources.list
+wajig show fd-find
+brew info fd
+wajig policy fd-find
+wajig --version
+wajig search node
+wajig search node | rg 'node'
+wajig search node | rg 'node' | less
+wajig show node
+sudo rsync ~/dotfiles/servicesources.list /etc/apt/sources.list
+sudo rsync ~/dotfiles/service/sources.list /etc/apt/sources.list
+bat /etc/apt/sources.list
+wajig update
+wajig toupgrade
+wajig upgrade
+wajig dailyupgrade
+wajig autoremove
+wajig autoclean
+brew remove neovim
+wajig policy neovim
+wajig install neovim
+which nvim
+which vi
+whatis vi
+vi
+cd ~
+cd ~/dotfiles
+git fetch
+gs
+git pull
+git status
+git log
+git add -A
+echo ~/.cache/zsh/zsh_history
+echo $(~/.cache/zsh/zsh_history)
+sudo echo $(~/.cache/zsh/zsh_history)
+cat ~/.cache/zsh/zsh_history
+cat ~/.cache/zsh/zsh_history >> ~/dotfiles/config/zsh/zsh_history
+vim ~/dotfiles/config/zsh/zshrc
+vim ~/.cache/zsh/zsh_history
 rsync -v ~/.cache/zsh/zsh_history ~/dotfiles/config/zsh/zsh_history
