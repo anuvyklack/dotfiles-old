@@ -517,7 +517,8 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'lervag/wiki.vim'
 " so ~/.config/nvim/plugins_settings/wiki.vim
 
-let g:wiki_root = '~/wiki'
+" let g:wiki_root = '~/wiki'
+let g:wiki_root = '/mnt/d/artyu/wiki'
 
 " List of filetypes for which wiki.vim should be enabled.
 let g:wiki_filetypes = ['md', 'wiki']

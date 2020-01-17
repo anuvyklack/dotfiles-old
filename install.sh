@@ -11,8 +11,9 @@ symlink()  # {{{
     TARGET=$1
     LINK=$2
 
-    # $LINK doesn't exists, or not a symlink OR
-    # is a symlink but and points to $TARGET.
+    # $LINK doesn't exists, or not a symlink
+    # OR
+    # is a symlink but not points to $TARGET.
     if [[ ! -L "$LINK" ]] || [[ $(readlink -f "$LINK") != "$TARGET" ]]
     then
         ln -sv -f "$TARGET" "$LINK"
@@ -122,7 +123,7 @@ for APP in $aptapps; do aptinstall $APP; done
 
 # Install Homebrew and it's packages {{{
 
-# Check we have correct dependencies installed for brew
+# Check if we have correct dependencies installed for brew
 echo -e "\e[1;37mInstalling \e[1;33mHomebrew \e[1;37mdependencies\e[0m"
 sudo apt-get install -y -q build-essential curl file git
 
@@ -131,20 +132,19 @@ if [[ ! -d "/home/linuxbrew/.linuxbrew" ]]; then
 fi
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
-    brewinstall ()  # {{{
-    {
-        # Check if installed and install using `brew` otherwise.
-        if $(brew list $1 > /dev/null 2>&1)
-        then
-            echo -e "\e[32;1m$1\e[0m already installed"
-        else
-            echo ''
-            echo -e "\e[33;1mbrew \e[37;1minstall \e[32;1m$1\e[0m"
-            brew install $1
-            echo ''
-        fi
-    }
-# }}}
+brewinstall()  # {{{
+{
+    # Check if installed and install using `brew` otherwise.
+    if $(brew list $1 > /dev/null 2>&1)
+    then
+        echo -e "\e[32;1m$1\e[0m already installed"
+    else
+        echo ''
+        echo -e "\e[33;1mbrew \e[37;1minstall \e[32;1m$1\e[0m"
+        brew install $1
+        echo ''
+    fi
+}  # }}}
 
 local brewapps=(
     # neovim
