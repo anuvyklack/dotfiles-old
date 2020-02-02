@@ -201,10 +201,21 @@ fi
 echo ''
 # }}}
 
-# Node.js  {{{
+# Setup Bat (cat with wings) {{{
+symlink $DIR/config/bat $HOME/.config/bat
+if command -v bat > /dev/null 2>&1
+then
+    bat cache --build
+else
+    echo -e '\e[31;1m bat\e[0m \e[37;1mnot instlled!\e[0m'
+fi
+# }}}
+
+# Install Node.js on Debian  {{{
 
 # Using Debian, as root
 curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
 sudo apt-get install -y nodejs
 
 # }}}
+
