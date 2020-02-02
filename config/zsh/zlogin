@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # Execute code in the background to not affect the current session
 {
     setopt LOCAL_OPTIONS EXTENDED_GLOB GLOB_DOTS

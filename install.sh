@@ -94,10 +94,10 @@ aptinstall ()  # {{{
     if installed-by-apt $1
     then
         # echo -e "\e[32;1m$1 \e[37;1malready installed\e[0m"
-        echo -e "\e[32;1m$1 \e[0malready installed"
+        echo -e "\e[32;1m$1 \e[37;1malready installed\e[0m"
     else
-        echo -e "\e[33;1mapt \e[37;1minstall \e[32;1m$1\e[0m"
-        sudo apt-get install "$1"
+        echo -e "\e[33;1mapt-get \e[37;1minstall \e[32;1m$1\e[0m"
+        sudo apt-get install -y "$1"
     fi
 }
 # }}}
@@ -119,25 +119,38 @@ local aptapps=(
     # fzf      # fuzzy finder
 )
 for APP in $aptapps; do aptinstall $APP; done
+echo ''
 # }}}
 
 # Install Homebrew and it's packages {{{
 
 # Check if we have correct dependencies installed for brew
-echo -e "\e[1;37mInstalling \e[1;33mHomebrew \e[1;37mdependencies\e[0m"
-sudo apt-get install -y -q build-essential curl file git
+echo -e "\e[1;37mInstalling \e[1;33mHomebrew \e[1;37mdependencies: \e[0m"
+for APP in build-essential curl file git
+do
+    aptinstall $APP
+done
+echo ''
 
-if [[ ! -d "/home/linuxbrew/.linuxbrew" ]]; then
+if [[ ! -d "/home/linuxbrew/.linuxbrew" ]]
+then
+    echo -e "\e[1;37mInstalling \e[1;33mHomebrew \e[0m"
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+else
+    echo -e "\e[1;33mHomebrew \e[1;37malready installed \e[0m"
 fi
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+echo ''
+
+
+echo -e "\e[1;37mInstalling \e[1;33mHomebrew \e[37;1mpackages: \e[0m"
 
 brewinstall()  # {{{
 {
     # Check if installed and install using `brew` otherwise.
     if $(brew list $1 > /dev/null 2>&1)
     then
-        echo -e "\e[32;1m$1\e[0m already installed"
+        echo -e "\e[32;1m$1 \e[37;1malready installed \e[0m"
     else
         echo ''
         echo -e "\e[33;1mbrew \e[37;1minstall \e[32;1m$1\e[0m"
@@ -157,8 +170,14 @@ local brewapps=(
 for APP in $brewapps; do brewinstall $APP; done
 
 # Installing universal-ctags
-brew install --HEAD universal-ctags/universal-ctags/universal-ctags
-
+if $(brew list universal-ctags > /dev/null 2>&1)
+then
+    echo -e "\e[32;1muniversal-ctags \e[37;1malready installed \e[0m"
+else
+    echo -e "\e[33;1mbrew \e[37;1minstall \e[32;1muniversal-ctags \e[0m"
+    brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+fi
+echo ''
 # }}}
 
 # Install Miniconda3 to /opt/miniconda3 {{{
@@ -180,11 +199,11 @@ fi
 # }}}
 
 # Setup Neovim {{{
-echo -e '\e[37;1mSetup Neovim\e[0m'
+echo -e "\e[37;1mSetup \e[32;1mneovim \e[0m"
 symlink $DIR/config/nvim $HOME/.config/nvim
 
 # Make an symlink to win32yank for Neovim WSL clipboard
-symlink "/mnt/c/tools/win32yank.exe" "/usr/local/bin/win32yank"
+sudo ln -svf "/mnt/c/tools/win32yank.exe" "/usr/local/bin/win32yank"
 
 if ! command -v conda > /dev/null 2>&1
 then
@@ -205,17 +224,31 @@ echo ''
 symlink $DIR/config/bat $HOME/.config/bat
 if command -v bat > /dev/null 2>&1
 then
+    echo -e "\e[37;1mBuild \e[32;1mbat \e[37;1mcache \e[0m"
     bat cache --build
 else
-    echo -e '\e[31;1m bat\e[0m \e[37;1mnot instlled!\e[0m'
+    echo -e '\e[31;1mbat \e[37;1mnot installed!\e[0m'
 fi
+echo ''
 # }}}
 
 # Install Node.js on Debian  {{{
-
-# Using Debian, as root
-curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
-sudo apt-get install -y nodejs
-
+if installed-by-apt nodejs
+then
+    echo -e "\e[32;1mnodejs \e[37;1malready installed \e[0m"
+else
+    echo -e "\e[37;1mInstalling \e[32;1mnodejs \e[37;1mby \e[33;1mapt-get \e[0m"
+    curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
+    sudo apt-get install -y nodejs
+fi
+echo ''
 # }}}
 
+# Setup mlocate {{{
+echo -e "\e[37;1mSetup \e[32;1mmlocate \e[0m"
+if [[ -s /etc/updatedb.conf && ! -s /etc/updatedb.conf.origin ]]
+then
+    sudo mv -vf /etc/updatedb.conf /etc/updatedb.conf.origin
+fi
+sudo ln -sv -f $DIR/etc/updatedb.conf /etc/updatedb.conf
+# }}}
