@@ -1,8 +1,7 @@
 #!/usr/bin/env zsh
 
 # WARNING:
-# This version of .zshrc use Powerlevel10k instant prompt and so doesn't
-# use "zinit" plugin manager "wait" ice.
+# This version of .zshrc use "zinit" plugin manager "wait" ice.
 
 # Powerlevel10k instant prompt {{{
 
@@ -261,7 +260,7 @@ unset THEME
 # zsh-users/zsh-autosuggestions that normally appears for every
 # Turbo-loaded plugin to not show.
 
-zinit ice lucid atload'_zsh_autosuggest_start'
+zinit ice wait lucid atload'_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
 
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
@@ -271,15 +270,15 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=1  # suggestions will be fetched
 
 # Completions {{{
 
-zinit ice lucid blockf
+zinit ice wait"0" lucid blockf
 zinit light zsh-users/zsh-completions
 
 # conda completion
-zinit ice lucid blockf
+zinit ice wait"0" lucid blockf
 zinit light esc/conda-zsh-completion
 zstyle ":conda_zsh_completion:*" use-groups true
 
-# zinit ice lucid id-as"auto" as"completion" blockf
+# zinit ice wait"0" lucid id-as"auto" as"completion" blockf
 # zinit snippet OMZ::plugins/fd/_fd
 
 # }}}
@@ -295,11 +294,11 @@ zinit light zdharma/zsh-diff-so-fancy
 # zinit light softmoth/zsh-vim-mode
 
 # This two should be last in this order
-zinit ice silent id-as"auto" atload"zpcompinit; zpcdreplay"
+zinit ice wait"1c" silent id-as"auto" atload"zpcompinit; zpcdreplay"
 # zinit ice silent id-as"auto" atload"zpcompinit; zpcdreplay"
 zinit light zsh-users/zsh-syntax-highlighting
 
-zinit ice lucid id-as"auto"
+zinit ice wait"1c" lucid id-as"auto"
 # zinit ice id-as"auto"
 zinit light zsh-users/zsh-history-substring-search
 

@@ -15,7 +15,10 @@
         {
             // "fontface": "Cascadia Code",
             // "fontsize": 14,
-            "fontFace": "Liga Inconsolata LGC NF",
+            // "fontFace": "Liga Inconsolata LGC NF",
+            "fontFace": "Liga Inconsolata LGC NF OT",
+            // "fontFace": "InconsolataLGC NF",
+            // "fontFace": "MesloLGC NF",
             "fontSize": 12,
             "colorScheme": "One Dark",
             "cursorShape": "filledBox"
@@ -26,6 +29,7 @@
                 "guid": "{7f586916-8357-53d4-bb2b-ca96f639898a}",
                 "hidden": false,
                 "name": "Pengwin",
+                "colorScheme": "Snazzy",
                 // "source": "Windows.Terminal.Wsl",
                 "commandline": "wsl.exe ~  -d WLinux",
                 "startingDirectory": "$HOME",
@@ -35,6 +39,7 @@
                 "guid": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
                 "hidden": false,
                 "name": "Debian",
+                "colorScheme": "Snazzy",
                 "source": "Windows.Terminal.Wsl",
                 "commandline": "wsl.exe ~  -d Debian",
                 "startingDirectory": "$HOME",
@@ -126,7 +131,7 @@
             "green": "#4E9A06",
             "yellow": "#C4A000",
             "blue": "#3465A4",
-            "magenta": "#855B8C",
+            "purple": "#855B8C",
             "cyan": "#06989A",
             "white": "#D3D7CF",
             "brightBlack": "#8C8F88",
@@ -134,11 +139,35 @@
             "brightGreen": "#8AE234",
             "brightYellow": "#FCE94F",
             "brightBlue": "#729FCF",
-            "brightMagenta": "#AD7FA8",
+            "brightPurple": "#AD7FA8",
             "brightCyan": "#34E2E2",
             "brightWhite": "#EEEEEC"
-         }
-    ],
+         },
+         {
+            "name": "Snazzy",
+
+            "background": "#282A36",
+            "foreground": "#EFF0EB",
+
+            "black":   "#282A36",
+            "red":     "#FF5C57",
+            "green":   "#5AF78E",
+            "yellow":  "#F3F99D",
+            "blue":    "#57C7FF",
+            "purple": "#FF6AC1",
+            "cyan":    "#9AEDFE",
+            "white":  "#ABB2BF",
+
+            "brightBlack":   "#686868",
+            "brightRed":     "#FF5C57",
+            "brightGreen":   "#5AF78E",
+            "brightYellow":  "#F3F99D",
+            "brightBlue":    "#57C7FF",
+            "brightPurple": "#FF6AC1",
+            "brightCyan":    "#9AEDFE",
+            "brightWhite":   "#F1F1F0"
+     }
+],
 
     // Add any keybinding overrides to this array.
     // To unbind a default keybinding, set the command to "unbound"

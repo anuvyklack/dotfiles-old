@@ -160,9 +160,9 @@ Plug 'tomtom/tcomment_vim'
 " =====================================================
 if has('unix')
 
-    if filereadable(expand("~/.zplugin/snippets/fzf.vim/fzf.vim"))
-        " If fzf was installed by zplugin
-        source ~/.zplugin/snippets/fzf.vim/fzf.vim
+    if filereadable(expand("~/.zinit/snippets/fzf.vim/fzf.vim"))
+        " If fzf was installed by zinit
+        source ~/.zinit/snippets/fzf.vim/fzf.vim
     elseif filereadable("/usr/share/doc/fzf/examples/fzf.vim")
         " If fzf was installed through apt.
         source /usr/share/doc/fzf/examples/fzf.vim
@@ -631,7 +631,7 @@ let g:polyglot_disabled = ['markdown']
 
 Plug 'lervag/vimtex', { 'for': 'LaTeX' }  " latex
 Plug 'PProvost/vim-ps1', {'for': 'ps1'}   " powershell
-Plug 'zplugin/zplugin-vim-syntax', { 'for': 'zsh' }  " Zplugin syntaxis
+Plug 'zinit-zsh/zinit-vim-syntax', { 'for': 'zsh' }  " zinit syntaxis
 
 " }}}
 
@@ -735,7 +735,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
 Plug 'ajmwagar/vim-deus'
-Plug 'sainnhe/gruvbox-material', { 'branch': 'neosyn' }
+Plug 'gruvbox-material/vim', {'as': 'gruvbox-material'}
 
 " }}}
 

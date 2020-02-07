@@ -1,4 +1,4 @@
-" Inline Code In Tables: {{{3
+" Inline Code In Tables: {{{
 " Using single back ticks
 if g:pandoc#syntax#conceal#use != 0 && index(g:pandoc#syntax#conceal#blacklist, "inlinecode") == -1
     syn region pandocNoFormattedInTables
@@ -16,7 +16,7 @@ else
         \ containedin=pandocTable,pandocGridTable,pandocPipeTable
         \ contained
 endif
-" }}}3
+" }}}
 
 
 hi link pandocNoFormattedInTables pandocNoFormatted

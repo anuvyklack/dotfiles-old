@@ -1,32 +1,29 @@
 # Spaceship-prompt
 
-SPACESHIP_PROMPT_SEPARATE_LINE=false      # Make the prompt span across two lines
-SPACESHIP_PROMPT_FIRST_PREFIX_SHOW=true   # Shows a prefix of the first section in prompt
-SPACESHIP_PROMPT_PREFIXES_SHOW=true       # Show prefixes before prompt sections or not
+SPACESHIP_PROMPT_SEPARATE_LINE=false     # Make the prompt span across two lines
+SPACESHIP_PROMPT_FIRST_PREFIX_SHOW=true  # Shows a prefix of the first section in prompt
+SPACESHIP_PROMPT_PREFIXES_SHOW=true      # Show prefixes before prompt sections or not
 
-# SPACESHIP_CHAR_SYMBOL=":: "
 # SPACESHIP_CHAR_SYMBOL="▶ "
 # SPACESHIP_CHAR_SYMBOL=" "
 # SPACESHIP_CHAR_SYMBOL=" "
 # SPACESHIP_CHAR_SYMBOL="$ "
-# SPACESHIP_CHAR_SYMBOL=" "
-# SPACESHIP_CHAR_SYMBOL=" "
 # SPACESHIP_CHAR_SYMBOL=" "
 SPACESHIP_CHAR_SYMBOL=" "
 
 SPACESHIP_DIR_PREFIX=' '               # Prefix before current directory
-SPACESHIP_DIR_TRUNC=3                  # Number of folders of cwd to show in prompt, 0 to show all
-SPACESHIP_DIR_TRUNC_PREFIX='…/'        # Prefix before cwd when it's truncated. For example …/ or .../, empty to disable
+# SPACESHIP_DIR_TRUNC=3                  # Number of folders of cwd to show in prompt, 0 to show all
+# SPACESHIP_DIR_TRUNC_PREFIX='…/'        # Prefix before cwd when it's truncated. For example …/ or .../, empty to disable
 
-# SPACESHIP_GIT_SYMBOL=' '
 SPACESHIP_GIT_SYMBOL=' '
+# SPACESHIP_GIT_SYMBOL=' '
 # SPACESHIP_GIT_SYMBOL=' '
 # SPACESHIP_GIT_SYMBOL='שׂ '
-# SPACESHIP_GIT_PREFIX=': '              # Prefix before Git section
-# SPACESHIP_GIT_PREFIX=' '               # Prefix before Git section
-SPACESHIP_GIT_PREFIX=''               # Prefix before Git section
+
+# SPACESHIP_GIT_PREFIX=''               # Prefix before Git section
+
 # SPACESHIP_GIT_STATUS_DELETED=''  # bold
-SPACESHIP_GIT_STATUS_DELETED=''  # semi
+# SPACESHIP_GIT_STATUS_DELETED=''  # semi
 # SPACESHIP_GIT_STATUS_DELETED='窱'  # semi
 # SPACESHIP_GIT_STATUS_DELETED=''  # light
 
