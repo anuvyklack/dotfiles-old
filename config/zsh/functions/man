@@ -7,12 +7,10 @@ man() {
         WIDTH=$COLUMNS
     fi
 
-    # export MANWIDTH=80
-
     LESSOPEN_ORIGINAL=LESSOPEN
     export LESSOPEN="|- lesscenter %s"
 
-    MANWIDTH=$WIDTH /usr/bin/man $*
+    MANWIDTH=$WIDTH command man $*
 
     export LESSOPEN=LESSOPEN_ORIGINAL
 

@@ -54,8 +54,8 @@ set titlestring=\ %F
 " =====================================================================
 set pyxversion=3
 if has('unix')
-    let g:python3_host_prog = '/opt/miniconda3/bin/python3'
-    let g:python_host_prog  = '/opt/miniconda3/bin/python'
+    let g:python3_host_prog = '/opt/miniconda3/envs/nvim/bin/python'
+    let g:python_host_prog  = '/opt/miniconda3/envs/nvim/bin/python'
 elseif has('win32')
     let g:python3_host_prog = 'C:/scoop/apps/miniconda3/current/python.exe'
     let g:python_host_prog  = 'C:/scoop/apps/miniconda2/current/envs/nvimpy2/python.exe'
@@ -113,9 +113,9 @@ set list listchars=tab:\ \ ,trail:· ",eol:¶ ",eol:¤
 " Folds                                                             {{{
 " =====================================================================
 set foldenable         " fold by default
-set foldmethod=marker   " fold based on indent
-
+set foldmethod=marker   " fold based on markers
 " set foldmethod=indent   " fold based on indent
+
 set foldnestmax=3       " deepest fold is 3 levels (only for sintax and indent)
 
 set foldtext=CustomFoldText('·')
@@ -264,9 +264,12 @@ autocmd FileType gitcommit setlocal spell
 let g:markdown_fenced_languages = ['html', 'python', 'shell=sh', 'bash=sh', 'json']
 let g:markdown_minlines = 100  " Syntax highlight is synchronized in 100 lines.
 
-" ============== Turn Off Swap Files =================
+" ============== Turn Off Swap Files ==================
 
 set noswapfile
+
+" Needed for coc.nvim: some LSP servers have issues with
+" backup files, see #649.
 set nobackup
 set nowritebackup
 

@@ -44,7 +44,8 @@ Plug 'matze/vim-move'        " перемещение строк и частей
 Plug 'tpope/vim-surround'    " заключать фрагменты текста в кавычки или скобки
 Plug 'godlygeek/tabular'     " Выравнивание текста по различным шаблонам
 Plug 'wellle/targets.vim'    " plugin that provides additional text objects
-Plug 'majutsushi/tagbar'     " список тегов в текущем файле
+Plug 'Konfekt/FastFold'      " Speed up Vim by updating folds only when called-for
+" Plug 'majutsushi/tagbar'     " список тегов в текущем файле
 " Plug 'kien/tabman.vim'       " Tab management for Vim
 
 Plug 'kshenoy/vim-signature' " display and navigate marks
@@ -61,6 +62,52 @@ Plug 'vim-scripts/SyntaxAttr.vim'
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 " so ~/.config/nvim/plugins_settings/airline.vim
+
+" }}}
+
+" " ALE                                              {{{
+" " ----------------------------------------------------
+" " Asynchronous Lint Engine -- is a plugin providing linting (syntax
+" " checking and semantic errors) while you edit your text files, and acts
+" " as a Vim Language Server Protocol client.
+" Plug 'dense-analysis/ale'
+
+" let g:ale_linters = {
+"       \   'python': ['flake8', 'pylint'],
+"       \   'ruby': ['standardrb', 'rubocop'],
+"       \   'javascript': ['eslint'],
+"       \}
+
+" " Some of the linters are also capable of fixing the problems in your code.
+" " ALE has a special command :ALEFix that fixes the whole file. So far, I'm
+" " only Google's YAPF as a fixer that formats the whole file when I press
+" " F10 or save the current buffer.
+" let g:ale_fixers = {
+"       \    'python': ['yapf'],
+"       \}
+" nmap <F10> :ALEFix<CR>
+" let g:ale_fix_on_save = 1
+
+" " I also have a little piece of configuration that shows the total number of
+" " warnings and errors in the status line. Very convenient.
+" function! LinterStatus() abort
+"   let l:counts = ale#statusline#Count(bufnr(''))
+"
+"   let l:all_errors = l:counts.error + l:counts.style_error
+"   let l:all_non_errors = l:counts.total - l:all_errors
+"
+"   return l:counts.total == 0 ? '✨ all good ✨' : printf(
+"         \   '😞 %dW %dE',
+"         \   all_non_errors,
+"         \   all_errors
+"         \)
+" endfunction
+"
+" set statusline=
+" set statusline+=%m
+" set statusline+=\ %f
+" set statusline+=%=
+" set statusline+=\ %{LinterStatus()}
 
 " }}}
 
@@ -91,9 +138,10 @@ let pomodoro_use_devicons = 1
 " Plug 'Valloric/YouCompleteMe'
 " so ~/.config/nvim/plugins_settings/YouCompleteMe.vim
 
-" Con.nvim {{{
+" Coc.nvim {{{
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+so ~/.config/nvim/plugins_settings/coc.vim
 
 " }}}
 
@@ -368,6 +416,13 @@ Plug 'tpope/vim-unimpaired'
 " Plug 'arecarn/vim-fold-cycle'
 " Plug 'benknoble/vim-auto-origami'
 
+" LSP (Language Server Protocol)                   {{{
+" ====================================================
+
+Plug 'liuchengxu/vista.vim'  " View and search LSP symbols and tags.
+
+" }}}
+
 " Multiple cursors                                 {{{
 " ====================================================
 Plug 'terryma/vim-multiple-cursors'
@@ -412,61 +467,26 @@ let g:pandoc#syntax#codeblocks#embeds#langs =
 " Python                                                            {{{
 " =====================================================================
 
-" Python mode                                                       {{{
-" ---------------------------------------------------------------------
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+" " Python mode
+" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 " so ~/.config/nvim/plugins_settings/python-mode.vim
-
-let g:pymode_run = 1  " возможность запускать код
-
-let g:pymode_python = 'python3'
-
-" GoToDefinition in vertical split
-let g:pymode_rope_goto_def_newwin = 'vnew'
-
-" Always open documentation in veertical split on the left
-autocmd BufEnter __run__,__doc__ wincmd H
-
-" отключаем автокомплит по коду
-" (у нас вместо него используется jedi-vim)
-let g:pymode_rope = 0
-let g:pymode_rope_completion = 0
-let g:pymode_rope_complete_on_dot = 0
-
-" документация
-let g:pymode_doc = 1
-let g:pymode_doc_bind = 'K'  " key to show python documentation
-
-" проверка кода
-" let g:pymode_lint = 1
-" let g:pymode_lint_checkers = ['pyflakes', 'pyling', 'pep8', 'mccabe']
-" let g:pymode_lint_ignore="" " E501,W601,C0110
-"
-" let g:pymode_lint_on_write = 1  " Проверять код при сохранении
-" let g:pymode_lint_on_fly = 1    " Проверять код на лету
-
-" Show error message if cursor placed at the error line
-let g:pymode_lint_message = 1
-
-" Pylint signs
-let g:pymode_lint_todo_symbol = 'WW'
-let g:pymode_lint_comment_symbol = 'CC'
-let g:pymode_lint_visual_symbol = 'RR'
-let g:pymode_lint_error_symbol = 'EE'
-let g:pymode_lint_info_symbol = 'II'
-let g:pymode_lint_pyflakes_symbol = 'FF'
-
-" let g:pymode_virtualenv = 1  " Enable virtualenvs
-" let g:pymode_breakpoint_bind = '<leader>b'
-" let g:pymode_virtualenv_path = $VIRTUAL_ENV  " path to the virtualenv
-
-" }}}
 
 " Plug 'vim-python/python-syntax', { 'for': 'python' }
 " let g:python_highlight_all = 1
 
 " pudb python degugger integration
 Plug 'SkyLeach/pudb.vim', { 'for': 'python' }
+
+" Provides some Python-specific text objects and motions for classes,
+" methods, functions, and doc strings.
+Plug 'jeetsukumaran/vim-pythonsense', { 'for': 'python' }
+
+" Indentation behavior that complies with PEP8.
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
+
+" Python code folding for Vim
+Plug 'tmhedberg/SimpylFold', { 'for': 'python' }
+let g:SimpylFold_fold_import = 0
 
 " Semantic based code highlighting
 " Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins', 'for': 'python'}
@@ -488,13 +508,19 @@ Plug 'SkyLeach/pudb.vim', { 'for': 'python' }
 " расцвечивание скобок по уровню вложенности
 Plug 'luochen1990/rainbow'
 " so ~/.config/nvim/plugins_settings/rainbow.vim
+let g:rainbow_active = 1
+
+" " Default: '#c475c1', '#8ab7d8', '#60dd60', '#ffff70', '#ea9d70', '#971717'
+" " My changes: #7ab061
+" let g:rainbow_conf = {
+" \   'guifgs': ['#c475c1', '#8ab7d8', '#98c369', '#ffff70', '#ea9d70', '#971717'],
+" \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+" \   'separately': { 'nerdtree': 0, 'pandoc': 0 }
+" \}
 
 " Default: '#c475c1', '#8ab7d8', '#60dd60', '#ffff70', '#ea9d70', '#971717'
 " My changes: #7ab061
-let g:rainbow_active = 1
 let g:rainbow_conf = {
-\   'guifgs': ['#c475c1', '#8ab7d8', '#98c369', '#ffff70', '#ea9d70', '#971717'],
-\   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
 \   'separately': { 'nerdtree': 0, 'pandoc': 0 }
 \}
 " }}}
@@ -663,33 +689,32 @@ let g:undotree_WindowLayout             = 2
 
 " NERDTree                                                           {{{
 " ======================================================================
-" Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFind' }
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeFind' }
+so ~/.config/nvim/plugins_settings/NERDTree.vim
 
 " Добавляет цветную подсветку к иконкам
 Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 
-" so ~/.config/nvim/plugins_settings/NERDTree.vim
 
-" Показывать скрытые файлы по умолчанию
-let NERDTreeShowHidden = 0
-
-" Automatically close NerdTree when you open a file
-let NERDTreeQuitOnOpen = 0
-
-" Automatically delete the buffer of the file you just deleted with NerdTree
-let NERDTreeAutoDeleteBuffer = 1
-
-" disable “Press ? for help”
-let NERDTreeMinimalUI = 0
-
-let g:NERDTreeHijackNetrw = 1
-
-let g:NERDTreeDirArrowExpandable  = "▷"
-let g:NERDTreeDirArrowCollapsible = "◢"
-
-" Close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" " Показывать скрытые файлы по умолчанию
+" let NERDTreeShowHidden = 0
+"
+" " Automatically close NerdTree when you open a file
+" let NERDTreeQuitOnOpen = 0
+"
+" " Automatically delete the buffer of the file you just deleted with NerdTree
+" let NERDTreeAutoDeleteBuffer = 1
+"
+" " disable “Press ? for help”
+" let NERDTreeMinimalUI = 0
+"
+" let g:NERDTreeHijackNetrw = 1
+"
+" let g:NERDTreeDirArrowExpandable  = "▷"
+" let g:NERDTreeDirArrowCollapsible = "◢"
+"
+" " Close vim if the only window left open is a NERDTree
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " }}}
 
@@ -752,8 +777,8 @@ call plug#end()
 
 " let s:theme = 'ayu'
 " let s:theme = 'onedark'
-" let s:theme = 'gruvbox'
-let s:theme = 'gruvbox-material'
+let s:theme = 'gruvbox'
+" let s:theme = 'gruvbox-material'
 " let s:theme = 'deus'
 " let s:theme = 'OceanicNext'
 
@@ -781,6 +806,12 @@ if s:theme == 'onedark'
     if exists('g:lightline')
         let g:lightline.colorscheme = 'onedark'
     endif
+
+    " Default: '#c475c1', '#8ab7d8', '#60dd60', '#ffff70', '#ea9d70', '#971717'
+    " My changes: #7ab061
+    let g:rainbow_conf.guifgs = ['#c475c1', '#8ab7d8', '#98c369', '#ffff70', '#ea9d70', '#971717']
+    let g:rainbow_conf.ctermfgs = ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta']
+
 " }}}
 " Gruvbox {{{
 elseif s:theme == 'gruvbox'
@@ -823,6 +854,12 @@ elseif s:theme == 'gruvbox-material'
     if exists('g:lightline')
         let g:lightline.colorscheme = 'gruvbox_material'
     endif
+
+    " Default: '#c475c1', '#8ab7d8', '#60dd60', '#ffff70', '#ea9d70', '#971717'
+    " My changes: #7ab061
+    " let g:rainbow_conf.guifgs = ['#c475c1', '#8ab7d8', '#98c369', '#ffff70', '#ea9d70', '#971717']
+    let g:rainbow_conf.ctermfgs = ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta']
+
 endif
 " }}}
 

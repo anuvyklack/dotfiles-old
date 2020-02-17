@@ -15,12 +15,12 @@ fi
 
 # }}}
 
-# Zplugin invocation {{{
+# Zinit plugin manager invocation {{{
 
 # Source zinit. Install if it's absent. These lines must be at the very
 # begining of the file. The order of plugins loading matters.
 if [[ ! -s "$HOME/.zinit/bin/zinit.zsh" ]]; then
-  mkdir ~/.zinit
+  mkdir -v ~/.zinit
   git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
   source "$HOME/.zinit/bin/zinit.zsh"
   zinit self-update
@@ -282,6 +282,17 @@ zstyle ":conda_zsh_completion:*" use-groups true
 # zinit ice lucid id-as"auto" as"completion" blockf
 # zinit snippet OMZ::plugins/fd/_fd
 
+# # fzf completions
+# zinit ice id-as"fzf-completion.zsh" \
+#           nocompile \
+#           mv"fzf-completion.zsh ->_fzf-completion" \
+#           # as"completion"
+# zinit snippet https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
+
+# lf completion
+zinit ice id-as"lf-completion" mv"lf-completion -> _lf" as"completion"
+zinit snippet https://github.com/gokcehan/lf/blob/master/etc/lf.zsh
+
 # }}}
 
 # Install diff-so-fancy using zinit
@@ -296,12 +307,17 @@ zinit light zdharma/zsh-diff-so-fancy
 
 # This two should be last in this order
 zinit ice silent id-as"auto" atload"zpcompinit; zpcdreplay"
-# zinit ice silent id-as"auto" atload"zpcompinit; zpcdreplay"
 zinit light zsh-users/zsh-syntax-highlighting
 
 zinit ice lucid id-as"auto"
 # zinit ice id-as"auto"
 zinit light zsh-users/zsh-history-substring-search
+
+if type lf > /dev/null 2>&1; then
+  zinit ice id-as"lfcd.sh" as"null" \
+            mv"lfcd.sh -> $HOME/dotfiles/config/zsh/functions/lfcd"
+  zinit snippet https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
+fi
 
 # }}}
 
@@ -498,10 +514,9 @@ zinit snippet https://github.com/junegunn/fzf/blob/master/shell/key-bindings.zsh
 zinit ice wait"2" lucid id-as"auto" as"null"
 zinit snippet https://github.com/junegunn/fzf/blob/master/plugin/fzf.vim
 
-# # fzf completions
-# zinit ice id-as"fzf-completion.zsh"
-#             mv"fzf-completion.zsh ->_fzf-completion"
-# zinit snippet https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
+# fzf completions
+zinit ice id-as"fzf-completion" mv"fzf-completion -> _fzf" as"completion"
+zinit snippet https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
 
 
 # # Enable if fzf installed with apt.
@@ -637,12 +652,12 @@ ialias ping='ping -c 1'
 # Use neovim for vim if present.
 command -v nvim >/dev/null && ialias vim="nvim" vimdiff="nvim -d"
 
-ialias mv='nocorrect mv -i'  # переименование-перемещение c пogтвepжgeнueм
-ialias cp='nocorrect cp -iR'  # рекурсивное копирование с подтверждением
-ialias rm='nocorrect rm -i'  # удаление с подтверждением
+ialias mv='nocorrect mv -vi'  # переименование-перемещение c пogтвepжgeнueм
+ialias cp='nocorrect cp -viR'  # рекурсивное копирование с подтверждением
+ialias rm='nocorrect rm -vi'  # удаление с подтверждением
 # alias rmf='nocorrect rm -f'  # принудительное удаление
 # alias rmrf='nocorrect rm -fR' # принудительное рекурсивное удаление
-ialias mkdir='nocorrect mkdir'  # создание каталогов без коррекции
+ialias mkdir='nocorrect mkdir -v'  # создание каталогов без коррекции
 
 # alias l='ls -lAh --color=auto --group-directories-first'
 # alias ls='ls --color=auto --group-directories-first'

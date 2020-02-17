@@ -196,4 +196,9 @@ export BAT_PAGER="less ${LESS}"
 export PARINIT='rTbgqR B=.,?_A_a Q=_s>|'
 
 
+# XDG
+# ========================================================================
+
+export XDG_RUNTIME_DIR="/tmp/runtime-$USER"
+
 # vim: ft=zsh

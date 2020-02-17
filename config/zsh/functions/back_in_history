@@ -1,4 +1,4 @@
-#!/bin/zhs
+#!/bin/zsh
 
 back_in_history ()
 {

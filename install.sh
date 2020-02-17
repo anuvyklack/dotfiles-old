@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # For WSL
 [[ "$(umask)" = "000" ]] && umask 022
 
@@ -63,6 +65,8 @@ done
 # Setup Git
 symlink $DIR/config/git $HOME/.config/git
 
+symlink $DIR/config/lf $HOME/.config/lf
+
 # # run Xserver on WSL start
 # ln -sv -f "~/dotfiles/vcxsrv.sh" "/etc/profile.d/vcxsrv.sh"
 
@@ -79,11 +83,9 @@ installed-by-apt ()  # {{{
     CONDITION=$(dpkg-query -W -f='${Status}' "$1" 2>/dev/null | grep -c "ok installed")
     if [[ $CONDITION -eq 0 ]]
     then
-        # echo 'No'
-        return 1
+        return 1  # No
     else
-        # echo 'Yes'
-        return 0
+        return 0  # Yes
     fi
 }
 # }}}
@@ -103,7 +105,7 @@ aptinstall ()  # {{{
 # }}}
 
 local aptapps=(
-    git man wget curl wajig
+    git man-db wget curl wajig
     bfs      # find(1) c поиском в ширину в первую очередь
     anacron  # make sure that regular cron task are completed
     par      # Paragraph formating utility for vim
@@ -163,7 +165,7 @@ local brewapps=(
     # neovim
     lsd
     bat
-    # ripgrep
+    lf
     # fd
     # node
 )
@@ -195,6 +197,7 @@ then
 
     export PATH="/opt/miniconda3/bin:$PATH"
     conda update conda --yes
+    conda create -n nvim python pynvim
 fi
 # }}}
 

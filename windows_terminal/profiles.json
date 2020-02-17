@@ -8,7 +8,10 @@
     "launchMode": "maximized",
 
     // Pengwin
-    "defaultProfile": "{7f586916-8357-53d4-bb2b-ca96f639898a}",
+    // "defaultProfile": "{7f586916-8357-53d4-bb2b-ca96f639898a}",
+
+    // Debian
+    "defaultProfile": "{58ad8b0c-3ef8-5f4d-bc6f-13e4c00f2530}",
 
     "profiles": {
         "defaults":
