@@ -37,3 +37,6 @@ let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#wordcount#enabled = 1
 let g:airline#extensions#wordcount#filetypes =
     \ ['asciidoc', 'help', 'mail', 'markdown', 'org', 'rst', 'tex', 'text', 'pandoc']
+
+" Ale extension
+let g:airline#extensions#ale#enabled = 1

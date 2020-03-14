@@ -26,8 +26,8 @@ setopt complete_in_word # complete from both ends of a word
 # Next options EXTREMELY SLOWS DOWN COMPLETION
 # setopt path_dirs        # perform path search even on command names with slashes
 
-# setopt glob_dots        # Dotfiles are matched without explicitly
-#                         # specifying the dot
+unsetopt glob_dots      # Dotfiles are matched without explicitly
+                        # specifying the dot
 
 setopt auto_menu        # Show completion menu on a successive tab press.
 

@@ -45,7 +45,7 @@ Plug 'tpope/vim-surround'    " заключать фрагменты текст�
 Plug 'godlygeek/tabular'     " Выравнивание текста по различным шаблонам
 Plug 'wellle/targets.vim'    " plugin that provides additional text objects
 Plug 'Konfekt/FastFold'      " Speed up Vim by updating folds only when called-for
-" Plug 'majutsushi/tagbar'     " список тегов в текущем файле
+Plug 'majutsushi/tagbar'     " список тегов в текущем файле
 " Plug 'kien/tabman.vim'       " Tab management for Vim
 
 Plug 'kshenoy/vim-signature' " display and navigate marks
@@ -62,6 +62,26 @@ Plug 'vim-scripts/SyntaxAttr.vim'
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 " so ~/.config/nvim/plugins_settings/airline.vim
+
+" }}}
+
+" Beautiful Lightline configuration                                 {{{
+" =====================================================================
+" https://gist.github.com/sainnhe/b8240bc047313fd6185bb8052df5a8fb
+
+Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-gitbranch'
+Plug 'macthecadillac/lightline-gitdiff'
+Plug 'maximbaz/lightline-ale'
+Plug 'albertomontesg/lightline-asyncrun'
+Plug 'rmolin88/pomodoro.vim'
+so ~/.config/nvim/plugins_settings/lightline.vim
+
+" Pomodoro                                                          {{{
+" ---------------------------------------------------------------------
+let g:pomodoro_time_work = 2
+let pomodoro_use_devicons = 1
+" }}}
 
 " }}}
 
@@ -111,26 +131,6 @@ Plug 'vim-scripts/SyntaxAttr.vim'
 
 " }}}
 
-" Beautiful Lightline configuration                                 {{{
-" =====================================================================
-" https://gist.github.com/sainnhe/b8240bc047313fd6185bb8052df5a8fb
-
-Plug 'itchyny/lightline.vim'
-Plug 'itchyny/vim-gitbranch'
-Plug 'macthecadillac/lightline-gitdiff'
-Plug 'maximbaz/lightline-ale'
-Plug 'albertomontesg/lightline-asyncrun'
-Plug 'rmolin88/pomodoro.vim'
-so ~/.config/nvim/plugins_settings/lightline.vim
-
-" Pomodoro                                                          {{{
-" ---------------------------------------------------------------------
-let g:pomodoro_time_work = 2
-let pomodoro_use_devicons = 1
-" }}}
-
-" }}}
-
 " ------------ Completion Autocomplete ---------------
 
 " Plug 'ervandew/supertab'
@@ -153,11 +153,16 @@ let g:bufExplorerFindActive=0   " Do not go to active window.
 " -------------- Визуальные улучшалки ----------------
 
 " Plug 'Yggdroot/indentLine'     " show indent lines
+" Plug 'nathanaelkane/vim-indent-guides'
 
-" подсвечивает все такие же слова что и слово под курсором
+" Подсвечивает все такие же слова как и слово под курсором
 Plug 'RRethy/vim-illuminate'
 
 Plug 'inside/vim-search-pulse' " Найденный текст пульсирует
+
+" Подсвечивать и удалять висящие пробелы в конце строк
+Plug 'ntpeters/vim-better-whitespace'
+so ~/.config/nvim/plugins_settings/vim-better-whitespace.vim
 
 " ----------------------------------------------------
 
@@ -204,162 +209,86 @@ Plug 'tomtom/tcomment_vim'
 
 " }}}
 
-"  fzf                                              {{{
-" =====================================================
-if has('unix')
-
-    if filereadable(expand("~/.zinit/snippets/fzf.vim/fzf.vim"))
-        " If fzf was installed by zinit
-        source ~/.zinit/snippets/fzf.vim/fzf.vim
-    elseif filereadable("/usr/share/doc/fzf/examples/fzf.vim")
-        " If fzf was installed through apt.
-        source /usr/share/doc/fzf/examples/fzf.vim
-    endif
-    Plug 'junegunn/fzf.vim'
-
-    " Fzf in a floating window  {{{
-    " https://kassioborges.dev/2019/04/10/neovim-fzf-with-a-floating-window.html
-
-    " Reverse the layout to make the FZF list top-down
-    let $FZF_DEFAULT_OPTS='--layout=reverse'
-
-    " Using the custom window creation function
-    let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-
-    " Function to create the custom floating window
-    function! FloatingFZF()
-      " creates a scratch, unlisted, new, empty, unnamed buffer
-      " to be used in the floating window
-      let buf = nvim_create_buf(v:false, v:true)
-
-      " 90% of the height
-      let height = float2nr(&lines * 0.7)
-      " 60% of the height
-      let width = float2nr(&columns * 0.6)
-      " horizontal position (centralized)
-      let horizontal = float2nr((&columns - width) / 2)
-      " vertical position (one line down of the top)
-      let vertical = 1
-
-      " Set the position, size, etc. of the floating window.
-      " The size configuration here may not be so flexible, and there's
-      " room for further improvement.
-      let opts = {
-            \ 'relative': 'editor',
-            \ 'row': vertical,
-            \ 'col': horizontal,
-            \ 'width': width,
-            \ 'height': height
-            \ }
-
-      " open the new window, floating, and enter to it
-      " call nvim_open_win(buf, v:true, opts)
-      let win = nvim_open_win(buf, v:true, opts)
-
-      "Set Floating Window Highlighting
-      " call setwinvar(win, '&winhl', 'Normal:Pmenu')
-
-      setlocal
-            \ buftype=nofile
-            \ nobuflisted
-            \ bufhidden=hide
-            \ nonumber
-            \ norelativenumber
-            \ signcolumn=no
-
-    endfunction
-    "}}}
-endif
-" }}}
+" "  fzf                                              {{{
+" " =====================================================
+" if has('unix')
+"
+"     if filereadable(expand("~/.zinit/snippets/fzf.vim/fzf.vim"))
+"         " If fzf was installed by zinit
+"         source ~/.zinit/snippets/fzf.vim/fzf.vim
+"     elseif filereadable("/usr/share/doc/fzf/examples/fzf.vim")
+"         " If fzf was installed through apt.
+"         source /usr/share/doc/fzf/examples/fzf.vim
+"     endif
+"     Plug 'junegunn/fzf.vim'
+"
+"     " Fzf in a floating window  {{{
+"     " https://kassioborges.dev/2019/04/10/neovim-fzf-with-a-floating-window.html
+"
+"     " Reverse the layout to make the FZF list top-down
+"     let $FZF_DEFAULT_OPTS='--layout=reverse'
+"
+"     " Using the custom window creation function
+"     let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+"
+"     " Function to create the custom floating window
+"     function! FloatingFZF()
+"       " creates a scratch, unlisted, new, empty, unnamed buffer
+"       " to be used in the floating window
+"       let buf = nvim_create_buf(v:false, v:true)
+"
+"       " 90% of the height
+"       let height = float2nr(&lines * 0.7)
+"       " 60% of the height
+"       let width = float2nr(&columns * 0.6)
+"       " horizontal position (centralized)
+"       let horizontal = float2nr((&columns - width) / 2)
+"       " vertical position (one line down of the top)
+"       let vertical = 1
+"
+"       " Set the position, size, etc. of the floating window.
+"       " The size configuration here may not be so flexible, and there's
+"       " room for further improvement.
+"       let opts = {
+"             \ 'relative': 'editor',
+"             \ 'row': vertical,
+"             \ 'col': horizontal,
+"             \ 'width': width,
+"             \ 'height': height
+"             \ }
+"
+"       " open the new window, floating, and enter to it
+"       " call nvim_open_win(buf, v:true, opts)
+"       let win = nvim_open_win(buf, v:true, opts)
+"
+"       "Set Floating Window Highlighting
+"       " call setwinvar(win, '&winhl', 'Normal:Pmenu')
+"
+"       setlocal
+"             \ buftype=nofile
+"             \ nobuflisted
+"             \ bufhidden=hide
+"             \ nonumber
+"             \ norelativenumber
+"             \ signcolumn=no
+"
+"     endfunction "}}}
+"
+" endif
+" " }}}
 
 " LeaderF                                           {{{
 " =====================================================
-" After running any command of LeaderF, check the value of echo
-" g:Lf_fuzzyEngine_C, if the value is 1, it means the C extension is
-" loaded sucessfully.
+" After running any command of LeaderF, check the value
+" of echo g:Lf_fuzzyEngine_C, if the value is 1, it means
+" the C extension is loaded sucessfully.
 
 if has('unix')
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+    so ~/.config/nvim/plugins_settings/LeaderF.vim
 elseif has('win32')
     Plug 'Yggdroot/LeaderF', { 'do': '.\install.bat' }
 endif
-
-" Show hidden file and directories
-let g:Lf_ShowHidden = 1
-let g:Lf_UseCache = 0
-
-" Show LeaderF window in popup or floating window
-let g:Lf_WindowPosition = 'popup'
-let g:Lf_WindowHeight = 0.7
-let g:Lf_ShowRelativePath = 0
-let g:Lf_CursorBlink = 0
-let g:Lf_FollowLinks = 1        " Follow the symlinks
-let g:Lf_PreviewCode = 1        " Show the preview of the code the tag
-                                " locates in when navigating the tags.
-
-let g:Lf_RememberLastSearch = 1 " The search string you typed during
-                                " last search is still there when
-                                " LeaderF is launched again. (
-
-let g:Lf_RecurseSubmodules = 0  " Show files in submosules of Git repo
-let g:Lf_IgnoreCurrentBufferName = 1  " Remove the current buffer name
-                                      " from the result list.
-
-let g:Lf_PopupHeight = float2nr(&lines * 0.7)
-let g:Lf_WorkingDirectoryMode = 'Ac'
-
-
-" Specify the files and directories you want to exclude while indexing.
-let g:Lf_WildIgnore = {
-        \ 'dir': ['.git'],
-        \ 'file': ['*.exe', '*.pdf']
-        \}
-
-let g:Lf_PreviewResult = {
-        \ 'File': 0,
-        \ 'Buffer': 1,
-        \ 'Mru': 0,
-        \ 'Tag': 0,
-        \ 'BufTag': 1,
-        \ 'Function': 1,
-        \ 'Line': 1,
-        \ 'Colorscheme': 0,
-        \ 'Rg': 0,
-        \ 'Gtags': 0
-        \}
-
-" Swttig the mappings in normal mode.
-let g:Lf_NormalMap = {
-    \ "File":   [["<ESC>", ':exec g:Lf_py "fileExplManager.quit()"<CR>'],
-    \            ["<F6>", ':exec g:Lf_py "fileExplManager.quit()"<CR>']
-    \           ],
-    \ "Buffer": [["<ESC>", ':exec g:Lf_py "bufExplManager.quit()"<CR>'],
-    \            ["<F6>", ':exec g:Lf_py "bufExplManager.quit()"<CR>']
-    \           ],
-    \ "Mru":    [["<ESC>", ':exec g:Lf_py "mruExplManager.quit()"<CR>']],
-    \ "Tag":    [],
-    \ "BufTag": [],
-    \ "Function": [],
-    \ "Line":   [],
-    \ "History":[],
-    \ "Help":   [],
-    \ "Self":   [],
-    \ "Colorscheme": []
-    \}
-
-" " Specify a list of ripgrep configurations. For example, >
-" let g:Lf_RgConfig = [
-"     \ "--max-columns=150",
-"     \ "--type-add web:*.{html,css,js}*",
-"     \ "--glob=!git/*",
-"     \ "--hidden"
-" \ ]
-
-" Configure the colorscheme of statusline for LeaderF
-" The colorscheme files can be found in the directory:
-" LeaderF/autoload/leaderf/colorscheme/
-let g:Lf_StlColorscheme = 'gruvbox_material'
-let g:Lf_PopupColorscheme = 'gruvbox_material'
 
 " }}}
 
@@ -426,8 +355,7 @@ Plug 'liuchengxu/vista.vim'  " View and search LSP symbols and tags.
 " Multiple cursors                                 {{{
 " ====================================================
 Plug 'terryma/vim-multiple-cursors'
-" Plug 'mg979/vim-visual-multi', {'branch': 'test'}
-
+" Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " }}}
 
 " Pandoc                                                        {{{
@@ -518,11 +446,27 @@ let g:rainbow_active = 1
 " \   'separately': { 'nerdtree': 0, 'pandoc': 0 }
 " \}
 
-" Default: '#c475c1', '#8ab7d8', '#60dd60', '#ffff70', '#ea9d70', '#971717'
-" My changes: #7ab061
-let g:rainbow_conf = {
-\   'separately': { 'nerdtree': 0, 'pandoc': 0 }
-\}
+if !exists('g:rainbow_conf')
+  let g:rainbow_conf = {}
+endif
+let g:rainbow_conf.separately = { 'nerdtree': 0, 'pandoc': 0 }
+
+
+" if !exists('g:rbpt_colorpairs')
+"   let g:rbpt_colorpairs = [['blue', s:palette.blue[0]], ['magenta', s:palette.purple[0]],
+"         \ ['red', s:palette.red[0]], ['166', s:palette.orange[0]]]
+" endif
+
+" let g:rainbow_guifgs = [ s:palette.orange[0], s:palette.red[0], s:palette.purple[0], s:palette.blue[0] ]
+" let g:rainbow_ctermfgs = [ '166', 'red', 'magenta', 'blue' ]
+
+" if !has_key(g:rainbow_conf, 'guifgs')
+"   let g:rainbow_conf['guifgs'] = g:rainbow_guifgs
+" endif
+" if !has_key(g:rainbow_conf, 'ctermfgs')
+"   let g:rainbow_conf['ctermfgs'] = g:rainbow_ctermfgs
+" endif
+
 " }}}
 
 " ---------------------- Tags ------------------------
@@ -530,11 +474,11 @@ let g:rainbow_conf = {
 " Автоматически генерировать тэг-файлы
 Plug 'ludovicchabant/vim-gutentags'
 
-" --------------------- Wintabs ----------------------
-
-" TODO: разберёмся с этим позже
-" Plug 'zefei/vim-wintabs'
-" Plug 'zefei/vim-wintabs-powerline'"
+" " --------------------- Wintabs ----------------------
+"
+" " TODO: разберёмся с этим позже
+" " Plug 'zefei/vim-wintabs'
+" " Plug 'zefei/vim-wintabs-powerline'"
 
 " ------------------ Wrighting -----------------------
 
@@ -659,6 +603,9 @@ Plug 'lervag/vimtex', { 'for': 'LaTeX' }  " latex
 Plug 'PProvost/vim-ps1', {'for': 'ps1'}   " powershell
 Plug 'zinit-zsh/zinit-vim-syntax', { 'for': 'zsh' }  " zinit syntaxis
 
+Plug 'octol/vim-cpp-enhanced-highlight'  " c++ highlight
+so ~/.config/nvim/plugins_settings/vim-cpp-enhanced-highlight.vim
+
 " }}}
 
 " Русский язык (Switch language)                                     {{{
@@ -748,20 +695,18 @@ endif
 " Plug 'bpstahlman/txtfmt'
 " so ~/.config/nvim/plugins_settings/txtfmt.vim
 
-
-
 " }}}
 
 " Color Themes                                     {{{
 " ====================================================
 
-" Plug 'ayu-theme/ayu-vim'
+Plug 'ayu-theme/ayu-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
 Plug 'ajmwagar/vim-deus'
-Plug 'gruvbox-material/vim', {'as': 'gruvbox-material'}
-
+Plug 'sainnhe/gruvbox-material'
+Plug 'sainnhe/forest-night'
 " }}}
 
 call plug#end()
@@ -772,13 +717,15 @@ call plug#end()
 "  ██░░░██ ██░░░██░██ ██░░░██░░██░░█     ██░░░░  ██░░░██░██░░░██ ██░░░██░░██░░██░░██ ██░░░██
 " ░██  ░░ ░██  ░██░██░██  ░██ ░██ ░     ░░█████ ░██  ░░ ░██  ░██░███████ ░██ ░██ ░██░███████
 " ░██   ██░██  ░██░██░██  ░██ ░██        ░░░░░██░██   ██░██  ░██░██░░░░  ░██ ░██ ░██░██░░░░
-" ░░█████ ░░█████ ░██░░█████ ░███        ██████ ░░█████ ░██  ░██░░█████  ███ ░██ ░██░░█████
+" ░░█████ ░░█████ ░██░░█████  ███        ██████ ░░█████ ░██  ░██░░█████  ███ ░██ ░██░░█████
 "  ░░░░░   ░░░░░  ░░  ░░░░░  ░░░        ░░░░░░   ░░░░░  ░░   ░░  ░░░░░  ░░░  ░░  ░░  ░░░░░
 
 " let s:theme = 'ayu'
 " let s:theme = 'onedark'
-let s:theme = 'gruvbox'
-" let s:theme = 'gruvbox-material'
+" let s:theme = 'gruvbox'
+let s:theme = 'gruvbox-material'
+" let s:theme = 'forest-night'
+" let s:theme = 'gruvbox-8'
 " let s:theme = 'deus'
 " let s:theme = 'OceanicNext'
 
@@ -849,16 +796,55 @@ elseif s:theme == 'deus'
 " }}}
 " Gruvbox-material {{{
 elseif s:theme == 'gruvbox-material'
+
+    " Set the color palette used in this color scheme.
+        " material : material palette with soft contrast;
+        " mix      : the mean of the other two;
+        " original : the original gruvbox palette.
+    let g:gruvbox_material_palette = 'mix'
+
+    " set contrast
+    " available values: 'hard', 'medium'(default), 'soft'
+    let g:gruvbox_material_background = 'medium'
+    let g:gruvbox_material_enable_bold = 1
+    let g:gruvbox_material_enable_italic = 1
+
+    " Available values: 'auto', 'red', 'orange', 'yellow',
+    " 'green', 'aqua', 'blue', 'purple'
+    " let g:gruvbox_material_cursor = 'aqua'
+    " let g:gruvbox_material_cursor = 'orange'
+    " let g:gruvbox_material_cursor = 'yellow'
+    let g:gruvbox_material_cursor = 'blue'
+
     colorscheme gruvbox-material
     let g:airline_theme = 'gruvbox_material'
     if exists('g:lightline')
         let g:lightline.colorscheme = 'gruvbox_material'
     endif
 
-    " Default: '#c475c1', '#8ab7d8', '#60dd60', '#ffff70', '#ea9d70', '#971717'
-    " My changes: #7ab061
+    " " Default: '#c475c1', '#8ab7d8', '#60dd60', '#ffff70', '#ea9d70', '#971717'
+    " " My changes: #7ab061
     " let g:rainbow_conf.guifgs = ['#c475c1', '#8ab7d8', '#98c369', '#ffff70', '#ea9d70', '#971717']
-    let g:rainbow_conf.ctermfgs = ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta']
+    " let g:rainbow_conf.ctermfgs = ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta']
+" }}}
+" Forest-night {{{
+elseif s:theme == 'forest-night'
+
+    " important!!
+    set termguicolors
+
+    " the configuration options should be placed before `colorscheme forest-night`
+    let g:forest_night_enable_italic = 1
+    " let g:forest_night_disable_italic_comment = 1
+
+    " let g:forest_night_cursor='green'
+
+    colorscheme forest-night
+
+    let g:airline_theme = 'forest_night'
+    if exists('g:lightline')
+        let g:lightline.colorscheme = 'forest_night'
+    endif
 
 endif
 " }}}

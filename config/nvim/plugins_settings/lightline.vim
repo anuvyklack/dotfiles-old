@@ -107,6 +107,8 @@ let g:lightline.component_function = {
     \ 'servicewindow': 'Lightline_Service_Window',
     \ 'winnr': 'winnr'
     \ }
+
+
 " }}}
 
 " lightline.component_expand {{{
@@ -302,6 +304,8 @@ fu! Devicons_Filetype() "{{{
 
 endf  "}}}
 fu! Devicons_Fileformat() " {{{
+
+    " return ''
 
     if WindowType() != '' | return '' | endif
 

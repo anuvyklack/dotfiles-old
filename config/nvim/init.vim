@@ -28,6 +28,7 @@ set mouse=a                     " Enable mouse in all modes
 set hidden                      " buffers can exist in the background
                                 "   without being in a window.
 set number                      " Показывать нумерацию строк
+set relativenumber
 set backspace=indent,eol,start  " Allow backspace in insert mode
 set history=1500                " Store lots of :cmdline history
 set showcmd                     " Show incomplete cmds down the bottom
@@ -47,6 +48,10 @@ syntax enable                   " Включить подсветку синта
 
 set title
 set titlestring=\ %F
+
+set exrc    " Allow vim search local configuratin files in project filders.
+set secure  " Disallows the use of :autocmd, shell and write commands in
+            " local exrc files.
 
 " }}}
 
@@ -280,8 +285,11 @@ set iminsert=0 " Чтобы при старте ввод был на англи�
 set imsearch=0 " Чтобы при старте поиск был на английском, а не русском (start > /)
 
 " Менять цвет курсора при включенном русском языке
-" highlight Cursor guifg=NONE guibg=Green
-highlight lCursor guifg=NONE guibg=Cyan
+" highlight Cursor guifg=Cyan guibg=Green ctermbg=Blue ctermfg=Cyan
+" highlight lCursor guifg=NONE guibg=green
+
+" highlight Cursor guifg=NONE guibg=#e8ae3c
+" highlight lCursor guifg=NONE guibg=#e7ae3c
 
 set helplang=ru      " Помощь на русском языке
 
@@ -293,12 +301,14 @@ set colorcolumn=+1   " Показывать рулетку в следующей
 set mousehide        " Hide the mouse when typing text
 set cursorline       " выделять строку, на которой находится курсор
 
-set guicursor=a:blinkon100    " Turn on cursor blinking
-" hi Cursor guifg=green guibg=green
-" hi Cursor2 guifg=red guibg=red
+" set guicursor=a:blinkon100    " Turn on cursor blinking
+
+" hi Cursor guifg=NONE guibg=cyan
+" hi Cursor2 guifg=NONE guibg=red
 
 " Change cursor shape between modes
-set guicursor=n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50
+set guicursor=n-v-c:block-Cursor/lCursor
+set guicursor+=i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor50
 
 " ================= Window Splits ====================
 
@@ -323,9 +333,10 @@ function! ToTupleFunction() range  " {{{
 endfunction " }}}
 
 
- " Automatically deletes all trailing whitespace on save
- " Автоматически удалять все лишние пробелы в конце строк при сохранении
-autocmd BufWritePre * %s/\s\+$//e
+" " Automatically deletes all trailing whitespace on save
+" " Автоматически удалять все лишние пробелы в конце строк при сохранении
+" " Replaced with the 'vim-better-whitespace' plugin
+" autocmd BufWritePre * %s/\s\+$//e
 
 
 " " Delete all trailing blank lines at the end of the file on save
