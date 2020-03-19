@@ -4,7 +4,7 @@
     // MPLS for you
     "python.jediEnabled": false,
 
-    "clangd.enabled": true,
+    "clangd.enabled": false,
     // "clangd.path": "clangd",
     "clangd.arguments": ["-log=verbose", "-pretty", "--background-index"],
 

@@ -39,19 +39,11 @@ endif
 
 " -------------------- Прочее ------------------------
 
-Plug 'jiangmiao/auto-pairs'  " автоматическое завершение скобок
-Plug 'matze/vim-move'        " перемещение строк и частей строк
-Plug 'tpope/vim-surround'    " заключать фрагменты текста в кавычки или скобки
-Plug 'godlygeek/tabular'     " Выравнивание текста по различным шаблонам
-Plug 'wellle/targets.vim'    " plugin that provides additional text objects
-Plug 'Konfekt/FastFold'      " Speed up Vim by updating folds only when called-for
+Plug '~/.config/nvim/plugged/myhelp'
 Plug 'majutsushi/tagbar'     " список тегов в текущем файле
 " Plug 'kien/tabman.vim'       " Tab management for Vim
 
 Plug 'kshenoy/vim-signature' " display and navigate marks
-
-" Переключение мемжду многострочными конструкциями и однострочными
-Plug 'AndrewRadev/splitjoin.vim'
 
 " Show syntax highlighting attributes of character under cursor.
 Plug 'vim-scripts/SyntaxAttr.vim'
@@ -150,7 +142,22 @@ Plug 'jlanzarotta/bufexplorer'
 let g:bufExplorerFindActive=0   " Do not go to active window.
 " }}}
 
-" -------------- Визуальные улучшалки ----------------
+" --------------- Text manipulations -----------------
+
+Plug 'jiangmiao/auto-pairs'  " автоматическое завершение скобок
+Plug 'matze/vim-move'        " перемещение строк и частей строк
+Plug 'tpope/vim-surround'    " заключать фрагменты текста в кавычки или скобки
+
+Plug 'wellle/targets.vim'    " plugin that provides additional text objects
+" Plug 'Konfekt/FastFold'      " Speed up Vim by updating folds only when called-for
+
+" Переключение мемжду многострочными и однострочными конструкциями
+Plug 'AndrewRadev/splitjoin.vim'
+
+Plug 'godlygeek/tabular'     " Выравнивание текста по различным шаблонам
+Plug 'junegunn/vim-easy-align'  " alignment plugin
+
+" --------------- Visual improvements ----------------
 
 " Plug 'Yggdroot/indentLine'     " show indent lines
 " Plug 'nathanaelkane/vim-indent-guides'
@@ -292,7 +299,6 @@ endif
 
 " }}}
 
-
 "  Git                                             {{{
 " ====================================================
 
@@ -362,34 +368,7 @@ Plug 'terryma/vim-multiple-cursors'
 " =================================================================
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-
-" pandoc settings                                  {{{
-" ----------------------------------------------------
-" so ~/.config/nvim/plugins_settings/pandoc.vim
-
-let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
-
-" Enable pandoc functionality for markdown files
-let g:pandoc#filetypes#pandoc_markdown = 1
-
-" let g:pandoc#modules#enabled = ["formatting", "folding", "toc"]
-
-let g:pandoc#formatting#mode = "s"  " Use soft wraps
-
-let g:pandoc#folding#mode = 'stacked'
-let g:pandoc#folding#fdc = 0
-
-let g:pandoc#keyboard#sections#header_style = 's'
-
-let g:pandoc#toc#shift = 2
-
-" Pandoc Syntax
-" ----------------------------------------------------
-
-let g:pandoc#syntax#codeblocks#embeds#langs =
-            \ ["python", "shell=sh", "bash=sh", "sh", "zsh", "json", "vim"]
-" }}}
-
+so ~/.config/nvim/plugins_settings/pandoc.vim
 " }}}
 
 " Python                                                            {{{
@@ -541,6 +520,11 @@ Plug 'junegunn/goyo.vim'  " Beautiful regime for writing
 
 " ----------------------------------------------------
 
+" Ui menus, listboxes, textboxes and else.
+" Settings of this plugin should be out of Vim-Plug 'plug#begin() ...
+" plug#end()' area, so they are at the end of the file.
+Plug 'skywind3000/vim-quickui'
+
 " Smooth scroll                                    {{{
 " ====================================================
 
@@ -594,6 +578,18 @@ let g:startify_fortune_use_unicode = 1
 
 " }}}
 
+" C/C++                                                              {{{
+" ======================================================================
+
+Plug 'octol/vim-cpp-enhanced-highlight'  " c++ highlight
+so ~/.config/nvim/plugins_settings/vim-cpp-enhanced-highlight.vim
+
+" Use cppman for c++ documentations
+" Plug 'gauteh/vim-cppman'
+Plug 'anuvyklack/vim-cppman'
+
+" }}}
+
 " Different syntaxes and languages                                   {{{
 " ======================================================================
 Plug 'sheerun/vim-polyglot'  " подсветка синтаксисов разных языков
@@ -602,9 +598,6 @@ let g:polyglot_disabled = ['markdown']
 Plug 'lervag/vimtex', { 'for': 'LaTeX' }  " latex
 Plug 'PProvost/vim-ps1', {'for': 'ps1'}   " powershell
 Plug 'zinit-zsh/zinit-vim-syntax', { 'for': 'zsh' }  " zinit syntaxis
-
-Plug 'octol/vim-cpp-enhanced-highlight'  " c++ highlight
-so ~/.config/nvim/plugins_settings/vim-cpp-enhanced-highlight.vim
 
 " }}}
 
@@ -700,13 +693,12 @@ endif
 " Color Themes                                     {{{
 " ====================================================
 
-Plug 'ayu-theme/ayu-vim'
+" Plug 'ayu-theme/ayu-vim'
 Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
-Plug 'mhartington/oceanic-next'
-Plug 'ajmwagar/vim-deus'
+" Plug 'mhartington/oceanic-next'
+" Plug 'ajmwagar/vim-deus'
 Plug 'sainnhe/gruvbox-material'
-Plug 'sainnhe/forest-night'
 " }}}
 
 call plug#end()
@@ -724,7 +716,6 @@ call plug#end()
 " let s:theme = 'onedark'
 " let s:theme = 'gruvbox'
 let s:theme = 'gruvbox-material'
-" let s:theme = 'forest-night'
 " let s:theme = 'gruvbox-8'
 " let s:theme = 'deus'
 " let s:theme = 'OceanicNext'
@@ -826,25 +817,6 @@ elseif s:theme == 'gruvbox-material'
     " " My changes: #7ab061
     " let g:rainbow_conf.guifgs = ['#c475c1', '#8ab7d8', '#98c369', '#ffff70', '#ea9d70', '#971717']
     " let g:rainbow_conf.ctermfgs = ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta']
-" }}}
-" Forest-night {{{
-elseif s:theme == 'forest-night'
-
-    " important!!
-    set termguicolors
-
-    " the configuration options should be placed before `colorscheme forest-night`
-    let g:forest_night_enable_italic = 1
-    " let g:forest_night_disable_italic_comment = 1
-
-    " let g:forest_night_cursor='green'
-
-    colorscheme forest-night
-
-    let g:airline_theme = 'forest_night'
-    if exists('g:lightline')
-        let g:lightline.colorscheme = 'forest_night'
-    endif
 
 endif
 " }}}
@@ -859,6 +831,11 @@ endif
 " ░██ ░░██░░█████  ░░░░░██     ░██████ ░██░██  ░██░░██████░██░██  ░██ ░░░░░██ ██████
 " ░░   ░░  ░░░░░    █████      ░░░░░░  ░░ ░░   ░░  ░░░░░░ ░░ ░░   ░░   █████ ░░░░░░
 "                  ░░░░░                                              ░░░░░
+
+nnoremap <silent> <F1> :help myhelp.txt<CR>
+
+" Vim-quickui plugin settings
+so ~/dotfiles/config/nvim/plugins_settings/vim-quickui.vim
 
 " Easymotion key bindings {{{
 map  ; <Plug>(easymotion-prefix)
@@ -950,6 +927,19 @@ nmap q/ :LeaderfHistorySearch<CR>
 
 " }}}
 
+" Easy-Align {{{
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" apple   =red
+" grass+=green
+" sky-=   blue
+
+" }}}
 
 " Открыть файловую панель NERDTree, и установить в ней курсор на файле
 " открытом в текущем буфере. Повторное нажатие закроет файловую панель.
@@ -964,8 +954,8 @@ function! ToggleNERDTree() " {{{
 endfunction
 " }}}
 
-noremap <silent> <F3> :SignatureToggleSigns<CR>
-noremap <silent> <F4> :SignatureListBufferMarks<CR>
+" noremap <silent> <F3> :SignatureToggleSigns<CR>
+" noremap <silent> <F4> :SignatureListBufferMarks<CR>
 noremap <silent> <F5> :GV<CR>
 
 

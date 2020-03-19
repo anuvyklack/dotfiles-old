@@ -28,7 +28,7 @@ set mouse=a                     " Enable mouse in all modes
 set hidden                      " buffers can exist in the background
                                 "   without being in a window.
 set number                      " Показывать нумерацию строк
-set relativenumber
+" set relativenumber
 set backspace=indent,eol,start  " Allow backspace in insert mode
 set history=1500                " Store lots of :cmdline history
 set showcmd                     " Show incomplete cmds down the bottom
@@ -420,7 +420,7 @@ function! SetFoldColumn() "{{{
         let tw = getbufvar(winbufnr(window), '&textwidth')
 
         " Size of the column with numbers of lines.
-        " '+1' is because there is always on space between column with line
+        " '+1' is because there is always one space between column with line
         " numbers and the beginning of the text.
         let nu = (&number ?  strlen(string(line('$'))) + 1 : 0)
 

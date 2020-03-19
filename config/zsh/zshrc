@@ -302,6 +302,13 @@ zstyle ":conda_zsh_completion:*" use-groups true
 zinit ice id-as"lf-completion" mv"lf-completion -> _lf" as"completion"
 zinit snippet https://github.com/gokcehan/lf/blob/master/etc/lf.zsh
 
+# cppman completion
+if command -v cppman > /dev/null 2>&1
+then
+  zinit ice id-as"cppman-completion" mv"cppman-completion -> _cppman" as"completion"
+  zinit snippet https://github.com/aitjcize/cppman/blob/master/misc/completions/cppman.zsh
+fi
+
 # }}}
 
 # Install diff-so-fancy using zinit
@@ -327,6 +334,20 @@ if type lf > /dev/null 2>&1; then
             mv"lfcd.sh -> $HOME/dotfiles/config/zsh/functions/lfcd"
   zinit snippet https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
 fi
+
+# z.lua {{{
+
+zinit ice id-as"auto"
+zinit light skywind3000/z.lua
+
+# zinit ice id-as"auto" as"null"
+# zinit light skywind3000/z.lua
+# eval "$(lua $HOME/.zinit/plugins/z.lua/z.lua --init zsh)"
+
+# Where to store the datafile
+export _ZL_DATA=$HOME/.cache/.zlua
+
+# }}}
 
 # }}}
 
@@ -593,7 +614,7 @@ fzf-history-widget()
 # alias  - will be expanded into full command with wightspace after
 # balias - will be expanded without wightspace after
 # ialias - won't be expanded
-#
+
 # Expand aliaces {{{
 
 # balias {{{3
@@ -655,6 +676,8 @@ alias .....="cd ../../../.."
 
 # alias apt='sudo apt'
 
+ialias z=_zlua
+
 # Пингуем один раз вместо бесконечности.
 ialias ping='ping -c 1'
 
@@ -666,7 +689,10 @@ ialias cp='nocorrect cp -viR'  # рекурсивное копирование �
 ialias rm='nocorrect rm -vi'  # удаление с подтверждением
 # alias rmf='nocorrect rm -f'  # принудительное удаление
 # alias rmrf='nocorrect rm -fR' # принудительное рекурсивное удаление
-ialias mkdir='nocorrect mkdir -v'  # создание каталогов без коррекции
+
+# Создание каталогов без коррекции и со всеми родительскими каталогами,
+# если они отсутствуют.
+ialias mkdir='nocorrect mkdir -vp'
 
 # alias l='ls -lAh --color=auto --group-directories-first'
 # alias ls='ls --color=auto --group-directories-first'
@@ -740,7 +766,7 @@ alias -s {html,htm}=chromium
 # # `&!` is to make command silently run in the backgound
 # if command -v bat > /dev/null 2>&1
 # then
-#   # compdef _gnu_generic bat &!
+# # compdef _gnu_generic bat &!
 #   compdef _gnu_generic bat
 # fi
 
