@@ -1,6 +1,6 @@
 " set the color scheme
 " let g:quickui_color_scheme = 'borland'
-" let g:quickui_color_scheme = 'gruvbox'
+let g:quickui_color_scheme = 'gruvbox'
 " let g:quickui_color_scheme = 'solarized'
 " let g:quickui_color_scheme = 'papercol dark'
 
@@ -25,18 +25,18 @@ call quickui#menu#reset()
 "             \ [ "E&xit\tAlt+x", 'echo 6' ],
 "             \ ])
 
-call quickui#menu#install("&File", [
-           \ [ "LeaderF &File", 'Leaderf file', 'Open file with leaderf'],
-           \ [ "LeaderF &Mru", 'Leaderf mru --regexMode', 'Open recently accessed files'],
-           \ [ "LeaderF &Buffer", 'Leaderf buffer', 'List current buffers in leaderf'],
-           \ [ "--", ],
-           \ [ "J&unk File", 'JunkFile', ''],
-           \ ])
+" call quickui#menu#install("&File", [
+"            \ [ "LeaderF &File", 'Leaderf file', 'Open file with leaderf'],
+"            \ [ "LeaderF &Mru", 'Leaderf mru --regexMode', 'Open recently accessed files'],
+"            \ [ "LeaderF &Buffer", 'Leaderf buffer', 'List current buffers in leaderf'],
+"            \ [ "--", ],
+"            \ [ "J&unk File", 'JunkFile', ''],
+"            \ ])
 
-call quickui#menu#install("&File", [
-			\ [ "--", ],
-			\ [ "E&xit", 'qa' ],
-			\ ])
+" call quickui#menu#install("&File", [
+"           \ [ "--", ],
+"           \ [ "E&xit", 'qa' ],
+"           \ ])
 
 " " items containing tips, tips will display in the cmdline
 " call quickui#menu#install('&Edit', [
@@ -47,61 +47,71 @@ call quickui#menu#install("&File", [
 
 " script inside %{...} will be evaluated and expanded in the string
 call quickui#menu#install("&Marks", [
-          \ ['&Marks show/hide', 'SignatureToggleSigns', 'Show column with marks signs'],
           \ ['&Buffer Marks', 'SignatureListBufferMarks', 'Show location list with buffer marks'],
-          \ ['&Global Marks', 'SignatureListGlobalMarks', 'List only the global marks used in all buffers in the location list']
+          \ ['&Global Marks', 'SignatureListGlobalMarks', 'List only the global marks used in all buffers in the location list'],
+          \ ['&Marks show/hide', 'SignatureToggleSigns', 'Show column with marks signs'],
           \ ])
 
-call quickui#menu#install("&Build", [
-			\ ["File &Execute\tF5", 'AsyncTask file-run'],
-			\ ["File &Compile\tF9", 'AsyncTask file-build'],
-			\ ["File E&make\tF7", 'AsyncTask emake'],
-			\ ["File &Start\tF8", 'AsyncTask emake-exe'],
-			\ ['--', ''],
-			\ ["&Project Build\tShift+F9", 'AsyncTask project-build'],
-			\ ["Project &Run\tShift+F5", 'AsyncTask project-run'],
-			\ ["Project &Test\tShift+F6", 'AsyncTask project-test'],
-			\ ["Project &Init\tShift+F7", 'AsyncTask project-init'],
-			\ ['--', ''],
-			\ ["T&ask List\tCtrl+F10", 'call MenuHelp_TaskList()'],
-			\ ['E&dit Task', 'AsyncTask -e'],
-			\ ['Edit &Global Task', 'AsyncTask -E'],
-			\ ['&Stop Building', 'AsyncStop'],
-			\ ])
+" call quickui#menu#install("&Build", [
+"           \ ["File &Execute\tF5", 'AsyncTask file-run'],
+"           \ ["File &Compile\tF9", 'AsyncTask file-build'],
+"           \ ["File E&make\tF7", 'AsyncTask emake'],
+"           \ ["File &Start\tF8", 'AsyncTask emake-exe'],
+"           \ ['--', ''],
+"           \ ["&Project Build\tShift+F9", 'AsyncTask project-build'],
+"           \ ["Project &Run\tShift+F5", 'AsyncTask project-run'],
+"           \ ["Project &Test\tShift+F6", 'AsyncTask project-test'],
+"           \ ["Project &Init\tShift+F7", 'AsyncTask project-init'],
+"           \ ['--', ''],
+"           \ ["T&ask List\tCtrl+F10", 'call MenuHelp_TaskList()'],
+"           \ ['E&dit Task', 'AsyncTask -e'],
+"           \ ['Edit &Global Task', 'AsyncTask -E'],
+"           \ ['&Stop Building', 'AsyncStop'],
+"           \ ])
 
-call quickui#menu#install("&Git", [
-			\ ['&View Diff', 'call svnhelp#svn_diff("%")'],
-			\ ['&Show Log', 'call svnhelp#svn_log("%")'],
-			\ ['File &Add', 'call svnhelp#svn_add("%")'],
-			\ ])
+
+let g:quickui_headers = ['h','hpp']
+" let g:quickui_sources = ['c','cpp']
+
+call quickui#menu#install("&Build", [
+            \ ["&Switch to " . "%{index(g:quickui_headers, expand('%:e')) >= 0? 'Source' : 'Header'}" . " file",
+            \     'CocCommand clangd.switchSourceHeader'],
+            \ ], '<auto>', 'c,cpp')
+
+" call quickui#menu#install("&Git", [
+"             \ ['&View Diff', 'call svnhelp#svn_diff("%")'],
+"             \ ['&Show Log', 'call svnhelp#svn_log("%")'],
+"             \ ['File &Add', 'call svnhelp#svn_add("%")'],
+"             \ [ "--", ],
+"             \ ])
 
 " :GV to open commit browser
 " You can pass git log options to the command, e.g. :GV -S foobar.
 " :GV! will only list commits that affected the current file
 " :GV or :GV? can be used in visual mode to track the changes in the selected lines.
-call quickui#menu#install("&Git Commit Browser", [
+call quickui#menu#install("&Git", [
           \ ['Open &Commit browser', 'GV'],
           \ ['&List commits that affected the current file', 'GV!'],
           \ ['&Fills the location list with the revisions of the current file', 'GV?' ],
           \ ])
 
-call quickui#menu#install('&Tools', [
-			\ ['Compare &History', 'call svnhelp#compare_ask_file()', ''],
-			\ ['&Compare Buffer', 'call svnhelp#compare_ask_buffer()', ''],
-			\ ['--',''],
-			\ ['List &Buffer', 'call quickui#tools#list_buffer("FileSwitch tabe")', ],
-			\ ['List &Function', 'call quickui#tools#list_function()', ],
-			\ ['Display &Messages', 'call quickui#tools#display_messages()', ],
-			\ ['--',''],
-			\ ["&DelimitMate %{get(b:, 'delimitMate_enabled', 0)? 'Disable':'Enable'}", 'DelimitMateSwitch'],
-			\ ['Read &URL', 'call menu#ReadUrl()', 'load content from url into current buffer'],
-			\ ['&Spell %{&spell? "Disable":"Enable"}', 'set spell!', 'Toggle spell check %{&spell? "off" : "on"}'],
-			\ ['&Profile Start', 'call MonitorInit()', ''],
-			\ ['Profile S&top', 'call MonitorExit()', ''],
-			\ ["Relati&ve number %{&relativenumber? 'OFF':'ON'}", 'set relativenumber!'],
-			\ ["Proxy &Enable", 'call MenuHelp_Proxy(1)', 'setup http_proxy/https_proxy/all_proxy'],
-			\ ["Proxy D&isable", 'call MenuHelp_Proxy(0)', 'clear http_proxy/https_proxy/all_proxy'],
-			\ ])
+" call quickui#menu#install('&Tools', [
+"             \ ['Compare &History', 'call svnhelp#compare_ask_file()', ''],
+"             \ ['&Compare Buffer', 'call svnhelp#compare_ask_buffer()', ''],
+"             \ ['--',''],
+"             \ ['List &Buffer', 'call quickui#tools#list_buffer("FileSwitch tabe")', ],
+"             \ ['List &Function', 'call quickui#tools#list_function()', ],
+"             \ ['Display &Messages', 'call quickui#tools#display_messages()', ],
+"             \ ['--',''],
+"             \ ["&DelimitMate %{get(b:, 'delimitMate_enabled', 0)? 'Disable':'Enable'}", 'DelimitMateSwitch'],
+"             \ ['Read &URL', 'call menu#ReadUrl()', 'load content from url into current buffer'],
+"             \ ['&Spell %{&spell? "Disable":"Enable"}', 'set spell!', 'Toggle spell check %{&spell? "off" : "on"}'],
+"             \ ['&Profile Start', 'call MonitorInit()', ''],
+"             \ ['Profile S&top', 'call MonitorExit()', ''],
+"             \ ["Relati&ve number %{&relativenumber? 'OFF':'ON'}", 'set relativenumber!'],
+"             \ ["Proxy &Enable", 'call MenuHelp_Proxy(1)', 'setup http_proxy/https_proxy/all_proxy'],
+"             \ ["Proxy D&isable", 'call MenuHelp_Proxy(0)', 'clear http_proxy/https_proxy/all_proxy'],
+"             \ ])
 
 " script inside %{...} will be evaluated and expanded in the string
 call quickui#menu#install("&Option", [
@@ -131,10 +141,11 @@ noremap <F9> :call quickui#menu#open()<cr>
 " Context menu
 "----------------------------------------------------------------------
 let content = [
+            \ ["&Rename\t<leader>rn",        'call CocAction("rename")'],
             \ ["Go to &Definition\tgd",      'call CocAction("jumpDefinition")'],
             \ ["Go to &Type-Definition\tgy", 'call CocAction("jumpTypeDefinition")'],
             \ ["Go to &Implementation\tgi",  'call CocAction("jumpImplementation")'],
-            \ ["Show &References\tgr",      'call CocAction("jumpReferences")'],
+            \ ["Show R&eferences\tgr",       'call CocAction("jumpReferences")'],
             \ ['-'],
             \ ["Do&cumentation", 'execute &keywordprg " " expand("<cword>")'],
             \ ]

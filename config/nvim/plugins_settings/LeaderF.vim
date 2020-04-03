@@ -78,6 +78,5 @@ let g:Lf_NormalMap = {
 " The colorscheme files can be found in the directory:
 " LeaderF/autoload/leaderf/colorscheme/
 " let g:Lf_StlColorscheme = 'gruvbox_material'
-" let g:Lf_PopupColorscheme = 'gruvbox_material'
-let g:Lf_PopupColorscheme = 'default'
-
+let g:Lf_PopupColorscheme = 'gruvbox_material'
+" let g:Lf_PopupColorscheme = 'default'

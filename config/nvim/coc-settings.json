@@ -4,32 +4,32 @@
     // MPLS for you
     "python.jediEnabled": false,
 
-    "clangd.enabled": false,
-    // "clangd.path": "clangd",
+    "clangd.enabled": true,
+    "clangd.path": "clangd-10",
     "clangd.arguments": ["-log=verbose", "-pretty", "--background-index"],
 
-    "languageserver": {
-        "ccls": {
-            "command": "ccls",
-            "filetypes": [
-                "c",
-                "cpp",
-                "objc",
-                "objcpp"
-            ],
-            "rootPatterns": [
-                ".ccls",
-                "compile_commands.json",
-                ".vim/",
-                ".git/",
-                ".hg/"
-            ],
-            "initializationOptions": {
-                "cache": {
-                    "directory": "/tmp/ccls"
-                }
-            }
-        }
-    }
+    // "languageserver": {
+    //     "ccls": {
+    //         "command": "ccls",
+    //         "filetypes": [
+    //             "c",
+    //             "cpp",
+    //             "objc",
+    //             "objcpp"
+    //         ],
+    //         "rootPatterns": [
+    //             ".ccls",
+    //             "compile_commands.json",
+    //             ".vim/",
+    //             ".git/",
+    //             ".hg/"
+    //         ],
+    //         "initializationOptions": {
+    //             "cache": {
+    //                 "directory": "/tmp/ccls"
+    //             }
+    //         }
+    //     }
+    // }
 
 }

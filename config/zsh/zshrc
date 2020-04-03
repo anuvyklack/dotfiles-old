@@ -205,7 +205,7 @@ source $ZDOTDIR/lib/completion.zsh
 
 # Prompt {{{
 
-# mycustom spaceship pure
+# Possible choices: mycustom spaceship pure geometry
 # THEME=pure
 # THEME=spaceship
 # THEME=geometry
@@ -354,23 +354,29 @@ export _ZL_DATA=$HOME/.cache/.zlua
 # GUI settings                                                          {{{
 
 # Run X-Server on windows side
-# (cmd.exe /C "C:\Users\artyu\scoop\apps\vcxsrv\current\vcxsrv.exe" :0 -silent-dup-error -multiwindow -nowgl -ac -dpi auto &> /dev/null &)
+# ------------------------------------------------------------------------
+# Command line keys description:
+# https://gist.github.com/stowler/9921780
+# ------------------------------------------------------------------------
 (cmd.exe /C "C:\Users\artyu\scoop\apps\vcxsrv\current\vcxsrv.exe" :0 -silent-dup-error -multiwindow -nowgl -ac -dpi 120 &> /dev/null &)
+# (cmd.exe /C "C:\Users\artyu\scoop\apps\vcxsrv\current\vcxsrv.exe" :0 -silent-dup-error -multiwindow -nowgl -ac -dpi 140 &> /dev/null &)
+# (cmd.exe /C "C:\Users\artyu\scoop\apps\vcxsrv\current\vcxsrv.exe" :0 -silent-dup-error -multiwindow -nowgl -ac -dpi auto &> /dev/null &)
 
-export QT_SCALE_FACTOR=1
+# export QT_SCALE_FACTOR=1
 # export GDK_SCALE=2
-export GDK_DPI_SCALE=1.25
-
+# export GDK_DPI_SCALE=1.25
 
 # For X-server
 # The format of this command is actually [host]:<display>.[screen] where [host]
 # refers to a network host name. Since we left it blank, we’re going to use our
 # local machine instead. Each host can have multiple display.
-
-# export DISPLAY=:0.0
+# ------------------------------------------------------------------------
+# export DISPLAY=127.0.0.1:0.0
 # export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0.0
 # export DISPLAY=$(ip r l default | cut -d\ -f3):0
-export DISPLAY=$(awk '/nameserver/ {print $2}' /etc/resolv.conf):0.0
+# export DISPLAY1=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
+# export DISPLAY=$(awk '/nameserver/ {print $2}' /etc/resolv.conf):0.0
+export DISPLAY=$(awk '/nameserver/ {print $2}' /etc/resolv.conf):0
 
 # }}}
 
@@ -681,9 +687,10 @@ ialias z=_zlua
 # Пингуем один раз вместо бесконечности.
 ialias ping='ping -c 1'
 
-# Use neovim for vim if present.
-command -v nvim >/dev/null && ialias vim="nvim" vimdiff="nvim -d"
+# # Use neovim for vim if present.
+# command -v nvim >/dev/null && ialias vim="nvim" vimdiff="nvim -d"
 
+ialias :q='exit'
 ialias mv='nocorrect mv -vi'  # переименование-перемещение c пogтвepжgeнueм
 ialias cp='nocorrect cp -viR'  # рекурсивное копирование с подтверждением
 ialias rm='nocorrect rm -vi'  # удаление с подтверждением
@@ -761,6 +768,8 @@ alias -s {html,htm}=chromium
 # `compdef _gnu_generic myCommand` will parse output of `myCommand --help`
 # and use that for autocompletions.
 # Example: compdef _gnu_generic bat
+
+compdef _gnu_generic update-alternatives
 
 # # Generate completion for `bat` utility
 # # `&!` is to make command silently run in the backgound

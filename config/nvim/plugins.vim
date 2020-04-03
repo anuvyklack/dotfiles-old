@@ -40,6 +40,9 @@ endif
 " -------------------- Прочее ------------------------
 
 Plug '~/.config/nvim/plugged/myhelp'
+
+" Plug 'wellle/context.vim'    " Vscode breadcrumbs analog
+
 Plug 'majutsushi/tagbar'     " список тегов в текущем файле
 " Plug 'kien/tabman.vim'       " Tab management for Vim
 
@@ -347,14 +350,20 @@ let g:clever_f_chars_match_any_signs = ';'
 " Different bidirectional motions: switch buffers, add balnk lines, etc.
 Plug 'tpope/vim-unimpaired'
 
+" Clever % command
+Plug 'andymass/vim-matchup'
+
 " --------------------- Fold ------------------------
 " Plug 'arecarn/vim-fold-cycle'
 " Plug 'benknoble/vim-auto-origami'
 
-" LSP (Language Server Protocol)                   {{{
+" IDE features                                     {{{
 " ====================================================
 
 Plug 'liuchengxu/vista.vim'  " View and search LSP symbols and tags.
+
+" WARNING: Not working!
+" Plug 'pechorin/any-jump.vim'
 
 " }}}
 
@@ -459,43 +468,20 @@ Plug 'ludovicchabant/vim-gutentags'
 " " Plug 'zefei/vim-wintabs'
 " " Plug 'zefei/vim-wintabs-powerline'"
 
+Plug 'roxma/vim-window-resize-easy'
+
 " ------------------ Wrighting -----------------------
 
-" wiki.vim                                                          {{{
-" ---------------------------------------------------------------------
-Plug 'lervag/wiki.vim'
+" Plug 'lervag/wiki.vim'
 " so ~/.config/nvim/plugins_settings/wiki.vim
 
-" let g:wiki_root = '~/wiki'
-let g:wiki_root = '/mnt/d/artyu/wiki'
+Plug 'vimwiki/vimwiki'      " Wiki inside Vim!
+so ~/.config/nvim/plugins_settings/vimwiki.vim
 
-" List of filetypes for which wiki.vim should be enabled.
-let g:wiki_filetypes = ['md', 'wiki']
+Plug 'jceb/vim-orgmode'     " Orgmode
+" so ~/.config/nvim/plugins_settings/orgmode.vim
 
-" The default type of the link: wiki or md.
-let g:wiki_link_target_type = 'md'
-
-" A list of TODO toggles that may be toggled with <plug>(wiki-list-toggle),
-" which is by default mapped to `<c-s>`.
-let g:wiki_list_todos = ['TODO', 'DONE']
-
-" The title of TOC listings.
-let g:wiki_toc_title = 'Contents'
-
-" }}}
-
-" Vimwiki                                                           {{{
-" ---------------------------------------------------------------------
-" Plug 'vimwiki/vimwiki'       " Wiki inside Vim!
-" so ~/.config/nvim/plugins_settings/vimwiki.vim
-
-" let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
-" let g:vimwiki_ext2syntax = {'.md': 'markdown'}
-" let g:vimwiki_folding='expr'
-
-" }}}
-
-Plug 'junegunn/goyo.vim'  " Beautiful regime for writing
+Plug 'junegunn/goyo.vim'    " Beautiful regime for writing
 
 " " Pencil                                                            {{{
 " " ---------------------------------------------------------------------

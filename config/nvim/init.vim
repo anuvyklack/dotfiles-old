@@ -23,6 +23,8 @@ set fileencodings=utf-8,cp1251
 let mapleader = "\<Space>"      " клавиша, соответствующая ключю <leader>
 let maplocalleader = ','
 
+let loaded_netrwPlugin = 1 " disabled netrw
+
 " http://items.sjbach.com/319/configuring-vim-right
 set mouse=a                     " Enable mouse in all modes
 set hidden                      " buffers can exist in the background
