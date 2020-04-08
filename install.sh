@@ -256,3 +256,12 @@ then
 fi
 sudo ln -sv -f $DIR/etc/updatedb.conf /etc/updatedb.conf
 # }}}
+
+# Setup windows fonts in wsl {{{
+echo -e "\e[37;1mSetup \e[32;1mfonts \e[0m"
+if [[ -s /etc/fonts/local.conf && ! -s /etc/fonts/local.conf.origin ]]
+then
+    sudo mv -vf /etc/fonts/local.conf /etc/fonts/local.conf.origin
+fi
+sudo ln -sv -f $DIR/etc/fonts/local.conf /etc/fonts/local.conf
+# }}}

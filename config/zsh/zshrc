@@ -358,13 +358,14 @@ export _ZL_DATA=$HOME/.cache/.zlua
 # Command line keys description:
 # https://gist.github.com/stowler/9921780
 # ------------------------------------------------------------------------
-(cmd.exe /C "C:\Users\artyu\scoop\apps\vcxsrv\current\vcxsrv.exe" :0 -silent-dup-error -multiwindow -nowgl -ac -dpi 120 &> /dev/null &)
-# (cmd.exe /C "C:\Users\artyu\scoop\apps\vcxsrv\current\vcxsrv.exe" :0 -silent-dup-error -multiwindow -nowgl -ac -dpi 140 &> /dev/null &)
+# MSI GS63VR 7RF laptop has monitor with 141 dpi.
+# ------------------------------------------------------------------------
+(cmd.exe /C "C:\Users\artyu\scoop\apps\vcxsrv\current\vcxsrv.exe" :0 -silent-dup-error -multiwindow -nowgl -ac -dpi 141 &> /dev/null &)
 # (cmd.exe /C "C:\Users\artyu\scoop\apps\vcxsrv\current\vcxsrv.exe" :0 -silent-dup-error -multiwindow -nowgl -ac -dpi auto &> /dev/null &)
 
 # export QT_SCALE_FACTOR=1
-# export GDK_SCALE=2
-# export GDK_DPI_SCALE=1.25
+# export GDK_SCALE=2  # скейлинг элементов
+# export GDK_DPI_SCALE=1.25  # скейлинг шрифтов
 
 # For X-server
 # The format of this command is actually [host]:<display>.[screen] where [host]
@@ -680,7 +681,7 @@ alias ...='cd ../..'
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-# alias apt='sudo apt'
+ialias -g L='| less'
 
 ialias z=_zlua
 
@@ -711,7 +712,7 @@ ialias mkdir='nocorrect mkdir -vp'
 # alias lsa='ls -ld .*'  # вывog тoльko dot-фaйлoв
 
 # alias ls='lsd'
-ialias ll='lsd --group-dirs=first --blocks=size,date,name --date=relative -l'
+ialias ll='lsd --group-dirs=first --blocks=size,date,name --date=relative --icon=always --color=always --long'
 ialias lt='lsd --tree'
 
 # alias ls='exa'
@@ -770,6 +771,10 @@ alias -s {html,htm}=chromium
 # Example: compdef _gnu_generic bat
 
 compdef _gnu_generic update-alternatives
+
+if command -v lsd > /dev/null 2>&1; then
+  compdef _gnu_generic lsd
+fi
 
 # # Generate completion for `bat` utility
 # # `&!` is to make command silently run in the backgound
