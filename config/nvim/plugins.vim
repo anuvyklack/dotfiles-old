@@ -438,7 +438,7 @@ if !exists('g:rainbow_conf')
   let g:rainbow_conf = {}
 endif
 let g:rainbow_conf.separately = { 'nerdtree': 0, 'pandoc': 0 }
-
+let g:rainbow_conf.separately.lisp = {'guifgs': ['#c475c1', '#8ab7d8', '#98c369', '#ffff70', '#ea9d70', '#971717'] }
 
 " if !exists('g:rbpt_colorpairs')
 "   let g:rbpt_colorpairs = [['blue', s:palette.blue[0]], ['magenta', s:palette.purple[0]],
@@ -820,7 +820,8 @@ endif
 
 nnoremap <silent> <F1> :help myhelp.txt<CR>
 
-" Vim-quickui plugin settings
+" Vim-quickui plugin settings.
+" Should be after the end of Vim-Plug call end.
 so ~/dotfiles/config/nvim/plugins_settings/vim-quickui.vim
 
 " Easymotion key bindings {{{

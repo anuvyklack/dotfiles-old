@@ -106,6 +106,7 @@ aptinstall ()  # {{{
 
 local aptapps=(
     git man-db wget curl wajig
+    x11-xkb-utils
     bfs      # find(1) c поиском в ширину в первую очередь
     anacron  # make sure that regular cron task are completed
     par      # Paragraph formating utility for vim

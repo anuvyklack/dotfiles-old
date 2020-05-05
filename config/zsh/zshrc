@@ -379,6 +379,11 @@ export _ZL_DATA=$HOME/.cache/.zlua
 # export DISPLAY=$(awk '/nameserver/ {print $2}' /etc/resolv.conf):0.0
 export DISPLAY=$(awk '/nameserver/ {print $2}' /etc/resolv.conf):0
 
+
+# Toggling between two keyboard layouts: English (US) and Russian in x11
+# apps.
+setxkbmap us,ru -option grp:shift_ctrl_toggle
+
 # }}}
 
 
@@ -674,6 +679,7 @@ bindkey -M isearch " " magic-space
 
 # }}}
 
+alias ed='emacs --with-profile doom'
 
 # Filesystem aliases
 alias ..='cd ..'
