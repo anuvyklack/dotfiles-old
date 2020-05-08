@@ -472,11 +472,11 @@ Plug 'roxma/vim-window-resize-easy'
 
 " ------------------ Wrighting -----------------------
 
-" Plug 'lervag/wiki.vim'
-" so ~/.config/nvim/plugins_settings/wiki.vim
+Plug 'lervag/wiki.vim'
+so ~/.config/nvim/plugins_settings/wiki.vim
 
-Plug 'vimwiki/vimwiki'      " Wiki inside Vim!
-so ~/.config/nvim/plugins_settings/vimwiki.vim
+" Plug 'vimwiki/vimwiki'      " Wiki inside Vim!
+" so ~/.config/nvim/plugins_settings/vimwiki.vim
 
 Plug 'jceb/vim-orgmode'     " Orgmode
 " so ~/.config/nvim/plugins_settings/orgmode.vim
