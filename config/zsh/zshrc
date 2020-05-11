@@ -557,8 +557,8 @@ bindkey -s '\e5' "!:4-4 \t"
 # "fzf" to "$ZPFX/bin/fzf", which is already at he $PATH.
 #
 zinit ice id-as"fzf" as"program" from"gh-r" \
-            mv"fzf -> $ZPFX/bin/" \
-            pick"$ZPFX/bin/fzf"
+          mv"fzf -> $ZPFX/bin/" \
+          pick"$ZPFX/bin/fzf"
 zinit light junegunn/fzf-bin
 
 # fzf keybindings
@@ -611,11 +611,11 @@ fi
 fzf-history-widget()
 {
   local selected num
-  setopt localoptions noglobsubst noposixbuiltins pipefail 2> /dev/null
-  selected=( $(fc -rl 1 |
+  setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2> /dev/null
+  selected=( $(fc -rl 1 | perl -ne 'print if !$seen{(/^\s*[0-9]+\s+(.*)/, $1)}++' |
     sort -k2 -k1rn | uniq -f 1 | sort -r -n |
     FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} $FZF_DEFAULT_OPTS -n2..,.. --tiebreak=index --bind=ctrl-r:toggle-sort $FZF_CTRL_R_OPTS --query=${(qqq)LBUFFER} +m" $(__fzfcmd)) )
-      local ret=$?
+  local ret=$?
   if [ -n "$selected" ]; then
     num=$selected[1]
     if [ -n "$num" ]; then
