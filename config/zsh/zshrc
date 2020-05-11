@@ -627,6 +627,32 @@ fzf-history-widget()
 }
 # }}}2
 
+# Custom CTRL-T command {{{2
+
+# Make CTRL-T command return full path to the file, not relevant to $PWD.
+# Also if this path is inside the $HOME directory the $HOME prefix exchange
+# to `~` symbol.
+fzf-file-widget() {
+
+  # If $PWD is not root ('/') add '/' char to make path valid.
+  if [ ${PWD} = '/' ]; then
+    local fzf_full_path="/$(__fsel)"
+  else
+    local fzf_full_path="${PWD}/$(__fsel)"
+  fi
+
+  # Exchange the substring at the beginning of the $fzf_full_path
+  # variable equal to ${HOME} with '~' symbol.
+  fzf_full_path="${fzf_full_path/#${HOME}/~}"
+
+  LBUFFER="${LBUFFER}${fzf_full_path}"
+
+  local ret=$?
+  zle reset-prompt
+  return $ret
+}
+# }}}2
+
 # }}}
 
 # Aliaces                                                              {{{
