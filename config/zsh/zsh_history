@@ -1,5 +1,3 @@
-./build/bin/nvim --version | grep ^Build
-$TERM
 echo $LANG
 make -C build check-po-$LANG
 make -C build update-po-ru
@@ -88,7 +86,6 @@ echo "LS_COLORS=$LS_COLORS:'ow=37;42:'" >> ~/.zshrc
 zsh -f
 echo $LS_COLORS
 echo $LS_COLORS >> ~/.zshrc
-man dir
 man tmux
 man ln
 ln -sv /mnt/d/artyu/OneDrive/Software Software
@@ -142,7 +139,6 @@ setunv
 man set
 set
 history -10
-which
 git clone https://github.com/tpope/vim-markdown/blob/master/syntax/markdown.vim
 git clone https://github.com/tpope/vim-markdown
 vim diexit
@@ -294,7 +290,6 @@ ag man
 rg man
 ag --help
 rg --help
-man rg
 man ag
 apt search ag | fzf
 cd ~./dotfiles
@@ -445,7 +440,6 @@ sudo apt-get install build-essential curl file git
 sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 id
 who am i
-whoami
 sudo rm -rf linuxbrew
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
 brew install diff-so-fancy
@@ -457,7 +451,6 @@ git config --global diff-so-fancy.rulerWidth 80
 git config --global -e
 export PATH=/home/linuxbrew/.linuxbrew/bin:$PATH
 test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
-man test
 test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
 echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
@@ -490,8 +483,6 @@ if [[ -d "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then; echo Yes; fi
 if [[ -d "/home/linuxbrew/.linuxbrew/bin" ]]; then; echo Yes; fi
 if [[ -a "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then; echo Yes; fi
 if [[ -d "/opt/miniconda3/bin" ]]; then; echo Yes; fi
-git branch -vv
-git branch
 ll -A preto
 ll -A prezto
 ll -A *prezto*
@@ -544,7 +535,6 @@ cd ._zplugin
 cd .zplugin
 ll --tree
 cd lainiwa
-lt
 lt -A --depth=3
 ls -R
 ls -R -A
@@ -560,7 +550,6 @@ ll -A *.git
 ll -A .git
 cd .git
 bat HEAD
-dir
 vdir
 man git-ls
 git ls-tree -d
@@ -581,13 +570,10 @@ exa -a --git-ignore --tree
 which tree
 tree -I .git
 tree -a -I .git
-man tree
 tree -aC -I .git
 exa -a --git-ignore --tree -I .git
 exa --tree -I .git
-lsd --tree
 lsd --tree -I .git
-ll -a
 tree -aL2
 tree -aL 2
 tree -a -L 2 -I .git .github
@@ -679,7 +665,6 @@ for color in red green yellow blue magenta cyan black white; do\
  #eval ${color}_bold='%{$fg_bold[${color}]%}'\
 done
 curl -s http://whatthecommit.com/index.txt
-du
 df | rg 'c|d'
 df | rg 'C|D'
 df | rg 'F|C|D'
@@ -789,7 +774,6 @@ man updatedb
 locate mlocate
 info
 whatis git
-whatis man
 whatis updatebd
 whatis updatedb
 file /var/lib/mlocate/mlocate.db
@@ -855,7 +839,6 @@ git clone https://github.com/htr3n/zsh-config.git
 bindkey -l
 bindkey -lL
 vim sections/
-echo $PATH
 vim ~/dotfiles/zsh/zshrc
 rm -rf ~/.zplugin
 locate zcompdump
@@ -888,7 +871,6 @@ echo $COLUMNS
 echo $(tput cols)
 locate less
 man lesspipe
-who
 cd /mnt/d/artyu/Downloads
 apt search pdftotext
 brew search pdftotext
@@ -927,7 +909,6 @@ vim ~/.zprofile
 whereis lesscenter
 man git
 source ~/.config/zsh/.zprofile
-mkdir lib
 touch completion.zsh history.zsh vi-mode.zsh
 source $ZDOTDIR/lib/completion.zsh
 uname -s
@@ -979,42 +960,19 @@ echo "$(find $ZDOTDIR/functions/ -maxdepth 1 -type f)"
 printf $(find $ZDOTDIR/functions/ -maxdepth 1 -type f)
 echo $(find $ZDOTDIR/functions/ -maxdepth 1 -type f)
 shellcheck $ZDOTDIR/.zlogin
-find $ZDOTDIR/functions/ -maxdepth 1 -type f
 find $ZDOTDIR/functions/ -maxdepth 1 -type f | sed s/\n$/ /g
 find $ZDOTDIR/functions/ -maxdepth 1 -type f | sed s/\n/ /g
 find $ZDOTDIR/functions/ -maxdepth 1 -type f | sed 's/\n/ /g'
 find $ZDOTDIR/functions/ -maxdepth 1 -type f | sed 's/\n$/ /g'
 find $ZDOTDIR/functions/ -maxdepth 1 -type f | sed 's/\n//g'
-find $ZDOTDIR/functions/ -maxdepth 1 -type f"
+find $ZDOTDIR/functions/ -maxdepth 1 -type f
 echo "find $ZDOTDIR/functions/ -maxdepth 1 -type f"
-echo ${find "$ZDOTDIR"/functions/ -maxdepth 1 -type f)\
-\
-\
-\
-\
-\
-\
-
-echo ${find "$ZDOTDIR"/functions/ -maxdepth 1 -type f)
-echo $(find "$ZDOTDIR"/functions/ -maxdepth 1 -type f)
-echo -n $(find "$ZDOTDIR"/functions/ -maxdepth 1 -type f)
-zcompile "$ZDOTDIR"/functions $(echo -n $(find "$ZDOTDIR"/functions/ -maxdepth 1 -type f))
-git clone https://github.com/woefe/vi-mode.zsh.git
-vim zsh-vim-mode.plugin.zsh
-zplugin
-rg 'spaceship_vi_mode_enable'
-vim sections/vi_mode.zsh +49
-git clone https://github.com/softmoth/zsh-vim-mode.git
-git clone https://github.com/Nyquase/vi-mode.git
-git clone https://github.com/oselivanov/zsh-vi-done-right.git
-git clone https://github.com/laurenkt/zsh-vimto
 for file in "$ZDOTDIR/**/*.zwc.old"; do rm -f $file; done
 for file in "$ZDOTDIR/**/*.zwc.old"; do echo $file; done
 for file in '$ZDOTDIR/**/*.zwc.old'; do echo $file; done
 for file in $($ZDOTDIR/**/*.zwc.old); do echo $file; done
 echo $ZDOTDIR/**/*.zwc.old
 for file in $ZDOTDIR/**/*.zwc.old; do echo $file; done
-tree
 tree -C -L 2
 echo $array
 for i in $array; do echo $i; done
@@ -1106,13 +1064,9 @@ git clone https://github.com/LukeSmithxyz/LARBS.git
 cd LARBS/
 printf "Optional arguments for custom use:\\n  -r: Dotfiles repository (local file or url)\\n  -p: Dependencies and programs csv (local file or url)\\n  -a: AUR helper (must have pacman-like syntax)\\n  -h: Show this message\\n"
 printf "\r  [ \033[00;34m..\033[0m ] Hello\
-
-printf "\r  [ \033[00;34m..\033[0m ] Hello\!"\
-
-printf "\r  [ \033[00;34m..\033[0m ] Hello"\
-
-printf "\r  [ \033[00;34m..\033[0m ] Hello\n"\
-
+printf "\r  [ \033[00;34m..\033[0m ] Hello\!"
+printf "\r  [ \033[00;34m..\033[0m ] Hello"
+printf "\r  [ \033[00;34m..\033[0m ] Hello\n"
 printf "\r  [ \033[0;33m??\033[0m ] Hello\n"
 man sudo
 sudo -v
@@ -1202,7 +1156,6 @@ echo -e 'Installing \e[32;1mminiconda3\e[0m'
 echo -e '\e[37;1mInstalling \e[32;1mminiconda3\e[0m'
 echo -e '\e[37;1mInstalling \e[35;1mminiconda3\e[0m'
 rm -rf /opt/miniconda3
-cd /opt
 echo -e '\n\e[37;1mconda install\e[0m \e[32;1mpynvim\e[0m'
 rm ~/.config/zsh/lib
 echo -e "\e[1;37mDone
@@ -1218,7 +1171,6 @@ man 1 wajig
 apt info ba
 wajig tutorial | bat
 sudo apt install bat
-wajig listinstalled
 whatis bat
 batcat ~/dotfiles/install.sh
 whatis locate
@@ -1497,7 +1449,6 @@ mkdir windows_terminal
 touch profile.json
 vim profile.json
 bat profile.json
-..
 brew --cache
 brew --cache a2ps
 brew cleanup
@@ -1538,7 +1489,6 @@ conda install scipy -y
 conda install matplotlib -y
 vim ll
 vim update
-ll -A
 vim .zshrc
 git digg
 conda install sympy -y
@@ -1568,18 +1518,14 @@ sudo update
 man zshall
 vim zshrc
 cdh
-cd /
 cd +
 cd /home/linuxbrew
 which dsc
 whatis dsc
-cd -
 w
 whatis w
 fc -r
 fc -W ~/.cache/zsh/zsh_history
-rsync -v ~/.cache/zsh/zsh_history ~/dotfiles/config/zsh/zsh_history
-Binary file /home/anuvyklack/.cache/zsh/zsh_history.old matches
 bat ~/dotfiles/config/zsh/zsh_history
 cd ~/.cache/zsh
 bat ~/.cache/zsh/zsh_history
@@ -1599,7 +1545,6 @@ sudo apt upgrade && sudo apt update
 vim .config/zsh/functions/update
 vim config/zsh/functions/update
 whatis dialog
-bash
 sh -c dialog
 sh -c "dialog --title 'Welcom' --msgbox 'welcom home'"
 cd /etc/zsh/
@@ -1640,7 +1585,6 @@ git megre
 git checkout ed33976
 git checkout master ed33976
 git merge --abort
-git checkout master
 git stash list
 git stash apply
 bat config/zsh/zprofile.orig
@@ -1652,7 +1596,6 @@ git add install.sh
 rg wordchars
 rg "wordchars"
 vim config/git/config
-vim ~/.config/zsh/.zprofile
 git diff --cached
 git commit
 brew info node
@@ -1665,7 +1608,6 @@ wajig show ripgrep
 wajig show ripgrep | less
 cd /etc/apt/
 rsync /mnt/c/Users/artyu/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/profiles.json ~/dotfiles/windows_terminal/profiles.json
-vim ~/dotfiles/install.sh
 git yolo
 rsync ~/.cache/zsh/zsh_history ~/dotfiles/config/zsh/zsh_history
 zplugin update
@@ -1693,11 +1635,9 @@ vi ~/.config/git/config
 git pull -f
 git pull --force
 rm -rf ~/dotfiles/
-ls -l
 git clone https://github.com/anuvyklack/dotfiles.git
 cd setup/
 source miniconda-setup.sh
-cd ~/dotfiles/
 ln -sv ~/dotfiles/condarc ~/.condarc
 ls -A
 source homebrew-setup.sh
@@ -1720,7 +1660,6 @@ sudo rm -rf /home/linuxbrew
 which python
 which python3
 source ~/dotfiles/setup/homebrew-setup.sh
-update
 brew install neovim
 brew install lsd
 brew install fd
@@ -1739,7 +1678,6 @@ vim init.vim
 brew list
 whatis vim
 whatis mlocate
-sudo updatedb.mlocate
 brew uninstall pdate && brew upgrade
 brew uninstall update && brew upgrade
 echo $PAGER
@@ -1749,11 +1687,6 @@ echo $EDITOR
 brew update && brew upgrade
 command -v nvim
 sudo updatedb.mlocate &
-git commit -a
-git push
-vim ~/dotfiles/config/zsh/zprofile
-git commit -a --amend
-git push -f
 cd ~/dotfiles/setup
 cd ..
 cd /etc
@@ -1789,7 +1722,6 @@ sudo apt install wajig
 wajig distupgrade
 man wajig
 wajig tutorial
-pwd
 wajig tutorial > wajig-tutorial.md
 wajig describe rsync
 wajig describe apt
@@ -1813,10 +1745,8 @@ sudo apt autoclean
 sudo apt full-upgrade
 aptitude search neovim
 aptitude show neovim
-man apt
 cd /usr/share/doc/
 wajig editsources
-cd /usr/local
 ll | less
 brew link neovim
 sudo nvim
@@ -1828,7 +1758,6 @@ cat sources.list
 apt-cache policy neovim
 cat /etc/wsl
 cat /etc/wsl.conf
-ls
 bat wajig-tutorial.md
 vim wajig-tutorial.md
 wajig policy nwocim
@@ -1857,11 +1786,8 @@ sudo apt -t buster-backports install less
 less --version
 wajig policy neovi
 git config --global --list
-git diff
 git reset HEAD
 git reset --hard HEAD
-git show
-ll
 rsync sources.list ~/dotfiles/service/sources.list.buster.yandex
 sudo rsync ~/sources.list /etc/apt/sources.list
 wajig search bfs
@@ -1869,14 +1795,12 @@ bat ~/dotfiles/install.sh
 git stash
 git pull --rebase
 git merge
-git graph
 wajig search lsd
 wajig search bat
 wajig search fd
 wajig search fd-find
 git status backup.sh
 git status -s
-vim
 vim .config/git/config
 vim sources.list
 wajig show fd-find
@@ -1890,10 +1814,7 @@ wajig show node
 sudo rsync ~/dotfiles/servicesources.list /etc/apt/sources.list
 sudo rsync ~/dotfiles/service/sources.list /etc/apt/sources.list
 bat /etc/apt/sources.list
-wajig update
-wajig toupgrade
 wajig upgrade
-wajig dailyupgrade
 wajig autoremove
 wajig autoclean
 brew remove neovim
@@ -1903,19 +1824,539 @@ which nvim
 which vi
 whatis vi
 vi
-cd ~
-cd ~/dotfiles
-git fetch
-gs
 git pull
-git status
-git log
 git add -A
 echo ~/.cache/zsh/zsh_history
 echo $(~/.cache/zsh/zsh_history)
 sudo echo $(~/.cache/zsh/zsh_history)
 cat ~/.cache/zsh/zsh_history
 cat ~/.cache/zsh/zsh_history >> ~/dotfiles/config/zsh/zsh_history
-vim ~/dotfiles/config/zsh/zshrc
 vim ~/.cache/zsh/zsh_history
+rsync -v ~/.cache/zsh/zsh_history ~/dotfiles/config/zsh/zsh_history
+wajig install lua5.3
+pip install howdoi
+howdoi updatealternatives
+update-alternatives --config vim
+sudo update-alternatives --config vim
+git clone -b release https://github.com/dftfeDevelopers/dftfe.git
+git clone -b release https://github.com/dftfeDevelopers/dftfe.git --depth 1
+git clone -b release https://github.com/dftfeDevelopers/dftfe.git dftfe-dev --depth 1
+git checkout -b ubuntu
+git branch
+git branch -vv
+ln -sc /mnt/d/ ~/d
+ln -sv /mnt/d/ ~/d
+ll d
+ll /opt
+whatis pwd
+man pwd
+howdoi sh concat strings
+return "$(pwd)/$ret"
+echo "$(pwd)/$ret"
+echo "$(pwd)/isdfasdfs"
+echo $HOME
+howdoi zsh if else
+howdoi sh if else
+howdoi bash if else
+howdoi zsh string equal
+man test
+echo "${PWD##/home/}"
+echo "${PWD##i${HOME}/}"
+echo "${PWD##${HOME}/}"
+test "${PWD##${HOME}}" != "${PWD}"
+cd ~
+echo "~${PWD##${HOME}}"
+echo "${PWD/${HOME}/~}"
+echo "${PWD/#${HOME}/~}"
+cd proc/5228/cwd/zshrc
+rg '!'
+[ $PWD = '/' ]
+[ $PWD != '/' ]
+[[ $(pwd) != '/' ]] && echo 'Yes' || echo 'No'
+pwd
+echo $PWD
+echo $PREFIX
+echo $full_path
+cd ~/dotfiles/
+git checkout -b master
+git branch master
+cd ~/dotfiles/config/zsh/zshrc
+howdoi zsh local variable
+echo $fzf_full_path
+git reset --hard ubuntu
+echo $libdir
+man hier
+git commit -a --amend
+git push -f
+git checkout ubuntu
+git reset --hard master
+man rg
+vim ~/dotfiles/config/zsh/functions/update
+man apt
+wajig dailyupgrade
+git commit -a
+git checkout master
+git merge ubuntu
+git push
+git show
+wajig show mpi
+wajig search mpi
+wajig search mpi L
+cd projects/dftfe
+mkdir buildReal
+mkdir build-real
+cd build-real
+wajig search build
+wajig show build-essential
+wajig install build-essential
+wajig show cmake
+wajig install cmake
+cmake -DCMAKE_INSTALL_PREFIX=~/projects/dftfe/lib/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON ../deal.II
+wajig search deal L
+cmake -DCMAKE_INSTALL_PREFIX=~/projects/dftfe/lib/deal.II-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON ../deal.II-real
+z dfte
+z df
+cd /usr/local
+wajig search mpich
+wajig show mpich
+wajig show libmpich12
+wajig install libmpich-dev
+cmake -DCMAKE_INSTALL_PREFIX=~/projects/dftfe/lib/deal.II-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON ..
+cmake -DCMAKE_INSTALL_PREFIX=~/projects/dftfe/lib/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON --enable-shared ..
+cmake -DCMAKE_INSTALL_PREFIX=~/projects/dftfe/lib/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR=/usr/lib/petscdir/petsc3.12/x86_64-linux-gnu-real ..
+wajig listfiles libmpich-dev:amd64
+cmake -DCMAKE_INSTALL_PREFIX=~/projects/dftfe/lib/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DPETSC_DIR=/usr/lib/petscdir/petsc3.12/x86_64-linux-gnu-real ..
+cp petsc-real/ petsc-complex
+mv * source/
+mkdir source1
+mv * source1
+mv source1 source
+mkdir 1 && mv * 1 && mv 1 source
+mv 1 source
+mv * ../lib
+man mv
+wajig update
+wajig toupgrade
+ls /usr/bin
+bash
+ls /usr/bin | grep ^su
+whatis ls
+ls /usr/bin | grep su
+ls /usr/bin | rg su
+ls /usr/bin | rg ^su
+ls /usr/bin | rg '^su'
+wajig search grc
+wajig install grc
+wajig show grc
+man grc
+whereis grc
+bat /etc/grc.zsh
+ls
+ls -l
+wajig search mkl
+wajig show libmkl-blacs-intelmpi-lp64
+cd source
+cd -
+git fetch
+git status
+git log
+mv .* source
+mkdir 1 && mv .[^.]* 1 && mv 1 source
+mkdir lib
+z petsc-real petsc-cmplex
+wajig show libmkl-ful-dev
+wajig install libmkl-dev
+cmake -DCMAKE_INSTALL_PREFIX=~/projects/dftfe/lib/dealii-real/lib -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_LAPACK=ON -DLAPACK_FOUND=true ../source
+echo $MKLROOT
+cmake -DCMAKE_INSTALL_PREFIX=~/projects/dftfe/lib/dealii-real/lib -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_LAPACK=ON ../source
+wajig search openmp
+wajig search openmp | grep openmp
+wajig search openmp | rg openmp
+wajig search libgomp
+z de
+vim instuction.md
+wajig listfiles libmkl-dev | rg core
+./configure --prefix=$HOME/projects/dftfe/lib/petsc-real/lib --with-debugging=no --with-64-bit-indices=true --with-cc=c_compiler --with-cxx=c++_compiler --with-fc=fortran_compiler --with-blas-lapack-lib="-L${MKLROOT}/lib/intel64 -Wl,--no-as-needed -lmkl_intel_ilp64 -lmkl_gnu_thread -lmkl_core -lgomp -lpthread -lm -ldl"
+./configure --prefix=$HOME/projects/dftfe/lib/petsc-real/lib --with-debugging=no --with-64-bit-indices=true --with-blas-lapack-lib="-L${MKLROOT}/lib/intel64 -Wl,--no-as-needed -lmkl_intel_ilp64 -lmkl_gnu_thread -lmkl_core -lgomp -lpthread -lm -ldl"
+wajig listfiles libmkl-dev | sh
+wajig listfiles libmkl-dev | rg sh
+wajig search libmkl
+wajig isntall libmkl-full-dev
+wajig show libmkl-full-dev
+wajig listfiles libmkl-full-dev
+cd /usr/share/intel-mkl/builder/
+cd /u/s/d/libmkl
+cd /usr/share/doc/libmkl-dev
+wajig search intel
+wajig show intel-mkl-doc
+wajig install intel-mkl
+less README.Debian.gz
+wajig show libmkl-rt
+wajig listfiles libmkl-rt
+locate intel-mkl-link
+locate intel-mkl
+wget /usr/share/doc/intel-mkl/common/mkl_link_line_advisor.htm
+cd /usr/share/doc/intel-mkl/common/mkl_link_line_advisor.htm
+pkg-config
+man pkg-config
+pkg-config mkl
+pkg-config intel-mkl
+pkg-config mpich
+pkg-config mpich-c
+pkg-config --libs
+pkg-config --libs mkl
+pkg-config --libs lapack
+git graph
+git diff
+pkg-config --exists lapack64
+pkg-config --exists --print-errors lapack64
+pkg-config --exists --print-errors mkl
+pkg-config --exists --print-errors intel-mkl
+man 1 pkg-config
+vim ~/dotfiles/config/zsh/zprofile
+echo $PKG_CONFIG_PATH
+echo $PATH
+pkg-config --cflags lapack64
+dir
+dir -A
+dir -AD
+dir -ADh
+dir -ADhC
+vim
+wajig search tig
+wajig show tig
+wajig install tig
+tig
+vim ~/dotfiles/install.sh
+wajig search lua
+wajig search lua L
+wajig show lua5.1
+wajig show lua5.2
+wajig show lua5.3
+man tig
+tig show
+tig status
+tig log
+tig stash
+locate pkgconfig
+pkg-config lapack
+pkg-config lapack64
+echo $(pkg-config lapack )
+echo $(pkg-config lapack)
+echo $(pkg-config --lib lapack)
+pkg-config --variable=pc_path
+pkg-config --variable pc_path pkg-config
+pkg-config --variable pkg-config
+pkg-config --libs lapack64
+pkg-config --cflags-only-I lapack64
+update
+z pkg
+z pkgc
+./configure --prefix=$HOME/projects/dftfe/lib/petsc-real/lib --with-debugging=no --with-64-bit-indices=true
+pkg-config --cflags --libs mkl-sdl-lp64
+./configure --prefix=$HOME/projects/dftfe/lib/petsc-real/lib --with-debugging=no --with-64-bit-indices=true --with-blas-lapack-lib=$(pkg-config --libs --cflags mkl-sdl-lp64)
+./configure --prefix=$HOME/projects/dftfe/lib/petsc-real/lib --with-debugging=no --with-64-bit-indices=true --with-blas-lapack-lib=$(pkg-config --cflags --libs mkl-sdl-lp64)
+pkg-config mkl-sdl-lp64
+./configure --prefix=$HOME/projects/dftfe/lib/petsc-real/lib --with-debugging=no --with-64-bit-indices=true --with-blas-lapack-lib=$(pkg-config --cflags --libs mkl-dynamic-lp64-iomp)
+./configure --prefix=$HOME/projects/dftfe/lib/petsc-real/lib --with-debugging=no --with-64-bit-indices=true --with-blas-lapack-lib=pkg-config --cflags --libs mkl-sdl-lp64
+./configure --prefix=$HOME/projects/dftfe/lib/petsc-real/lib --with-debugging=no --with-64-bit-indices=true --with-blas-lapack-lib="pkg-config --cflags --libs mkl-sdl-lp64"
+wajig search valgrind
+wajig show valgrind
+./configure --prefix=$HOME/projects/dftfe/lib/petsc-real/lib --with-debugging=no --with-64-bit-indices=true --with-blas-lapack-lib="$(pkg-config --cflags --libs mkl-dynamic-lp64-iomp)"
+wajig install valgrind
+./configure --prefix=$HOME/projects/dftfe/lib/petsc-real/lib --with-debugging=no --with-64-bit-indices=true --with-blas-lapack-lib="$(pkg-config --cflags --libs mkl-sdl-lp64)"
+make PETSC_DIR=/home/anuvyklack/projects/dftfe2/lib/petsc-real/source PETSC_ARCH=arch-linux-c-opt all
+wajig search checkinstall
+wajig install checkinstall
+sudo checkinstall PETSC_DIR=/home/anuvyklack/projects/dftfe2/lib/petsc-real/source PETSC_ARCH=arch-linux-c-opt install
+sudo checkinstall make PETSC_DIR=/home/anuvyklack/projects/dftfe2/lib/petsc-real/source PETSC_ARCH=arch-linux-c-opt install
+wajig listfiles my-petsc-real
+wajig listinstalled my
+wajig listinstalled ^my
+wajig listinstalled my-
+wajig listinstalled | rg '^my'
+tree
+lsd --tree
+...
+lsd --tree --depth 2
+lsd --tree --depth 2 lib/
+lsd --tree --depth 2 lib
+lsd --tree --depth 2 -- lib
+wajig show tree
+wajig install tree
+tree --dirsfirst
+man tree
+tree --dirsfirst -L 2
+tree --dirsfirst -L 2 -- lib
+make PETSC_DIR=/home/anuvyklack/projects/dftfe/lib/petsc-real/source PETSC_ARCH=arch-linux-c-opt all
+z pe
+sudo ./configure --with-debugging=no --with-64-bit-indices=true --with-blas-lapack-lib="$(pkg-config --cflags --libs mkl-sdl-lp64)"
+sudo make PETSC_DIR=/home/anuvyklack/projects/dftfe/lib/petsc-real/source PETSC_ARCH=arch-linux-c-opt all
+rm -rf .*
+sudo rm -rf *
+./configure --with-debugging=no --with-64-bit-indices=true --with-blas-lapack-lib="$(pkg-config --cflags --libs mkl-sdl-lp64)"
+make PETSC_DIR=/home/anuvyklack/projects/dftfe/lib-sources/petsc-real PETSC_ARCH=arch-linux-c-opt check
+fd .cp
+fd .pc
+make uninstall
+make remove
+make install
+lt
+./configure --prefix=/opt/petsc-real --with-debugging=no --with-64-bit-indices=true --with-blas-lapack-lib="$(pkg-config --cflags --libs mkl-sdl-lp64)"
+wajig show petsc-real
+wajig listfiles petsc-real
+cd -2
+git clone -b maint https://gitlab.com/petsc/petsc.git petsc-complex --depth 1
+git clone -b dealiiStable https://github.com/dftfeDevelopers/dealii.git --depth 1
+cp dealii deal.II-real
+cp dealii dealii-real
+mv dealii dealii-complex
+mkdir build
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_LAPACK=ON -DDEAL_II_WITH_P4EST=ON -DP4EST_DIR=p4est_install_dir_path -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_LAPACK=ON -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR=/opt/petsc-real -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR=/opt/petsc-real -- ..
+z d
+ll -a
+ll -A
+vim ~/projects/dftfe/lib-sources/instuction.md
+pkg-config --libs mkl-sdl-lp64
+z pkgconfig
+vim /usr/lib/x86_64-linux-gnu/pkgconfig/mkl-sdl-lp64.pc
+wajig search alacritty
+add-apt-repository ppa:mmstick76/alacritty
+sudo add-apt-repository ppa:mmstick76/alacritty
+wajig show alacritty
+pkg-config --variable=includedi mkl-sdl-lp64
+echo $(pkg-config --variable=includedi mkl-sdl-lp64)
+pkg-config --variable=pcfiledir mkl-sdl-lp64
+z deal
+pkg-config --variable=includedir mkl-sdl-lp64
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_LAPACK=ON -DLAPACK_FOUND=true -DLAPACK_DIR="$(pkg-config --variable=includedir mkl-sdl-lp64)" -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_LAPACK=ON -DLAPACK_FOUND=true -DLAPACK_DIR="$(pkg-config --variable=includedir mkl-sdl-lp64)" -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-sdl-lp64)" -DLAPACK_LINKER_FLAGS="$(pkg-config --libs mkl-sdl-lp64)" -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_LAPACK=ON -DLAPACK_FOUND=true -DLAPACK_DIR="$(pkg-config --variable=includedir mkl-sdl-lp64)" -DLAPACK_LIBRARIES="$(pkg-config --cflags mkl-sdl-lp64)" -DLAPACK_LINKER_FLAGS="$(pkg-config --libs mkl-sdl-lp64)" -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_LAPACK=ON -DLAPACK_FOUND=true -DLAPACK_DIR="$(pkg-config --variable=includedir mkl-sdl-lp64)" -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-sdl-lp64)" -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_LAPACK=ON -DLAPACK_FOUND=true -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-sdl-lp64)" -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_LAPACK=ON -DLAPACK_FOUND=true -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-sdl-lp64)" -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR=/opt/petsc-real -- ..
+pkg-config --usage
+pkg-config --usage lapack
+pkg-config --list-all
+cd /opt/petsc-real/lib/pkgconfig/
+bat PETSc.pc
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR=/opt/petsc-real/lib -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_PETSC=ON -DPETSC_LIBRARIES="$(pkg-config --cflags --libs PETSc)" -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR=/opt/petsc-real -DPETSC_LIBRARIES="$(pkg-config --cflags --libs PETSc)" -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="/opt/petsc-real" -DPETSC_LIBRARIES="$(pkg-config --cflags --libs PETSc)" -- ..
+man checkinstall
+./configure --prefix=/opt/petsc-real --with-debugging=no --with-64-bit-indices=true --with-blas-lapack-lib="$(pkg-config --cflags --libs mkl-dynamic-lp64-iomp)"
+make PETSC_DIR=/home/anuvyklack/projects/dftfe/lib-sources/petsc-real PETSC_ARCH=arch-linux-c-opt all
+sudo checkinstall -D=no --install=true make PETSC_DIR=/home/anuvyklack/projects/dftfe/lib-sources/petsc-real PETSC_ARCH=arch-linux-c-opt install
+sudo checkinstall -D=no --install=yes make PETSC_DIR=/home/anuvyklack/projects/dftfe/lib-sources/petsc-real PETSC_ARCH=arch-linux-c-opt install
+sudo checkinstall -D=no make PETSC_DIR=/home/anuvyklack/projects/dftfe/lib-sources/petsc-real PETSC_ARCH=arch-linux-c-opt install
+sudo checkinstall make PETSC_DIR=/home/anuvyklack/projects/dftfe/lib-sources/petsc-real PETSC_ARCH=arch-linux-c-opt install
+wajig listfiles my-petsc-real L
+cd /opt/petsc-real
+bat opt/petsc-real/lib/pkgconfig/PETSc.pc
+bat /usr/lib/x86_64-linux-gnu/pkgconfig/mkl-dynamic-lp64-iomp.pc
+rm -rf petsc-real
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="/opt/petsc-real" -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_LAPACK=ON -DLAPACK_FOUND=true -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-lp64-iomp)" -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_LAPACK=ON -DLAPACK_FOUND=true -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-lp64-iomp)" -DDEAL_II_WITH_PETSC=ON -- ..
+wajig remove petsc-real
+./configure --prefix=/opt/petsc-real --with-debugging=yes --with-blas-lapack-lib="$(pkg-config --cflags --libs mkl-dynamic-lp64-iomp)"
+./configure --prefix=/opt/petsc-real --with-debugging=yes --with-64-bit-indices=yes --with-blas-lapack-lib="$(pkg-config --cflags --libs mkl-dynamic-lp64-iomp)"
+rg '--with'
+rg '\--with'
+./configure --prefix=/opt/petsc-real --with-debugging=yes --with-64-bit-indices=1 --with-blas-lapack-lib="$(pkg-config --cflags --libs mkl-dynamic-lp64-iomp)"
+wajig show libpetsc-real3.12-dev
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_LAPACK=ON -DLAPACK_FOUND=true -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-lp64-iomp)" -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="/opt/petsc-real" -DPETSC_LIBRARIES="$(pkg-config --cflags --libs PETSc)" -- ..
+make PETSC_DIR=/home/anuvyklack/projects/dftfe/lib-sources/petsc-real PETSC_ARCH=arch-linux-c-debug all
+sudo checkinstall make PETSC_DIR=/home/anuvyklack/projects/dftfe/lib-sources/petsc-real PETSC_ARCH=arch-linux-c-debug install
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_LAPACK=ON -DLAPACK_FOUND=true -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)" -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="/opt/petsc-real" -DPETSC_LIBRARIES="$(pkg-config --cflags --libs PETSc)" -- ..
+wajig search petsc
+wajig listfiles libpetsc-real3.12-dev
+wajig listfiles libpetsc-real3.12-dev L
+wajig listfiles libpetsc-real3.12-dev | rg pc
+pkg-config --cflags --libs PETSc
+cd $(pkg-config --variable=prefix PETSc)
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_LAPACK=ON -DLAPACK_FOUND=true -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)" -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="$(pkg-config --variable=prefix PETSc)" -DPETSC_LIBRARIES="$(pkg-config --cflags --libs PETSc)" -- ..
+sudo rm -rf petsc-real
+mv ~/d/artyu/Downloads/petsc-3.9.4.tar.gz .
+cd petsc-3.9.4-real
+cd /opt/
+z b
+echo $PETSC_WITH_64BIT_INDICES
+export PETSC_WITH_64BIT_INDICES=1
+wajig search slepc
+wajig install libpetsc-real3.12-dev
+wajig remove libpetsc-real3.12-dev
+git clone -b maint https://gitlab.com/petsc/petsc.git petsc-real --depth 1
+make PETSC_DIR=/home/anuvyklack/projects/dftfe/lib-sources/petsc-3.13-real PETSC_ARCH=arch-linux-c-debug all
+sudo checkinstall make PETSC_DIR=/home/anuvyklack/projects/dftfe/lib-sources/petsc-3.13-real PETSC_ARCH=arch-linux-c-debug install
+wajig listfiles my-petsc3.13-real
+wajig listfiles my-petsc3.13-real L
+wajig listfiles my-petsc3.13-real | rg \.pc
+cd /opt/petsc-real/share/petsc/examples/src/ksp/pc
+wajig listfiles my-petsc3.13-real | rg \.pc$
+bat /opt/petsc-real/lib/pkgconfig/PETSc.pc
+cc
+wajig remove my-petsc3.13-real
+z build
+wajig install my-petsc-real_3.9.4-1_amd64.deb
+wajig show my-petsc3.13-real
+wajig show my-petsc
+wajig show my-petsc-real_3.9.4-1_amd64.deb
+wajig search my-
+sudo rm -rf petsc-3.13-real
+sudo rm -rf petsc-3.9.4-real
+whatis expand
+whatis man
+which
+which gcc
+whereis gcc
+whatis whereis
+whatis whatis
+whatis which
+who
+whoami
+Binary file /home/anuvyklack/.cache/zsh/zsh_history.old matches
+mv petsc-3.9.4 petsc-3.9.4-real
+..
+wajig show my-petsc-real
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="$(pkg-config --variable=prefix PETSc)" -DDEAL_II_WITH_LAPACK=ON -DLAPACK_FOUND=true -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)" -- ..
+mv ~/d/artyu/Downloads/slepc-3.9.2.tar.gz ..
+sudo rm -rf petsc-complex
+extract petsc-3.9.4.tar.gz
+./configure --prefix=slepc-real
+./configure --prefix=/opt/slepc-real
+sudo checkinstall make SLEPC_DIR=/home/anuvyklack/projects/dftfe/lib-sources/slepc-3.9.2-real PETSC_DIR=/opt/petsc-real install0
+wajig show my-slepc-real
+wajig listfiles my-slepc-real
+wajig listfiles my-slepc-real L
+wajig listfiles my-slepc-real | rg \.pc$
+vim ~/.config/zsh/.zprofile
+pkg-config --list-all L
+bat /opt/slepc-real/lib/pkgconfig/SLEPc.pc
+pkg-config --variable=prefix SLEPc
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="$(pkg-config --variable=prefix PETSc)" -DDEAL_II_WITH_SLEPC=ON -DSLEPC_DIR="$(pkg-config --variable=prefix SLEPc)" -DDEAL_II_WITH_LAPACK=ON -DLAPACK_FOUND=true -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)" -- ..
+wajig show intel-mkl-dev
+wajig show intel-mkl-full
+wajig search intel-mkl
+wajig listfiles intel-mkl
+wajig show intel-mkl
+wajig show libmkl-dev
+wajig listfiles x libmkl-dev
+wajig listfiles libmkl-dev
+wajig listinstalled | rg 'mkl'
+bat /usr/include/mkl/mkl_scalapack.h
+z sle
+extract slepc-3.9.2.tar.gz
+./configure --prefix=/opt/slepc-real --with-scalar-type=real
+python2 './configure' '--prefix=/opt/slepc-real' '--with-scalar-type=real'
+cd slep
+z slep
+echo $PETSC_DIR
+make SLEPC_DIR=$PWD PETSC_DIR=/opt/petsc-real
+cd /usr/include/mkl
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="$(pkg-config --variable=prefix PETSc)" -DDEAL_II_WITH_SLEPC=ON -DSLEPC_DIR="$(pkg-config --variable=prefix SLEPc)" -DDEAL_II_WITH_LAPACK=ON -DLAPACK_FOUND=true -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)" -DSCALAPACK_DIR=/usr/include/mkl -DSCALAPACK_LIBRARIES="-L/usr/include/mkl -Wl,--no-as-needed -lmkl_scalapack_ilp64 -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl" -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="$(pkg-config --variable=prefix PETSc)" -DDEAL_II_WITH_SLEPC=ON -DSLEPC_DIR="$(pkg-config --variable=prefix SLEPc)" -DDEAL_II_WITH_LAPACK=ON -DLAPACK_FOUND=true -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)" -DSCALAPACK_DIR=/usr/include/mkl -DSCALAPACK_LIBRARIES="-L${MKLROOT}/lib/intel64 -Wl,--no-as-needed -lmkl_scalapack_ilp64 -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl" -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="$(pkg-config --variable=prefix PETSc)" -DDEAL_II_WITH_SLEPC=ON -DSLEPC_DIR="$(pkg-config --variable=prefix SLEPc)" -DDEAL_II_WITH_LAPACK=ON -DLAPACK_DIR="$(pkg-config --variable=prefix mkl-dynamic-ilp64-iomp)" -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)" -DLAPACK_FOUND=true -DSCALAPACK_DIR=/usr/include/mkl -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="$(pkg-config --variable=prefix PETSc)" -DDEAL_II_WITH_SLEPC=ON -DSLEPC_DIR="$(pkg-config --variable=prefix SLEPc)" -DDEAL_II_WITH_LAPACK=ON -DLAPACK_DIR="$(pkg-config --variable=prefix mkl-dynamic-ilp64-iomp)" -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)" -DLAPACK_FOUND=true -DSCALAPACK_DIR=/usr/include/mkl -DSCALAPACK_LIBRARIES="-DMKL_ILP64 -m64 -I/usr/include/mkl -Wl,--no-as-needed -lmkl_scalapack_ilp64 -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl " -- ..
+locate scalapack
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="$(pkg-config --variable=prefix PETSc)" -DDEAL_II_WITH_SLEPC=ON -DSLEPC_DIR="$(pkg-config --variable=prefix SLEPc)" -DDEAL_II_WITH_LAPACK=ON -DLAPACK_DIR="$(pkg-config --variable=prefix mkl-dynamic-ilp64-iomp)" -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)" -DLAPACK_FOUND=true -DSCALAPACK_DIR=/usr/include/mkl -DSCALAPACK_LIBRARIES="-DMKL_ILP64 -m64 -I/usr/include/mkl -Wl,--no-as-needed -lmkl_scalapack -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl " -- ..
+wajig search p4est
+wajig install libp4est-dev
+wajig listfiles libp4est-dev
+cd -1
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_P4EST=ON -DP4EST_DIR=/usr/lib/x86_64-linux-gnu/ -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_P4EST=ON -DP4EST_DIR=/usr/lib/x86_64-linux-gnu/ -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="$(pkg-config --variable=prefix PETSc)" -DDEAL_II_WITH_SLEPC=ON -DSLEPC_DIR="$(pkg-config --variable=prefix SLEPc)" -DDEAL_II_WITH_LAPACK=ON -DLAPACK_DIR="$(pkg-config --variable=prefix mkl-dynamic-ilp64-iomp)" -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)" -DLAPACK_FOUND=true -- ..
+wajig search scalapack
+wajig install libmkl-scalapack-ilp64
+wajig listfiles libmkl-scalapack-ilp64
+wajig show libmkl-scalapack-ilp64
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_P4EST=ON -DP4EST_DIR=p4est_install_dir_path -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="$(pkg-config --variable=prefix PETSc)" -DDEAL_II_WITH_SLEPC=ON -DSLEPC_DIR="$(pkg-config --variable=prefix SLEPc)" -DDEAL_II_WITH_LAPACK=ON -DLAPACK_DIR="$(pkg-config --variable=prefix mkl-dynamic-ilp64-iomp)" -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)" -DLAPACK_FOUND=true -DSCALAPACK_DIR=/usr/include/mkl -DSCALAPACK_LIBRARIES="-DMKL_ILP64 -m64 -I/usr/include/mkl -Wl,--no-as-needed -lmkl_scalapack_ilp64 -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl " -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_P4EST=ON -DP4EST_DIR=p4est_install_dir_path -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="$(pkg-config --variable=prefix PETSc)" -DDEAL_II_WITH_SLEPC=ON -DSLEPC_DIR="$(pkg-config --variable=prefix SLEPc)" -DDEAL_II_WITH_LAPACK=ON -DLAPACK_DIR="$(pkg-config --variable=prefix mkl-dynamic-ilp64-iomp)" -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)" -DLAPACK_FOUND=true -DSCALAPACK_DIR=/usr/include/mkl -DSCALAPACK_LIBRARIES="-I/usr/include/mkl -Wl,--no-as-needed -lmkl_scalapack_ilp64 -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl " -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_P4EST=ON -DP4EST_DIR=p4est_install_dir_path -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="$(pkg-config --variable=prefix PETSc)" -DDEAL_II_WITH_SLEPC=ON -DSLEPC_DIR="$(pkg-config --variable=prefix SLEPc)" -DDEAL_II_WITH_LAPACK=ON -DLAPACK_DIR="$(pkg-config --variable=prefix mkl-dynamic-ilp64-iomp)" -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)" -DLAPACK_FOUND=true -DSCALAPACK_LIBRARIES="-I/usr/include/mkl -Wl,--no-as-needed -lmkl_scalapack_ilp64 -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl " -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_P4EST=ON -DP4EST_DIR=p4est_install_dir_path -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="$(pkg-config --variable=prefix PETSc)" -DDEAL_II_WITH_SLEPC=ON -DSLEPC_DIR="$(pkg-config --variable=prefix SLEPc)" -DDEAL_II_WITH_LAPACK=ON -DLAPACK_DIR="$(pkg-config --variable=prefix mkl-dynamic-ilp64-iomp)" -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)" -DLAPACK_FOUND=true -DSCALAPACK_DIR=scalapack_dir_path -DSCALAPACK_LIBRARIES="-L/usr/lib/x86_64-linux-gnu -Wl,--no-as-needed -lmkl_scalapack_ilp64 -lmkl_intel_ilp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_ilp64 -liomp5 -lpthread -lm -ldl" -- ..
+cd /usr/lib/x86_64-linux-gnu/
+ll | rg mkl
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_P4EST=ON -DP4EST_DIR=p4est_install_dir_path -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="$(pkg-config --variable=prefix PETSc)" -DDEAL_II_WITH_SLEPC=ON -DSLEPC_DIR="$(pkg-config --variable=prefix SLEPc)" -DDEAL_II_WITH_LAPACK=ON -DLAPACK_DIR="$(pkg-config --variable=prefix mkl-dynamic-ilp64-iomp)" -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)" -DLAPACK_FOUND=true -DSCALAPACK_DIR=/usr/lib/x86_64-linux-gnu -DSCALAPACK_LIBRARIES="/usr/lib/x86_64-linux-gnu/libmkl_scalapack_ilp64.so;/usr/lib/x86_64-linux-gnu/libmkl_intel_ilp64.so;/usr/lib/x86_64-linux-gnu/libmkl_intel_thread.so;/usr/lib/x86_64-linux-gnu/libmkl_core.so;/usr/lib/x86_64-linux-gnu/libmkl_blacs_intelmpi_ilp64.so" -- ..
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_P4EST=ON -DP4EST_DIR=p4est_install_dir_path -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="$(pkg-config --variable=prefix PETSc)" -DDEAL_II_WITH_SLEPC=ON -DSLEPC_DIR="$(pkg-config --variable=prefix SLEPc)" -DDEAL_II_WITH_LAPACK=ON -DLAPACK_DIR="$(pkg-config --variable=prefix mkl-dynamic-ilp64-iomp)" -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)" -DLAPACK_FOUND=true -- ..
+wajig search lapack
+wajig remove libmkl-scalapack-ilp64
+wajig listfiles libp4est-dev L
+pkg-config --variable=prefix PETSc
+wajig listfiles libmpich-dev
+cd /usr/lib/x86_64-linux-gnu/pkgconfig
+pkg-config --cflags mpich
+wajig remove my-slepc-real
+wajig remove my-petsc-real
+./configure --prefix=/opt/petsc-real --with-debugging=yes --with-64-bit-indices=1 --with-64-bit-blas-indices --with-mpi-dir="$(pkg-config --cflags mpich)" --with-blas-lapack-lib="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)"
+wajig listfiles mpich L
+z pet
+./configure --prefix=/opt/petsc-real --with-debugging=yes --with-64-bit-indices=1 --with-64-bit-blas-indices --with-mpi-dir=/usr/bin --with-blas-lapack-lib="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)"
+extract petsc-3.9.4.tar.gz petsc-3.9.4-real
+./configure --prefix=/opt/petsc-real --with-debugging=yes --with-64-bit-indices=1 --with-64-bit-blas-indices --with-mpi-dir=/usr --with-blas-lapack-lib="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)"
+wajig listfiles libmpich12 L
+wajig listfiles libmpich-dev L
+locate mpi.h
+./configure --prefix=/opt/petsc-real --with-cc=mpicc --with-cxx=mpicxx --with-fc=mpif90 --with-debugging=yes --with-64-bit-indices=1 --with-64-bit-blas-indices --with-blas-lapack-lib="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)"
+whereis mpicc
+wajig remove libopenmpi-dev
+wajig remove libopenmpi3
+wajig listinstalled | rg mpi
+wajig remove openmpi-bin
+wajig remove libopenmpi-dev:amd64
+wajig listinstalled
+./configure --prefix=/opt/petsc-real --with-debugging=yes --with-64-bit-indices=1 --with-64-bit-blas-indices --with-blas-lapack-lib="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)"
+make PETSC_DIR=/home/anuvyklack/projects/dftfe/lib-sources/petsc-3.9.4-real PETSC_ARCH=arch-linux2-c-debug all
+sudo checkinstall make PETSC_DIR=/home/anuvyklack/projects/dftfe/lib-sources/petsc-3.9.4-real PETSC_ARCH=arch-linux2-c-debug install
+export PETSC_DIR="$(pkg-config --variable=prefix PETSc)"
+python2 './configure' '--prefix=/opt/slepc-real'
+sudo checkinstall make SLEPC_DIR=/home/anuvyklack/projects/dftfe/lib-sources/slepc-3.9.2-real PETSC_DIR=/opt/petsc-real install
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_P4EST=ON -DP4EST_DIR=/usr/lib/x86_64-linux-gnu -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="$(pkg-config --variable=prefix PETSc)" -DDEAL_II_WITH_SLEPC=ON -DSLEPC_DIR="$(pkg-config --variable=prefix SLEPc)" -DDEAL_II_WITH_LAPACK=ON -DLAPACK_DIR="$(pkg-config --variable=prefix mkl-dynamic-ilp64-iomp)" -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)" -DLAPACK_FOUND=true -- ..
+wajig show libp4est-dev
+wajig show libp4est-2.2
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="$(pkg-config --variable=prefix PETSc)" -DDEAL_II_WITH_SLEPC=ON -DSLEPC_DIR="$(pkg-config --variable=prefix SLEPc)" -DDEAL_II_WITH_LAPACK=ON -DLAPACK_DIR="$(pkg-config --variable=prefix mkl-dynamic-ilp64-iomp)" -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)" -DLAPACK_FOUND=true -- ..
+make -j 7
+rm -rf *
+wajig listcache L
+wajig clean
+mv ~/d/artyu/Downloads/p4est-2.2.tar.gz ..
+extract p4est-2.2.tar.gz
+wget https://dealii.org/developer/external-libs/p4est-setup.sh
+chmod u+x p4est-setup.sh
+wajig search zlib
+wajig install zlib1g-dev
+./p4est-setup.sh p4est-2.2.tar.gz /opt/p4est
+sudo ./p4est-setup.sh p4est-2.2.tar.gz /opt/p4est
+cd /
+fd .pc$
+sudo updatedb.mlocate
+z libs
+z lib
+cd -5
+cmake -DCMAKE_INSTALL_PREFIX=/opt/dealii-real -DDEAL_II_WITH_MPI=ON -DDEAL_II_WITH_64BIT_INDICES=ON -DDEAL_II_WITH_P4EST=ON -DP4EST_DIR=/opt/p4est/FAST -DDEAL_II_WITH_PETSC=ON -DPETSC_DIR="$(pkg-config --variable=prefix PETSc)" -DDEAL_II_WITH_SLEPC=ON -DSLEPC_DIR="$(pkg-config --variable=prefix SLEPc)" -DDEAL_II_WITH_LAPACK=ON -DLAPACK_DIR="$(pkg-config --variable=prefix mkl-dynamic-ilp64-iomp)" -DLAPACK_LIBRARIES="$(pkg-config --cflags --libs mkl-dynamic-ilp64-iomp)" -DLAPACK_FOUND=true -- ..
+make -j 8
+wajig listinstalled | rg my-
+sudo checkinstall
+whatis du
+man du
+man dir
+du
+du -h
+cd dealii-real
+cd bu
+cd build
+ll
+wajig listfiles my-dealii-real
+wajig remove my-dealii-real
+cd /opt
+sudo rm -rf dealii-real
+wajig install my-dealii-real_23.05.2020-1_amd64.deb
+wajig show my-dealii-real
+du -h -d 1
+cd ~/d
+cd ~/dotfiles
+gs
+vim ~/dotfiles/config/zsh/zshrc
 rsync -v ~/.cache/zsh/zsh_history ~/dotfiles/config/zsh/zsh_history

@@ -116,7 +116,8 @@ local aptapps=(
     ripgrep
     neovim
     ranger
-    lua
+    lua5.3
+    tig
     # htop
     # exa      # a modern replacment for ls
     # silversearcher-ag
