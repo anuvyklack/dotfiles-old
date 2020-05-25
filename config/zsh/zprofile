@@ -18,7 +18,7 @@
 
 # WORDCHARS (non-alphanumeric chars treated as part of a word)
 # You can also tweak this if you'd prefer ^w to break on dot, underscore, etc.
-export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+export WORDCHARS='*?_.[]~=&;!#$%^(){}<>'
 
 
 # Paths
