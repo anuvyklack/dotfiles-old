@@ -313,10 +313,6 @@ compctl -K _pip_completion pip3
 #           # as"completion"
 # zinit snippet https://github.com/junegunn/fzf/blob/master/shell/completion.zsh
 
-# lf completion
-zinit ice id-as"lf-completion" mv"lf-completion -> _lf" as"completion"
-zinit snippet https://github.com/gokcehan/lf/blob/master/etc/lf.zsh
-
 # cppman completion
 if command -v cppman > /dev/null 2>&1
 then
@@ -336,19 +332,23 @@ zinit light zdharma/zsh-diff-so-fancy
 
 # zinit light softmoth/zsh-vim-mode
 
-# This two should be last in this order
-zinit ice silent id-as"auto" atload"zpcompinit; zpcdreplay"
-zinit light zsh-users/zsh-syntax-highlighting
-
-zinit ice lucid id-as"auto"
-# zinit ice id-as"auto"
-zinit light zsh-users/zsh-history-substring-search
-
+# lf (file manager) {{{
 if type lf > /dev/null 2>&1; then
+
+  # lf completion
+  zinit ice id-as"lf-completion" mv"lf-completion -> _lf" as"completion"
+  zinit snippet https://github.com/gokcehan/lf/blob/master/etc/lf.zsh
+
   zinit ice id-as"lfcd.sh" as"null" \
             mv"lfcd.sh -> $HOME/dotfiles/config/zsh/functions/lfcd"
   zinit snippet https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
+
+  # # <Ctrl-o> - use lf to switch directories.
+  # bindkey -s '^o' 'lfcd\n'
+  # bindkey -s '^o' 'lfcd^m'
+
 fi
+# }}}
 
 # z.lua {{{
 
@@ -364,40 +364,56 @@ export _ZL_DATA=$HOME/.cache/.zlua
 
 # }}}
 
+# Alt-K to activate
+zinit ice lucid id-as"auto" pick'deer'
+zinit light Vifon/deer
+zle -N deer
+bindkey '\ek' deer
+
+#==========================================================
+#    WARNING: This two should be last in this order!
+#==========================================================
+zinit ice silent id-as"auto" atload"zpcompinit; zpcdreplay"
+zinit light zsh-users/zsh-syntax-highlighting
+
+zinit ice lucid id-as"auto"
+# zinit ice id-as"auto"
+zinit light zsh-users/zsh-history-substring-search
+#==========================================================
+
 # }}}
 
 # GUI settings                                                          {{{
 
-# Run X-Server on windows side
+# Run VcXsrv X-Server on windows side
 # ------------------------------------------------------------------------
 # Command line keys description:
 # https://gist.github.com/stowler/9921780
-# ------------------------------------------------------------------------
 # MSI GS63VR 7RF laptop has monitor with 141 dpi.
 # ------------------------------------------------------------------------
-(cmd.exe /C "C:\Users\artyu\scoop\apps\vcxsrv\current\vcxsrv.exe" :0 -silent-dup-error -multiwindow -nowgl -ac -dpi 141 &> /dev/null &)
+# -ac  disable access control restrictions
+# (cmd.exe /C "C:\Users\artyu\scoop\apps\vcxsrv\current\vcxsrv.exe" :0 -silent-dup-error -multiwindow -nowgl -ac -dpi 141 &> /dev/null &)
+(cmd.exe /C "C:\Users\artyu\scoop\apps\vcxsrv\current\vcxsrv.exe" :0 -silent-dup-error -multiwindow -nowgl -ac -dpi 141 -xkblayout us,ru -xkboptions grp:alt_shift_toggle &> /dev/null &)
+# (cmd.exe /C "C:\Users\artyu\scoop\apps\vcxsrv\current\vcxsrv.exe" :0 -silent-dup-error -multiwindow -nowgl -ac -dpi 141 -xkblayout us,ru -xkboptions grp:shift_ctrl_toggle &> /dev/null &)
 # (cmd.exe /C "C:\Users\artyu\scoop\apps\vcxsrv\current\vcxsrv.exe" :0 -silent-dup-error -multiwindow -nowgl -ac -dpi auto &> /dev/null &)
 
 # export QT_SCALE_FACTOR=1
-# export GDK_SCALE=2  # скейлинг элементов
+# export GDK_SCALE=2         # скейлинг элементов
 # export GDK_DPI_SCALE=1.25  # скейлинг шрифтов
+
 
 # For X-server
 # The format of this command is actually [host]:<display>.[screen] where [host]
-# refers to a network host name. Since we left it blank, we’re going to use our
-# local machine instead. Each host can have multiple display.
+# refers to a network host name.  Each host can have multiple display.
 # ------------------------------------------------------------------------
-# export DISPLAY=127.0.0.1:0.0
-# export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0.0
-# export DISPLAY=$(ip r l default | cut -d\ -f3):0
-# export DISPLAY1=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
-# export DISPLAY=$(awk '/nameserver/ {print $2}' /etc/resolv.conf):0.0
-export DISPLAY=$(awk '/nameserver/ {print $2}' /etc/resolv.conf):0
+# export DISPLAY=127.0.0.1:0.0         # for WSL 1
+export DISPLAY=${WINDOWS_HOST_IP}:0.0  # for WSL 2
 
 
-# Toggling between two keyboard layouts: English (US) and Russian in x11
-# apps.
-setxkbmap us,ru -option grp:shift_ctrl_toggle
+# Toggling between two keyboard layouts:
+# English (US) and Russian in x11 apps.
+# setxkbmap us,ru -option grp:shift_ctrl_toggle
+# setxkbmap us,ru -option grp:shift_ctrl_toggle
 
 # }}}
 
@@ -429,6 +445,14 @@ delete_line_from_history ()  # {{{
 }
 zle -N delete_line_from_history
 bindkey '^[f' delete_line_from_history  # Alt + F
+# }}}
+
+run_ranger()  # {{{
+{
+    BUFFER=" source ranger && clear -x"
+    zle accept-line
+}
+zle -N run_ranger
 # }}}
 
 # }}}1
@@ -507,10 +531,6 @@ bindkey \` autosuggest-accept
 bindkey "^K" history-substring-search-up
 bindkey "^J" history-substring-search-down
 
-# <Ctrl-o> - use lf to switch directories.
-bindkey -s '^o' 'lfcd\n'
-
-
 bindkey '\e[3~' delete-char    # del
 bindkey ';5D'   backward-word  # ctrl+left
 bindkey ';5C'   forward-word   # ctrl+right
@@ -539,6 +559,9 @@ bindkey -s '\e5' "!:4-4 \t"
 
 # bindkey '^r' history-incremental-search-backward
 # bindkey '^s' history-incremental-search-forward
+
+# Launch Ranger and cd to the last directory after closing it
+bindkey '^O' run_ranger
 
 # }}}1
 
@@ -607,6 +630,9 @@ then
 
   # show hidden folders
   export FZF_ALT_C_COMMAND="bfs -type d -L -print 2> /dev/null"
+else
+  echo -e '\e[33;1mWarning: \e[37;1mfzf\e[0m use \e[37;1mbfs\e[0m utility but it \e[31;1mnot\e[0m installed!'
+  echo -e '\e[37;1mhttps://github.com/tavianator/bfs'
 fi
 
 
@@ -724,10 +750,10 @@ bindkey -M isearch " " magic-space
 alias ed='emacs --with-profile doom'
 
 # Filesystem aliases
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
+alias ..=' cd ..'
+alias ...=' cd ../..'
+alias ....=" cd ../../.."
+alias .....=" cd ../../../.."
 
 ialias -g L='| less'
 
@@ -762,12 +788,29 @@ ialias mkdir='nocorrect mkdir -vp'
 # alias lsd='ls -ld *(-/DN)'  # вывод только каталогов
 # alias lsa='ls -ld .*'  # вывog тoльko dot-фaйлoв
 
-# alias ls='lsd'
-ialias ll='lsd --group-dirs=first --blocks=size,date,name --date=relative --icon=always --color=always --long'
-ialias lt='lsd --tree'
+ialias lsd='command lsd --group-dirs=first --blocks=permission,size,date,name --date=relative --icon=always --color=always -lF'
+ialias lt='commmand lsd --tree'
 
-# alias ls='exa'
-ialias exa='exa --group-directories-first'
+# exa {{{
+
+exa_current_ver="$(exa -v | awk -F v '{print $2}')"
+
+# Когда номер версии будет больше чем 0.9.0 должны появиться опции:
+# --no-user, --no-time и прочие. Для этого добавленная проверка
+# номера версии.
+autoload is-at-least
+if is-at-least 0.9.1 $exa_current_ver
+then
+  ialias ll=' command exa --group-directories-first -lF --color=always --git --no-user'
+else
+  # ialias ll=' exa --group-directories-first -lF --git --color=always --header --icons'
+  # ialias ll=' command exa --group-directories-first --lF --git --color=always --header'
+  ialias ll=' command exa --group-directories-first -lF --git --color=always'
+  ialias ls=' command exa --group-directories-first -F'
+fi
+
+
+# }}}
 
 ialias tree='tree -I .git -I .github'
 
@@ -783,13 +826,13 @@ alias disk='df -h | grep -P "F|[A-Z]:"'
 
 ialias wget='wget -c'  # автоматическое продолжение при разрыве соединения
 ialias vw=' nvim -c WikiIndex'  # open wiki
-ialias r=' ranger'
-ialias sr=' source ranger'
+
 ialias fd=fdfind
 
 # Git
 alias gs='git status'
 alias gc='git checkout'
+alias gd='git diff'
 alias -g random='-m curl -s http://whatthecommit.com/index.txt'
 
 alias cdh='back_in_history'

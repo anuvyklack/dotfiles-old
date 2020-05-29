@@ -12,13 +12,24 @@
 
 # Executes commands at login pre-zshrc.
 
-# For WSL
-[[ "$(umask)" = "000" ]] && umask 022
-
 
 # WORDCHARS (non-alphanumeric chars treated as part of a word)
 # You can also tweak this if you'd prefer ^w to break on dot, underscore, etc.
-export WORDCHARS='*?_.[]~=&;!#$%^(){}<>'
+export WORDCHARS='*?.[]~=&;!#$%^(){}<>'
+
+
+# WSL
+# ========================================================================
+
+# IS_WSL existed in the older version in WSL 1, while
+# WSL_DISTRO_NAME exists in the current version in WSL 2.
+if [[ -n "$IS_WSL" || -n "$WSL_DISTRO_NAME" ]]; then
+  # We are in wsl!
+  export WINDOWS_HOST_IP=$(awk '/nameserver/ {print $2}' /etc/resolv.conf)
+  export WINDOWS_USER="$(cmd.exe /C "echo %USERNAME%" 2>/dev/null | tr -d '\r')"
+else
+  # We are not in wsl!
+fi
 
 
 # Paths
@@ -68,7 +79,7 @@ if [[ -s $CONDACACHE(#q.md-7N) ]]
 then
     source $CONDACACHE
 else
-    # Make ~/.cache/zsh folder if it not exists
+    # Make ~/.cache/zsh folder if if it doesn't exist.
     [[ -d ~/.cache/zsh ]] || mkdir -pv ~/.cache/zsh
 
     local PATH_TO_CONDA_INSTALL='/opt/miniconda3'
@@ -120,13 +131,14 @@ path=(
   $path
 )
 
+
 # Zsh
-#
 # =====================================================================
 
 # Переменная READNULLCMD определяет команду, которая будет вызвана, если
 # перенаправление stdin использовать без ввода команды: `< file.txt`.
 READNULLCMD='less'
+
 
 # Editors
 # ========================================================================
@@ -190,6 +202,7 @@ if (( $#commands[(i)lesspipe(|.sh)] )); then
   export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
 fi
 
+export LESSHISTFILE="$HOME/.cache/lesshst"
 
 # LS_COLORS
 # ========================================================================
@@ -208,6 +221,10 @@ export BAT_PAGER="less ${LESS}"
 # export BAT_PAGER="less -RF"
 
 
+# Ripgrep
+# ========================================================================
+export RIPGREP_CONFIG_PATH=$HOME/.config/rg/config
+
 # Par (paragraph formating)
 # ========================================================================
 
@@ -223,17 +240,27 @@ export XDG_RUNTIME_DIR="/tmp/runtime-$USER"
 # pkg-config
 # ========================================================================
 
-# Create parameter and array and tie them together in the manner of $PATH
-# and $path.
-typeset -T -gU PKG_CONFIG_PATH pkg_config_path
-export PKG_CONFIG_PATH
+# # Create parameter and array and tie them together in the manner of $PATH
+# # and $path.
+# typeset -T -gU PKG_CONFIG_PATH pkg_config_path
+# export PKG_CONFIG_PATH
+#
+# pkg_config_path=(
+#     /usr/lib/pkgconfig
+#     /usr/lib/x86_64-linux-gnu/pkgconfig
+#     /usr/share/pkgconfig
+#     /opt/petsc-real/lib/pkgconfig
+#     /opt/slepc-real/lib/pkgconfig
+# )
+#
 
-pkg_config_path=(
-    /usr/lib/pkgconfig
-    /usr/lib/x86_64-linux-gnu/pkgconfig
-    /usr/share/pkgconfig
-    /opt/petsc-real/lib/pkgconfig
-    /opt/slepc-real/lib/pkgconfig
-)
+# Intel-MKL
+# ========================================================================
+
+if [[ -s /opt/intel/mkl/bin/mklvars.sh ]]; then
+    source /opt/intel/mkl/bin/mklvars.sh intel64
+    export MKL_THREADING_LAYER=GNU
+fi
+
 
 # vim: ft=zsh

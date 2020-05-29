@@ -67,7 +67,7 @@ a login shell:
 
 *Read when interactive*
 
-I put here everything needed only for interactive usage:
+It is a good practise to put here everything needed only for interactive usage:
 
 * prompt,
 * command completion,

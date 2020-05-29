@@ -1,6 +1,7 @@
 tags*
-**/*.zwc
+*.zwc
 **/nvim/plugged/*
 !**/nvim/plugged/myhelp
 **/nvim/autoload/plug.vim*
-windows_terminal/profiles_default.json
+__pycache__/
+**/ranger/**/__init__.py

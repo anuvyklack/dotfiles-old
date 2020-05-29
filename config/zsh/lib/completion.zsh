@@ -32,6 +32,7 @@ unsetopt glob_dots      # Dotfiles are matched without explicitly
 setopt auto_menu        # Show completion menu on a successive tab press.
 
 # correction
+unsetopt correct_all
 setopt correct
 
 _force_rehash() {

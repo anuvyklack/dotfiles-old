@@ -5,7 +5,7 @@ let g:startify_files_number = 10
 
 let g:startify_bookmarks = [
 \   {'m': '/mnt/d/artyu/OneDrive/Документы/Заметки/Monospace'},
-\   {'t': '/mnt/c/Users/artyu/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/profiles.json'},
+\   {'t': '/mnt/c/Users/artyu/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json'},
 \   {'a': '/mnt/c/Users/artyu/AppData/Roaming/alacritty/alacritty.yml'},
 \]
 " \   {'i': '~/.config/nvim/init.vim'},
@@ -22,5 +22,4 @@ let g:startify_lists = [
 
 let g:startify_fortune_use_unicode = 1
 
-" autocmd! TabNewEntered * Startify
 " autocmd! TabNewEntered * Startify

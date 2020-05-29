@@ -9,8 +9,6 @@ setlocal modifiable
 setlocal formatoptions=tcq21jp
 
 " replace common punctuation
-iabbrev <buffer> -- –
-iabbrev <buffer> --- —
 iabbrev <buffer> << «
 iabbrev <buffer> >> »
 

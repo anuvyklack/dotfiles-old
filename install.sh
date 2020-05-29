@@ -65,6 +65,7 @@ done
 # Setup Git
 symlink $DIR/config/git $HOME/.config/git
 
+# Setup lf file manager
 symlink $DIR/config/lf $HOME/.config/lf
 
 # # run Xserver on WSL start
@@ -140,7 +141,7 @@ echo ''
 if [[ ! -d "/home/linuxbrew/.linuxbrew" ]]
 then
     echo -e "\e[1;37mInstalling \e[1;33mHomebrew \e[0m"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 else
     echo -e "\e[1;33mHomebrew \e[1;37malready installed \e[0m"
 fi
@@ -191,6 +192,10 @@ if [[ ! -d /opt/miniconda3 ]]
 then
     echo -e '\e[37;1mInstalling \e[35;1mminiconda3\e[0m'
     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
+
+    # -b    Batch mode with no PATH modifications to ~/.bashrc.
+    #       Does not edit the .bashrc or .bash_profile files.
+    # -p    Installation prefix/path.
     sudo bash ~/miniconda.sh -b -p /opt/miniconda3
 
     # Make current user the owner of the /opt/miniconda3 to make 'conda update' work.
@@ -244,7 +249,7 @@ then
     echo -e "\e[32;1mnodejs \e[37;1malready installed \e[0m"
 else
     echo -e "\e[37;1mInstalling \e[32;1mnodejs \e[37;1mby \e[33;1mapt-get \e[0m"
-    curl -sL https://deb.nodesource.com/setup_13.x | sudo bash -
+    curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
     sudo apt-get install -y nodejs
 fi
 echo ''
@@ -252,18 +257,18 @@ echo ''
 
 # Setup mlocate {{{
 echo -e "\e[37;1mSetup \e[32;1mmlocate \e[0m"
-if [[ -s /etc/updatedb.conf && ! -s /etc/updatedb.conf.origin ]]
+if [[ -s /etc/updatedb.conf && ! -s /etc/updatedb.conf.original ]]
 then
-    sudo mv -vf /etc/updatedb.conf /etc/updatedb.conf.origin
+    sudo mv -vf /etc/updatedb.conf /etc/updatedb.conf.original
 fi
 sudo ln -sv -f $DIR/etc/updatedb.conf /etc/updatedb.conf
 # }}}
 
 # Setup windows fonts in wsl {{{
 echo -e "\e[37;1mSetup \e[32;1mfonts \e[0m"
-if [[ -s /etc/fonts/local.conf && ! -s /etc/fonts/local.conf.origin ]]
+if [[ -s /etc/fonts/local.conf && ! -s /etc/fonts/local.conf.original ]]
 then
-    sudo mv -vf /etc/fonts/local.conf /etc/fonts/local.conf.origin
+    sudo mv -vf /etc/fonts/local.conf /etc/fonts/local.conf.original
 fi
 sudo ln -sv -f $DIR/etc/fonts/local.conf /etc/fonts/local.conf
 # }}}

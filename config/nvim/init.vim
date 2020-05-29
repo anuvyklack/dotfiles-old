@@ -23,6 +23,8 @@ set fileencodings=utf-8,cp1251
 let mapleader = "\<Space>"      " клавиша, соответствующая ключю <leader>
 let maplocalleader = ','
 
+" If disabled on Ubuntu "spellfile.vim" plugin unable to download spell
+" files. With Debian Neovim, though, it works.
 let loaded_netrwPlugin = 1 " disabled netrw
 
 " http://items.sjbach.com/319/configuring-vim-right
